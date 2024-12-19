@@ -1,0 +1,23 @@
+## SEO URL Settings
+RewriteEngine On
+
+## Set base directory for OpenCart
+RewriteBase /opencart/
+
+## Protect system storage
+RewriteRule ^system/storage/(.*) index.php?route=error/not_found [L]
+
+## Handle multilingual URLs
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !.*\.(ico|gif|jpg|jpeg|png|webp|js|css|svg)
+
+## Rewrite rule to handle language and routes
+RewriteRule ^([a-z]{2}-[a-z]{2})/(.*)$ index.php?_route_=$2&language=$1 [L,QSA]
+
+RewriteRule ^mobileapi/(.*)/?$ index.php?route=mobile/$1 [L,QSA]
+
+## Fallback rewrite rule
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?_route_=$1 [L,QSA]
