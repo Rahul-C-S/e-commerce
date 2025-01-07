@@ -197,4 +197,66 @@ class ApiController extends Controller
         $sanitizedHost = preg_replace('/[^a-zA-Z0-9\-]/', '', $host);
         return hash('sha256', $sanitizedHost);
     }
+
+
+    private function validateCustomerToken(string $token)
+    {
+        $token_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer_token 
+            WHERE token = '" . $this->db->escape($token) . "'
+            AND expires_at > NOW()");
+
+        if ($token_query->num_rows) {
+            $this->load->model('account/customer');
+            return $this->model_account_customer->getCustomer($token_query->row['customer_id']);
+        }
+
+        return false;
+    }
+
+    public function authCheck()
+    {
+        $json = [];
+
+        try {
+            // Get Authorization header
+            $headers = getallheaders();
+            $auth_header = $headers['Authorization'] ?? $headers['authorization'] ?? '';
+
+            // Check Bearer token format
+            if (!$auth_header || !preg_match('/^Bearer\s+(.+)$/i', $auth_header, $matches)) {
+                $json['error']['warning'] = 'Missing or invalid Authorization header';
+                $json['status'] = false;
+                $this->response->addHeader('HTTP/1.0 401 Unauthorized');
+                $this->response->setOutput($this->jsonp($json, true));
+                return;
+            }
+
+            $token = $matches[1];
+
+            // Get customer info and validate token
+            $customer_info = $this->validateCustomerToken($token);
+
+            if (!$customer_info) {
+                $json['error']['warning'] = 'Invalid or expired token';
+                $json['status'] = false;
+                $this->response->addHeader('HTTP/1.0 401 Unauthorized');
+                $this->response->setOutput($this->jsonp($json, true));
+                return;
+            }
+
+            // Update last used timestamp
+            $this->db->query("UPDATE " . DB_PREFIX . "customer_token SET 
+                last_used = NOW()
+                WHERE token = '" . $this->db->escape($token) . "'");
+
+            return $customer_info;
+        } catch (\Exception $e) {
+            $json['error']['warning'] = 'Authentication failed';
+            $json['status'] = false;
+            $this->response->addHeader('HTTP/1.0 401 Unauthorized');
+            $this->response->setOutput($this->jsonp($json, true));
+            $this->log->write('Auth Check Error: ' . $e->getMessage());
+            return false;
+        }
+    }
 }

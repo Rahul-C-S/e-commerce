@@ -4,6 +4,14 @@ namespace Opencart\Catalog\Controller\Mobile;
 
 class Auth extends ApiController
 {
+    /**
+     * Auth middleware - validates Bearer token from headers
+     * Call at the start of protected endpoints
+     *
+     * @return array|void Customer info if valid, outputs error response if invalid
+     */
+
+
     public function login(): void
     {
         $json = [];
@@ -13,7 +21,7 @@ class Auth extends ApiController
             $required_fields = ['email', 'password'];
             foreach ($required_fields as $field) {
                 if (empty($this->request->post[$field])) {
-                    $json['error'][$field] = 'Field ' . $field . ' is required';
+                    $json['error']['warning'] = 'Required field missing: ' . $field;
                 }
             }
 
@@ -34,7 +42,7 @@ class Auth extends ApiController
 
                     if ($customer_info && !$customer_info['status']) {
                         $json['error']['warning'] = 'Account is not approved or inactive';
-                    } elseif (!password_verify(
+                    } elseif (!$customer_info || !password_verify(
                         html_entity_decode($this->request->post['password'], ENT_QUOTES, 'UTF-8'),
                         $customer_info['password']
                     )) {
@@ -118,6 +126,14 @@ class Auth extends ApiController
 
         $this->response->setOutput($this->jsonp($json, true));
     }
+
+    /**
+     * Validates customer token and returns customer info
+     * 
+     * @param string $token Auth token
+     * @return array|false Customer info if valid, false otherwise
+     */
+
     public function register(): void
     {
         $json = [];
@@ -135,7 +151,8 @@ class Auth extends ApiController
 
             foreach ($required_fields as $field) {
                 if (empty($this->request->post[$field])) {
-                    $json['error'][$field] = 'Field ' . $field . ' is required';
+                    $json['error']['warning'] = 'Required field missing: ' . $field;
+                    break;
                 }
             }
 
@@ -152,15 +169,15 @@ class Auth extends ApiController
 
                 // Field validations
                 if ((oc_strlen($this->request->post['firstname']) < 1) || (oc_strlen($this->request->post['firstname']) > 32)) {
-                    $json['error']['firstname'] = 'First name must be between 1 and 32 characters';
+                    $json['error']['warning'] = 'First name must be between 1 and 32 characters';
                 }
 
                 if ((oc_strlen($this->request->post['lastname']) < 1) || (oc_strlen($this->request->post['lastname']) > 32)) {
-                    $json['error']['lastname'] = 'Last name must be between 1 and 32 characters';
+                    $json['error']['warning'] = 'Last name must be between 1 and 32 characters';
                 }
 
                 if ((oc_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
-                    $json['error']['email'] = 'Invalid email address';
+                    $json['error']['warning'] = 'Invalid email address';
                 }
 
                 $this->load->model('account/customer');
@@ -251,6 +268,140 @@ class Auth extends ApiController
 
         $this->response->setOutput($this->jsonp($json, true));
     }
+
+    public function forgotPassword(): void
+    {
+        $json = [];
+
+        try {
+            if (empty($this->request->post['email'])) {
+                $json['error']['warning'] = 'Email is required';
+                $this->response->setOutput($this->jsonp($json, true));
+                return;
+            }
+
+            $this->load->model('account/customer');
+
+            $customer_info = $this->model_account_customer->getCustomerByEmail($this->request->post['email']);
+
+            if (!$customer_info) {
+                $json['error']['warning'] = 'No account found with this email address';
+                $this->response->setOutput($this->jsonp($json, true));
+                return;
+            }
+
+            // Generate reset code
+            $code = oc_token(40);
+            $this->model_account_customer->editCode($this->request->post['email'], $code);
+
+            // Store reset attempt in session
+            $this->session->data['reset_email'] = $this->request->post['email'];
+            $this->session->data['reset_code'] = $code;
+            $this->session->data['reset_time'] = time();
+
+            $json['status'] = true;
+            $json['success'] = 'Password reset instructions have been sent to your email';
+            $json['data'] = [
+                'reset_token' => $code,
+                'expires_at' => date('Y-m-d H:i:s', strtotime('+1 hour'))
+            ];
+        } catch (\Exception $e) {
+            $json['error']['warning'] = 'Failed to process password reset request';
+            $json['status'] = false;
+            $this->log->write('Forgot Password Error: ' . $e->getMessage());
+        }
+
+        $this->response->setOutput($this->jsonp($json, true));
+    }
+
+    public function resetPassword(): void
+    {
+        // Validate token first
+        $customer_info = $this->authCheck();
+        if (!$customer_info) return;
+        $json = [];
+
+        try {
+            $this->load->language('account/password');
+
+
+
+            $keys = [
+                'password',
+                'confirm'
+            ];
+
+            foreach ($keys as $key) {
+                if (!isset($this->request->post[$key])) {
+                    $this->request->post[$key] = '';
+                }
+            }
+
+            if ((oc_strlen(html_entity_decode($this->request->post['password'], ENT_QUOTES, 'UTF-8')) < 4) || (oc_strlen(html_entity_decode($this->request->post['password'], ENT_QUOTES, 'UTF-8')) > 40)) {
+                $json['error']['waring'] = $this->language->get('error_password');
+            }
+
+            if ($this->request->post['confirm'] != $this->request->post['password']) {
+                $json['error']['warning'] = $this->language->get('error_confirm');
+            }
+
+
+            $this->load->model('account/customer');
+
+            $this->model_account_customer->editPassword($customer_info['email'], $this->request->post['password']);
+
+            $json['status'] = true;
+            $json['success'] = $this->language->get('text_success');
+        } catch (\Exception $e) {
+            $json['error']['warning'] = 'Failed to reset password';
+            $json['status'] = false;
+            $this->log->write('Reset Password Error: ' . $e->getMessage());
+        }
+        $this->log->write(print_r($json, true));
+        $this->response->setOutput($this->jsonp($json, true));
+    }
+
+    public function deleteAccount(): void
+    {
+        // Validate token first
+        $customer_info = $this->authCheck();
+        if (!$customer_info) return;
+
+        $json = [];
+
+        try {
+            // Verify password for security
+            if (empty($this->request->post['password'])) {
+                $json['error']['warning'] = 'Password is required to delete account';
+            } elseif (!password_verify(
+                html_entity_decode($this->request->post['password'], ENT_QUOTES, 'UTF-8'),
+                $customer_info['password']
+            )) {
+                $json['error']['warning'] = 'Invalid password';
+            }
+
+            if (!$json) {
+                $this->load->model('account/customer');
+
+                // Delete customer and related data
+                $this->model_account_customer->deleteCustomer($customer_info['customer_id']);
+
+                // Clear all tokens
+                $this->db->query("DELETE FROM " . DB_PREFIX . "customer_token 
+                    WHERE customer_id = '" . (int)$customer_info['customer_id'] . "'");
+
+                $json['status'] = true;
+                $json['success'] = 'Account has been successfully deleted';
+            }
+        } catch (\Exception $e) {
+            $json['error']['warning'] = 'Failed to delete account';
+            $json['status'] = false;
+            $this->log->write('Delete Account Error: ' . $e->getMessage());
+        }
+
+        $this->response->setOutput($this->jsonp($json, true));
+    }
+
     public function validateToken(): void
     {
         $json = [];
@@ -320,7 +471,7 @@ class Auth extends ApiController
             $device_id = $this->request->get['device_id'] ?? $this->request->post['device_id'] ?? null;
 
             if (!$token || !$device_id) {
-                $json['error'] = 'Token and device ID are required';
+                $json['error']['warning'] = 'Token and device ID are required';
                 $json['status'] = false;
                 $this->response->setOutput($this->jsonp($json, true));
                 return;
@@ -337,7 +488,7 @@ class Auth extends ApiController
             $json['status'] = true;
             $json['success'] = 'Successfully logged out';
         } catch (\Exception $e) {
-            $json['error'] = 'Logout failed';
+            $json['error']['warning'] = 'Logout failed';
             $json['status'] = false;
             $this->log->write('Logout Error: ' . $e->getMessage());
         }
@@ -370,20 +521,18 @@ class Auth extends ApiController
         $fingerprint_data = [
             'user_agent' => $device_data['user_agent'],
             'client_data' => $device_data['client_data'],
-            // Add more unique identifiers if available
         ];
 
         // Create a unique string from fingerprint data
         $device_string = json_encode($fingerprint_data);
 
         // Generate a hash using the device string and a server-side salt
-        $server_salt = $this->config->get('config_encryption');  // Use your server's encryption key or a dedicated salt
+        $server_salt = $this->config->get('config_encryption');
         $device_hash = hash_hmac('sha256', $device_string, $server_salt);
 
         // Add timestamp component for uniqueness
         $timestamp_component = substr(hash('sha256', $device_data['timestamp'] . $server_salt), 0, 8);
 
-        // Combine hash and timestamp component
         return $device_hash . $timestamp_component;
     }
 }
