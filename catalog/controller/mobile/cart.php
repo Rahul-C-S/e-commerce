@@ -25,7 +25,7 @@ class Cart extends ApiController
         $customer_id = $customer['customer_id'];
         $products = $this->model_mobile_cart->getProducts($customer_id);
 
-        $data = [];
+        $json['products'] = [];
 
         // Get default currency from config if session is not available
         $currency = $this->config->get('config_currency');
@@ -58,7 +58,7 @@ class Cart extends ApiController
                 ];
             }
 
-            $data['products'][] = [
+            $json['products'][] = [
                 'cart_id' => $product['cart_id'],
                 'product_id' => $product['product_id'],
                 'name' => $product['name'],
@@ -80,13 +80,13 @@ class Cart extends ApiController
         $this->model_mobile_cart->getTotals($totals, $taxes, $total);
 
         foreach ($totals as $total) {
-            $data['totals'][] = [
+            $json['totals'][] = [
                 'title' => $total['title'],
                 'value' => $this->currency->format($total['value'], $currency)
             ];
         }
-
-        $this->response->setOutput($this->jsonp($data));
+        $this->log->write(print_r($json, true));
+        $this->response->setOutput($this->jsonp($json, true));
     }
 
     /**
@@ -105,8 +105,6 @@ class Cart extends ApiController
              return;
          }
      
-         $this->load->language('checkout/cart');
-     
          $json = [];
      
          // Get and validate basic parameters
@@ -117,8 +115,6 @@ class Cart extends ApiController
          // Handle options - get raw option data
          $raw_options = isset($this->request->post['option']) ? $this->request->post['option'] : '{}';
      
-     
-         
          // If options is already an array
          if (is_array($raw_options)) {
              $options = $raw_options;
@@ -140,8 +136,6 @@ class Cart extends ApiController
              }
          }
      
-  
-         
          // Validate options is an array
          if (!is_array($options)) {
              $this->log->write("Error: Decoded options is not an array, type: " . gettype($options));
@@ -160,23 +154,19 @@ class Cart extends ApiController
                      // Handle checkbox type (multiple values)
                      $sanitized_options[$clean_option_id] = array_map('intval', $option_value);
                  } else if (is_string($option_value)) {
-                     // Check if it's a date/time field
                      if (strpos($option_id, 'date') !== false || strpos($option_id, 'time') !== false) {
                          // Preserve date/time string format
-                         $sanitized_options[$clean_option_id] = htmlspecialchars(trim($option_value));
+                         $sanitized_options[$clean_option_id] = trim($option_value);
                      } else {
                          // Regular text input
-                         $sanitized_options[$clean_option_id] = htmlspecialchars(strip_tags(trim($option_value)));
+                         $sanitized_options[$clean_option_id] = htmlspecialchars(trim($option_value));
                      }
                  } else if (is_numeric($option_value)) {
                      // Handle numeric values (radio, select)
-                     $sanitized_options[$clean_option_id] = (int)$option_value;
+                     $sanitized_options[$clean_option_id] = (string)$option_value;  // Keep as string to match product_option_value_id
                  }
              }
          }
-     
-         // Debug log sanitized options
-         $this->log->write("Sanitized options: " . print_r($sanitized_options, true));
      
          $this->load->model('catalog/product');
          $this->load->model('mobile/cart');
@@ -184,7 +174,7 @@ class Cart extends ApiController
          $product_info = $this->model_catalog_product->getProduct($product_id);
      
          if (!$product_info) {
-             $json['error']['warning'] = $this->language->get('error_product');
+             $json['error']['warning'] = 'Product not found';
              $this->response->setOutput($this->jsonp($json, true));
              return;
          }
@@ -197,17 +187,17 @@ class Cart extends ApiController
      
              // Debug log for each option being processed
              $this->log->write("Processing option {$option_id}:");
+             $this->log->write("- Type: " . $product_option['type']);
              $this->log->write("- Required: " . ($product_option['required'] ? 'yes' : 'no'));
              $this->log->write("- Value received: " . (isset($sanitized_options[$option_id]) ? var_export($sanitized_options[$option_id], true) : 'not set'));
      
              if ($product_option['required']) {
-                 // Check if option is set and not empty
                  if (!isset($sanitized_options[$option_id]) || 
                      (is_string($sanitized_options[$option_id]) && trim($sanitized_options[$option_id]) === '') || 
                      (is_array($sanitized_options[$option_id]) && empty($sanitized_options[$option_id])) ||
                      $sanitized_options[$option_id] === null) {
                      
-                     $json['error']['option'][$option_id] = sprintf($this->language->get('error_required'), $product_option['name']);
+                     $json['error']['option'][$option_id] = $product_option['name'] . ' is required!';
                      continue;
                  }
              }
@@ -217,58 +207,65 @@ class Cart extends ApiController
                  $value = $sanitized_options[$option_id];
                  
                  switch ($product_option['type']) {
+                     case 'text':
+                     case 'textarea':
+                         if (isset($product_option['min_length']) && strlen($value) < $product_option['min_length']) {
+                             $json['error']['option'][$option_id] = $product_option['name'] . ' must be at least ' . $product_option['min_length'] . ' characters!';
+                         }
+                         if (isset($product_option['max_length']) && strlen($value) > $product_option['max_length']) {
+                             $json['error']['option'][$option_id] = $product_option['name'] . ' cannot be more than ' . $product_option['max_length'] . ' characters!';
+                         }
+                         break;
+     
                      case 'date':
                          if (!empty($value) && !preg_match('/^\d{4}-\d{2}-\d{2}$/', $value)) {
-                             $json['error']['option'][$option_id] = sprintf($this->language->get('error_date'), $product_option['name']);
+                             $json['error']['option'][$option_id] = 'Invalid date format for ' . $product_option['name'];
                          }
                          break;
      
                      case 'time':
                          if (!empty($value) && !preg_match('/^\d{2}:\d{2}$/', $value)) {
-                             $json['error']['option'][$option_id] = sprintf($this->language->get('error_time'), $product_option['name']);
+                             $json['error']['option'][$option_id] = 'Invalid time format for ' . $product_option['name'];
                          }
                          break;
      
                      case 'datetime':
                          if (!empty($value) && !preg_match('/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/', $value)) {
-                             $json['error']['option'][$option_id] = sprintf($this->language->get('error_datetime'), $product_option['name']);
+                             $json['error']['option'][$option_id] = 'Invalid datetime format for ' . $product_option['name'];
                          }
                          break;
      
                      case 'select':
                      case 'radio':
                          // Get valid option values
-                         $option_values = $product_option['product_option_value'];
-                         $valid_values = array_column($option_values, 'product_option_value_id');
+                         $valid_values = [];
+                         foreach ($product_option['product_option_value'] as $option_value) {
+                             $valid_values[] = (string)$option_value['product_option_value_id'];
+                         }
                          
                          // Validate selected value exists
-                         if (!in_array($value, $valid_values, true)) {
-                             $json['error']['option'][$option_id] = $product_option['name'] . ' is required!';
+                         if (!in_array((string)$value, $valid_values)) {
+                             $json['error']['option'][$option_id] = 'Invalid value for ' . $product_option['name'];
+                             // Debug log for validation failure
+                             $this->log->write("Invalid value for {$product_option['name']}: Received '{$value}', Valid values: " . implode(', ', $valid_values));
                          }
                          break;
      
                      case 'checkbox':
                          if (is_array($value)) {
-                             $option_values = $product_option['product_option_value'];
                              $valid_values = [];
-                             
-                             // Create array of valid option value IDs
-                             foreach ($option_values as $option_value) {
-                                 $valid_values[] = (int)$option_value['product_option_value_id'];
+                             foreach ($product_option['product_option_value'] as $option_value) {
+                                 $valid_values[] = (string)$option_value['product_option_value_id'];
                              }
                              
-                             // Check each selected checkbox value
                              foreach ($value as $checkbox_value) {
-                                 $checkbox_value = (int)$checkbox_value;
-                                 if (!in_array($checkbox_value, $valid_values)) {
-                                     $this->log->write("Invalid checkbox value: " . $checkbox_value);
-                                     $this->log->write("Valid values: " . print_r($valid_values, true));
-                                     $json['error']['option'][$option_id] = $product_option['name'] . ' is required!';
+                                 if (!in_array((string)$checkbox_value, $valid_values)) {
+                                     $json['error']['option'][$option_id] = 'Invalid value for ' . $product_option['name'];
                                      break;
                                  }
                              }
                          } else {
-                             $json['error']['option'][$option_id] = sprintf($this->language->get('error_option'), $product_option['name']);
+                             $json['error']['option'][$option_id] = 'Invalid value for ' . $product_option['name'];
                          }
                          break;
                  }
