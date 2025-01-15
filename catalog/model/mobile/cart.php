@@ -135,6 +135,7 @@ class Cart extends \Opencart\System\Engine\Model
 
                 $products[] = array_merge([
                     'cart_id' => $row['cart_id'],
+                    'master_id' => $product_query->row['master_id'],
                     'product_id' => $row['product_id'],
                     'name' => $product_query->row['name'],
                     'model' => $product_query->row['model'],
