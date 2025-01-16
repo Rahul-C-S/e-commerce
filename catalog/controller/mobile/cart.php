@@ -106,7 +106,7 @@ class Cart extends ApiController
         // Get the sub-total first
         $sub_total = 0;
         foreach ($products as $product) {
-            
+
             $sub_total += $product['price'] * $product['quantity'];
         }
 
@@ -389,12 +389,7 @@ class Cart extends ApiController
         if (!$json) {
             $this->model_mobile_cart->add($customer['customer_id'], $product_id, $quantity, $sanitized_options, $subscription_plan_id);
 
-            $json['success'] = sprintf(
-                $this->language->get('text_success'),
-                $this->url->link('product/product', 'language=' . $this->config->get('config_language') . '&product_id=' . $product_id),
-                $product_info['name'],
-                $this->url->link('checkout/cart', 'language=' . $this->config->get('config_language'))
-            );
+            $json['success'] = $product_info['name'] . ' has been added to cart';
 
             // Get updated cart count
             $json['total'] = $this->model_mobile_cart->getCartItemCount($customer['customer_id']);

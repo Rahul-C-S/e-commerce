@@ -346,7 +346,6 @@ class Checkout extends \Opencart\System\Engine\Model
         $this->load->model('account/address');
         $shipping_address = [];
         if (!empty($checkout_data['shipping_address_id'])) {
-
             $results = $this->model_account_address->getAddresses($customer_id, $checkout_data['shipping_address_id']);
 
             foreach ($results as $result) {
@@ -365,8 +364,6 @@ class Checkout extends \Opencart\System\Engine\Model
                 ];
             }
         }
-
-
 
         // Get shipping method details
         $shipping_method = [];
@@ -401,11 +398,13 @@ class Checkout extends \Opencart\System\Engine\Model
         // Get applied discounts and rewards
         $applied_totals = $this->getAppliedTotals($customer_id);
 
+        // Initialize taxes array
+        $taxes = [];
+        $tax_totals = [];
 
-
-           // Calculate taxes if needed
-           if ($this->config->get('config_tax')) {
-            foreach ($result as $product) {
+        // Calculate taxes if needed
+        if ($this->config->get('config_tax')) {
+            foreach ($cart_products as $product) {
                 $tax_rates = $this->tax->getRates($product['price'], $product['tax_class_id']);
 
                 foreach ($tax_rates as $tax_rate) {
@@ -419,7 +418,7 @@ class Checkout extends \Opencart\System\Engine\Model
 
             // Add each tax to totals
             foreach ($taxes as $key => $value) {
-                $taxes = [
+                $tax_totals[] = [
                     'code'       => 'tax',
                     'title'      => $this->tax->getRateName($key),
                     'value'      => $value,
@@ -429,21 +428,13 @@ class Checkout extends \Opencart\System\Engine\Model
         }
 
         // Calculate final total
-        
-    
-
-
-
-        // Calculate final total
         $total = $subtotal;
 
         foreach ($taxes as $value) {
             $total += $value;
         }
 
-        $applied_totals['taxes'] = [
-            ''
-        ];
+        // $applied_totals['taxes'] = $tax_totals;
 
         if (isset($applied_totals['coupon'])) {
             $total -= $applied_totals['coupon']['discount'];
@@ -455,19 +446,16 @@ class Checkout extends \Opencart\System\Engine\Model
             $total -= $applied_totals['reward']['value'];
         }
 
-
-        
-
         // Format currency values
         $this->load->model('localisation/currency');
         $currency = $this->config->get('config_currency');
-
 
         return [
             'totals' => [
                 'subtotal' => $this->currency->format($subtotal, $currency),
                 'total' => $this->currency->format($total, $currency),
-                'applied_totals' => $applied_totals
+                'applied_totals' => $applied_totals,
+                'taxes' => $tax_totals,
             ],
             'shipping_address' => $shipping_address,
             'shipping_method' => $shipping_method,
