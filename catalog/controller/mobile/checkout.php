@@ -178,16 +178,6 @@ class Checkout extends ApiController
         }
 
 
-        // Add total
-        $totals[] = [
-            'code'       => 'total',
-            'extension'  => 'opencart',
-            'title'      => 'Total',
-            'value'      => $total,
-            'sort_order' => 9999
-        ];
-
-
         // Calculate final total before discounts
         $total = $sub_total;
         foreach ($taxes as $value) {
