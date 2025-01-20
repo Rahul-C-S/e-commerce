@@ -335,6 +335,11 @@ class Checkout extends \Opencart\System\Engine\Model
         if (!$checkout_data) {
             return ['error' => 'No checkout data found'];
         }
+
+        // Format currency values
+        $this->load->model('localisation/currency');
+        $currency = $this->config->get('config_currency');
+
         $this->load->model('mobile/cart');
         // Get cart products
         $cart_products = $this->model_mobile_cart->getProducts($customer_id);
@@ -434,27 +439,34 @@ class Checkout extends \Opencart\System\Engine\Model
             $total += $value;
         }
 
-        // $applied_totals['taxes'] = $tax_totals;
+        $formattedAppliedTotals = [];
+
+
 
         if (isset($applied_totals['coupon'])) {
             $total -= $applied_totals['coupon']['discount'];
+            $formattedAppliedTotals[] = [
+                'title' => $applied_totals['coupon']['name'],
+                'value' => $this->currency->format($applied_totals['coupon']['discount'], $currency),
+            ];
         }
         if (isset($applied_totals['voucher'])) {
             $total -= $applied_totals['voucher']['amount'];
+            $formattedAppliedTotals[] = [
+                'title' =>'Voucher Applied: '. $applied_totals['voucher']['code'],
+                'value' => $this->currency->format($applied_totals['voucher']['amount'], $currency),
+            ];
         }
         if (isset($applied_totals['reward'])) {
             $total -= $applied_totals['reward']['value'];
         }
 
-        // Format currency values
-        $this->load->model('localisation/currency');
-        $currency = $this->config->get('config_currency');
 
         return [
             'totals' => [
                 'subtotal' => $this->currency->format($subtotal, $currency),
                 'total' => $this->currency->format($total, $currency),
-                'applied_totals' => $applied_totals,
+                'applied_totals' => $formattedAppliedTotals,
                 'taxes' => $tax_totals,
             ],
             'shipping_address' => $shipping_address,

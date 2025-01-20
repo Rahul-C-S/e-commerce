@@ -465,14 +465,14 @@ class Checkout extends ApiController
             $this->response->setOutput($this->jsonp([], true));
             return;
         }
+        $json = [];
 
         $this->load->language('extension/opencart/total/coupon');
         $this->load->model('mobile/checkout');
 
         if (!isset($this->request->post['coupon'])) {
-            $this->response->setOutput($this->jsonp([
-                'error' => $this->language->get('error_coupon')
-            ], false));
+            $json['error']['warning'] = $this->language->get('error_coupon');
+            $this->response->setOutput($this->jsonp($json, false));
             return;
         }
 
@@ -480,8 +480,13 @@ class Checkout extends ApiController
             $customer['customer_id'],
             $this->request->post['coupon']
         );
+        if ($result['success']) {
+            $json['success'] = $result['coupon']['name'] . ' has been applied.';
+        } else {
+            $json['error']['warning'] = 'Invalid coupon';
+        }
 
-        $this->response->setOutput($this->jsonp($result, !isset($result['error'])));
+        $this->response->setOutput($this->jsonp($json, true));
     }
 
     public function removeCoupon(): void
@@ -492,12 +497,18 @@ class Checkout extends ApiController
             $this->response->setOutput($this->jsonp([], true));
             return;
         }
+        $json= [];
 
         $this->load->model('mobile/checkout');
 
         $result = $this->model_mobile_checkout->removeCoupon($customer['customer_id']);
+        if ($result['success']) {
+            $json['success'] = 'Coupon has been removed.';
+        } else {
+            $json['error']['warning'] = 'Invalid coupon';
+        }
 
-        $this->response->setOutput($this->jsonp($result, true));
+        $this->response->setOutput($this->jsonp($json, true));
     }
 
     public function applyVoucher(): void
@@ -509,13 +520,14 @@ class Checkout extends ApiController
             return;
         }
 
+        $json = [];
+
         $this->load->language('extension/opencart/total/voucher');
         $this->load->model('mobile/checkout');
 
         if (!isset($this->request->post['voucher'])) {
-            $this->response->setOutput($this->jsonp([
-                'error' => $this->language->get('error_voucher')
-            ], false));
+            $json['error']['warning'] =  $this->language->get('error_voucher');
+            $this->response->setOutput($this->jsonp($json, true));
             return;
         }
 
@@ -524,7 +536,13 @@ class Checkout extends ApiController
             $this->request->post['voucher']
         );
 
-        $this->response->setOutput($this->jsonp($result, !isset($result['error'])));
+        if ($result['success']) {
+            $json['success'] = 'Voucher '. $result['voucher']['code'] . ' has been applied.';
+        } else {
+            $json['error']['warning'] = 'Invalid voucher!';
+        }
+
+        $this->response->setOutput($this->jsonp($json, true));
     }
 
     public function removeVoucher(): void
@@ -540,7 +558,13 @@ class Checkout extends ApiController
 
         $result = $this->model_mobile_checkout->removeVoucher($customer['customer_id']);
 
-        $this->response->setOutput($this->jsonp($result, true));
+        if ($result['success']) {
+            $json['success'] = 'Voucher has been removed.';
+        } else {
+            $json['error']['warning'] = 'Invalid Voucher';
+        }
+
+        $this->response->setOutput($this->jsonp($json, true));
     }
 
     public function applyReward(): void
