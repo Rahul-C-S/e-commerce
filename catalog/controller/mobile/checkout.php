@@ -177,13 +177,66 @@ class Checkout extends ApiController
             }
         }
 
-        // Calculate final total
+
+        // Add total
+        $totals[] = [
+            'code'       => 'total',
+            'extension'  => 'opencart',
+            'title'      => 'Total',
+            'value'      => $total,
+            'sort_order' => 9999
+        ];
+
+
+        // Calculate final total before discounts
         $total = $sub_total;
         foreach ($taxes as $value) {
             $total += $value;
         }
 
-        // Add total
+        // Get applied discounts and rewards
+        $applied_totals = $this->model_mobile_checkout->getAppliedTotals($customer['customer_id']);
+
+        if (isset($applied_totals['coupon'])) {
+            // Add coupon total
+            $totals[] = [
+                'code'       => 'coupon',
+                'extension'  => 'opencart',
+                'title'      => $applied_totals['coupon']['name'],
+                'value'      => -$applied_totals['coupon']['discount'],
+                'sort_order' => 500
+            ];
+            // Subtract from total
+            $total -= $applied_totals['coupon']['discount'];
+        }
+
+        if (isset($applied_totals['voucher'])) {
+            // Add voucher total
+            $totals[] = [
+                'code'       => 'voucher',
+                'extension'  => 'opencart',
+                'title'      => 'Voucher Applied: ' . $applied_totals['voucher']['code'],
+                'value'      => -$applied_totals['voucher']['amount'],
+                'sort_order' => 501
+            ];
+            // Subtract from total
+            $total -= $applied_totals['voucher']['amount'];
+        }
+
+        if (isset($applied_totals['reward'])) {
+            // Add reward total
+            $totals[] = [
+                'code'       => 'reward',
+                'extension'  => 'opencart',
+                'title'      => 'Redeemed Rewards',
+                'value'      => -$applied_totals['reward']['value'],
+                'sort_order' => 502
+            ];
+            // Subtract from total
+            $total -= $applied_totals['reward']['value'];
+        }
+
+        // Add final total last, after all deductions
         $totals[] = [
             'code'       => 'total',
             'extension'  => 'opencart',
@@ -196,6 +249,8 @@ class Checkout extends ApiController
         $order_data['totals'] = $totals;
         $order_data['total'] = $total;
         $order_data['taxes'] = $taxes;
+
+
 
         // Products
         $order_data['products'] = [];
@@ -497,7 +552,7 @@ class Checkout extends ApiController
             $this->response->setOutput($this->jsonp([], true));
             return;
         }
-        $json= [];
+        $json = [];
 
         $this->load->model('mobile/checkout');
 
@@ -537,7 +592,7 @@ class Checkout extends ApiController
         );
 
         if ($result['success']) {
-            $json['success'] = 'Voucher '. $result['voucher']['code'] . ' has been applied.';
+            $json['success'] = 'Voucher ' . $result['voucher']['code'] . ' has been applied.';
         } else {
             $json['error']['warning'] = 'Invalid voucher!';
         }
