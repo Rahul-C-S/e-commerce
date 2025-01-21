@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 16, 2025 at 12:14 PM
+-- Generation Time: Jan 21, 2025 at 05:32 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -43,14 +43,6 @@ CREATE TABLE `oc_address` (
   `default` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
---
--- Dumping data for table `oc_address`
---
-
-INSERT INTO `oc_address` (`address_id`, `customer_id`, `firstname`, `lastname`, `company`, `address_1`, `address_2`, `city`, `postcode`, `country_id`, `zone_id`, `custom_field`, `default`) VALUES
-(3, 4, 'Address 2', 'test', 'V Sky', 'Test Add 2', '', 'Test', 'PO21 4TW', 222, 3515, '', 1),
-(7, 4, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 11, 185, '', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -62,13 +54,6 @@ CREATE TABLE `oc_address_format` (
   `name` varchar(128) NOT NULL,
   `address_format` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
-
---
--- Dumping data for table `oc_address_format`
---
-
-INSERT INTO `oc_address_format` (`address_format_id`, `name`, `address_format`) VALUES
-(1, 'Address Format', '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}');
 
 -- --------------------------------------------------------
 
@@ -339,26 +324,6 @@ CREATE TABLE `oc_banner_image` (
   `sort_order` int(3) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
---
--- Dumping data for table `oc_banner_image`
---
-
-INSERT INTO `oc_banner_image` (`banner_image_id`, `banner_id`, `language_id`, `title`, `link`, `image`, `sort_order`) VALUES
-(79, 7, 1, 'iPhone 6', 'index.php?route=product/product&amp;path=57&amp;product_id=49', 'catalog/demo/banners/iPhone6.jpg', 0),
-(80, 7, 1, 'MacBookAir', '', 'catalog/demo/banners/MacBookAir.jpg', 0),
-(87, 6, 1, 'HP Banner', 'index.php?route=product/manufacturer.info&amp;manufacturer_id=7', 'catalog/demo/compaq_presario.jpg', 0),
-(88, 8, 1, 'Harley Davidson', '', 'catalog/demo/manufacturer/harley.png', 0),
-(89, 8, 1, 'Dell', '', 'catalog/demo/manufacturer/dell.png', 0),
-(90, 8, 1, 'Disney', '', 'catalog/demo/manufacturer/disney.png', 0),
-(91, 8, 1, 'Coca Cola', '', 'catalog/demo/manufacturer/cocacola.png', 0),
-(92, 8, 1, 'Burger King', '', 'catalog/demo/manufacturer/burgerking.png', 0),
-(93, 8, 1, 'Canon', '', 'catalog/demo/manufacturer/canon.png', 0),
-(94, 8, 1, 'NFL', '', 'catalog/demo/manufacturer/nfl.png', 0),
-(95, 8, 1, 'RedBull', '', 'catalog/demo/manufacturer/redbull.png', 0),
-(96, 8, 1, 'Sony', '', 'catalog/demo/manufacturer/sony.png', 0),
-(97, 8, 1, 'Starbucks', '', 'catalog/demo/manufacturer/starbucks.png', 0),
-(98, 8, 1, 'Nintendo', '', 'catalog/demo/manufacturer/nintendo.png', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -384,8 +349,8 @@ CREATE TABLE `oc_cart` (
 --
 
 INSERT INTO `oc_cart` (`cart_id`, `api_id`, `customer_id`, `session_id`, `product_id`, `subscription_plan_id`, `option`, `quantity`, `override`, `price`, `date_added`) VALUES
-(82, 0, 4, '3f8241a889e2413b5dd00150eb', 34, 0, '[]', 2, 0, 0.0000, '2025-01-16 09:46:15'),
-(86, 0, 4, '3f8241a889e2413b5dd00150eb', 32, 0, '[]', 1, 0, 0.0000, '2025-01-16 10:00:09');
+(130, 0, 4, '', 43, 0, '[]', 1, 0, 0.0000, '2025-01-20 19:59:49'),
+(131, 0, 4, '', 40, 0, '[]', 1, 0, 0.0000, '2025-01-20 19:59:51');
 
 -- --------------------------------------------------------
 
@@ -405,50 +370,6 @@ CREATE TABLE `oc_category` (
   `date_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
---
--- Dumping data for table `oc_category`
---
-
-INSERT INTO `oc_category` (`category_id`, `image`, `parent_id`, `top`, `column`, `sort_order`, `status`, `date_added`, `date_modified`) VALUES
-(17, '', 0, 1, 1, 4, 1, '2009-01-03 21:08:57', '2011-05-30 12:15:11'),
-(18, 'catalog/demo/hp_2.jpg', 0, 1, 0, 2, 1, '2009-01-05 21:49:15', '2011-05-30 12:13:55'),
-(20, 'catalog/demo/compaq_presario.jpg', 0, 1, 1, 1, 1, '2009-01-05 21:49:43', '2011-07-16 02:14:42'),
-(24, '', 0, 1, 1, 5, 1, '2009-01-20 02:36:26', '2011-05-30 12:15:18'),
-(25, '', 0, 1, 1, 3, 1, '2009-01-31 01:04:25', '2011-05-30 12:14:55'),
-(26, '', 20, 0, 0, 1, 1, '2009-01-31 01:55:14', '2010-08-22 06:31:45'),
-(27, '', 20, 0, 0, 2, 1, '2009-01-31 01:55:34', '2010-08-22 06:32:15'),
-(28, '', 25, 0, 0, 1, 1, '2009-02-02 13:11:12', '2010-08-22 06:32:46'),
-(29, '', 25, 0, 0, 1, 1, '2009-02-02 13:11:37', '2010-08-22 06:32:39'),
-(30, '', 25, 0, 0, 1, 1, '2009-02-02 13:11:59', '2010-08-22 06:33:00'),
-(31, '', 25, 0, 0, 1, 1, '2009-02-03 14:17:24', '2010-08-22 06:33:06'),
-(32, '', 25, 0, 0, 1, 1, '2009-02-03 14:17:34', '2010-08-22 06:33:12'),
-(33, '', 0, 1, 1, 6, 1, '2009-02-03 14:17:55', '2011-05-30 12:15:25'),
-(34, 'catalog/demo/ipod_touch_4.jpg', 0, 1, 4, 7, 1, '2009-02-03 14:18:11', '2011-05-30 12:15:31'),
-(35, '', 28, 0, 0, 0, 1, '2010-09-17 10:06:48', '2010-09-18 14:02:42'),
-(36, '', 28, 0, 0, 0, 1, '2010-09-17 10:07:13', '2010-09-18 14:02:55'),
-(37, '', 34, 0, 0, 0, 1, '2010-09-18 14:03:39', '2011-04-22 01:55:08'),
-(38, '', 34, 0, 0, 0, 1, '2010-09-18 14:03:51', '2010-09-18 14:03:51'),
-(39, '', 34, 0, 0, 0, 1, '2010-09-18 14:04:17', '2011-04-22 01:55:20'),
-(40, '', 34, 0, 0, 0, 1, '2010-09-18 14:05:36', '2010-09-18 14:05:36'),
-(41, '', 34, 0, 0, 0, 1, '2010-09-18 14:05:49', '2011-04-22 01:55:30'),
-(42, '', 34, 0, 0, 0, 1, '2010-09-18 14:06:34', '2010-11-07 20:31:04'),
-(43, '', 34, 0, 0, 0, 1, '2010-09-18 14:06:49', '2011-04-22 01:55:40'),
-(44, '', 34, 0, 0, 0, 1, '2010-09-21 15:39:21', '2010-11-07 20:30:55'),
-(45, '', 18, 0, 0, 0, 1, '2010-09-24 18:29:16', '2011-04-26 08:52:11'),
-(46, '', 18, 0, 0, 0, 1, '2010-09-24 18:29:31', '2011-04-26 08:52:23'),
-(47, '', 34, 0, 0, 0, 1, '2010-11-07 11:13:16', '2010-11-07 11:13:16'),
-(48, '', 34, 0, 0, 0, 1, '2010-11-07 11:13:33', '2010-11-07 11:13:33'),
-(49, '', 34, 0, 0, 0, 1, '2010-11-07 11:14:04', '2010-11-07 11:14:04'),
-(50, '', 34, 0, 0, 0, 1, '2010-11-07 11:14:23', '2011-04-22 01:16:01'),
-(51, '', 34, 0, 0, 0, 1, '2010-11-07 11:14:38', '2011-04-22 01:16:13'),
-(52, '', 34, 0, 0, 0, 1, '2010-11-07 11:16:09', '2011-04-22 01:54:57'),
-(53, '', 34, 0, 0, 0, 1, '2010-11-07 11:28:53', '2011-04-22 01:14:36'),
-(54, '', 34, 0, 0, 0, 1, '2010-11-07 11:29:16', '2011-04-22 01:16:50'),
-(55, '', 34, 0, 0, 0, 1, '2010-11-08 10:31:32', '2010-11-08 10:31:32'),
-(56, '', 34, 0, 0, 0, 1, '2010-11-08 10:31:50', '2011-04-22 01:16:37'),
-(57, '', 0, 1, 1, 3, 1, '2011-04-26 08:53:16', '2011-05-30 12:15:05'),
-(58, '', 52, 0, 0, 0, 1, '2011-05-08 13:44:16', '2011-05-08 13:44:16');
-
 -- --------------------------------------------------------
 
 --
@@ -464,50 +385,6 @@ CREATE TABLE `oc_category_description` (
   `meta_description` varchar(255) NOT NULL,
   `meta_keyword` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
-
---
--- Dumping data for table `oc_category_description`
---
-
-INSERT INTO `oc_category_description` (`category_id`, `language_id`, `name`, `description`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
-(17, 1, 'Software', '', 'Software', '', ''),
-(18, 1, 'Laptops &amp; Notebooks', '&lt;p&gt;\r\n	Shop Laptop feature only the best laptop deals on the market. By comparing laptop deals from the likes of PC World, Comet, Dixons, The Link and Carphone Warehouse, Shop Laptop has the most comprehensive selection of laptops on the internet. At Shop Laptop, we pride ourselves on offering customers the very best laptop deals. From refurbished laptops to netbooks, Shop Laptop ensures that every laptop - in every colour, style, size and technical spec - is featured on the site at the lowest possible price.&lt;/p&gt;\r\n', 'Laptops &amp; Notebooks', '', ''),
-(20, 1, 'Desktops', '&lt;p&gt;\r\n	Example of category description text&lt;/p&gt;\r\n', 'Desktops', 'Example of category description', ''),
-(24, 1, 'Phones &amp; PDAs', '', 'Phones &amp; PDAs', '', ''),
-(25, 1, 'Components', '', 'Components', '', ''),
-(26, 1, 'PC', '', 'PC', '', ''),
-(27, 1, 'Mac', '', 'Mac', '', ''),
-(28, 1, 'Monitors', '', 'Monitors', '', ''),
-(29, 1, 'Mice and Trackballs', '', 'Mice and Trackballs', '', ''),
-(30, 1, 'Printers', '', 'Printers', '', ''),
-(31, 1, 'Scanners', '', 'Scanners', '', ''),
-(32, 1, 'Web Cameras', '', 'Web Cameras', '', ''),
-(33, 1, 'Cameras', '', 'Cameras', '', ''),
-(34, 1, 'MP3 Players', '&lt;p&gt;\r\n	Shop Laptop feature only the best laptop deals on the market. By comparing laptop deals from the likes of PC World, Comet, Dixons, The Link and Carphone Warehouse, Shop Laptop has the most comprehensive selection of laptops on the internet. At Shop Laptop, we pride ourselves on offering customers the very best laptop deals. From refurbished laptops to netbooks, Shop Laptop ensures that every laptop - in every colour, style, size and technical spec - is featured on the site at the lowest possible price.&lt;/p&gt;\r\n', 'MP3 Players', '', ''),
-(35, 1, 'test 1', '', 'test 1', '', ''),
-(36, 1, 'test 2', '', 'test 2', '', ''),
-(37, 1, 'test 5', '', 'test 5', '', ''),
-(38, 1, 'test 4', '', 'test 4', '', ''),
-(39, 1, 'test 6', '', 'test 6', '', ''),
-(40, 1, 'test 7', '', 'test 7', '', ''),
-(41, 1, 'test 8', '', 'test 8', '', ''),
-(42, 1, 'test 9', '', 'test 9', '', ''),
-(43, 1, 'test 11', '', 'test 11', '', ''),
-(44, 1, 'test 12', '', 'test 12', '', ''),
-(45, 1, 'Windows', '', 'Windows', '', ''),
-(46, 1, 'Macs', '', 'Macs', '', ''),
-(47, 1, 'test 15', '', 'test 15', '', ''),
-(48, 1, 'test 16', '', 'test 16', '', ''),
-(49, 1, 'test 17', '', 'test 17', '', ''),
-(50, 1, 'test 18', '', 'test 18', '', ''),
-(51, 1, 'test 19', '', 'test 19', '', ''),
-(52, 1, 'test 20', '', 'test 20', '', ''),
-(53, 1, 'test 21', '', 'test 21', '', ''),
-(54, 1, 'test 22', '', 'test 22', '', ''),
-(55, 1, 'test 23', '', 'test 23', '', ''),
-(56, 1, 'test 24', '', 'test 24', '', ''),
-(57, 1, 'Tablets', '', 'Tablets', '', ''),
-(58, 1, 'test 25', '', 'test 25', '', '');
 
 -- --------------------------------------------------------
 
@@ -532,83 +409,6 @@ CREATE TABLE `oc_category_path` (
   `level` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
---
--- Dumping data for table `oc_category_path`
---
-
-INSERT INTO `oc_category_path` (`category_id`, `path_id`, `level`) VALUES
-(17, 17, 0),
-(18, 18, 0),
-(20, 20, 0),
-(24, 24, 0),
-(25, 25, 0),
-(26, 20, 0),
-(26, 26, 1),
-(27, 20, 0),
-(27, 27, 1),
-(28, 25, 0),
-(28, 28, 1),
-(29, 25, 0),
-(29, 29, 1),
-(30, 25, 0),
-(30, 30, 1),
-(31, 25, 0),
-(31, 31, 1),
-(32, 25, 0),
-(32, 32, 1),
-(33, 33, 0),
-(34, 34, 0),
-(35, 25, 0),
-(35, 28, 1),
-(35, 35, 2),
-(36, 25, 0),
-(36, 28, 1),
-(36, 36, 2),
-(37, 34, 0),
-(37, 37, 1),
-(38, 34, 0),
-(38, 38, 1),
-(39, 34, 0),
-(39, 39, 1),
-(40, 34, 0),
-(40, 40, 1),
-(41, 34, 0),
-(41, 41, 1),
-(42, 34, 0),
-(42, 42, 1),
-(43, 34, 0),
-(43, 43, 1),
-(44, 34, 0),
-(44, 44, 1),
-(45, 18, 0),
-(45, 45, 1),
-(46, 18, 0),
-(46, 46, 1),
-(47, 34, 0),
-(47, 47, 1),
-(48, 34, 0),
-(48, 48, 1),
-(49, 34, 0),
-(49, 49, 1),
-(50, 34, 0),
-(50, 50, 1),
-(51, 34, 0),
-(51, 51, 1),
-(52, 34, 0),
-(52, 52, 1),
-(53, 34, 0),
-(53, 53, 1),
-(54, 34, 0),
-(54, 54, 1),
-(55, 34, 0),
-(55, 55, 1),
-(56, 34, 0),
-(56, 56, 1),
-(57, 57, 0),
-(58, 34, 0),
-(58, 52, 1),
-(58, 58, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -631,50 +431,6 @@ CREATE TABLE `oc_category_to_store` (
   `category_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
-
---
--- Dumping data for table `oc_category_to_store`
---
-
-INSERT INTO `oc_category_to_store` (`category_id`, `store_id`) VALUES
-(17, 0),
-(18, 0),
-(20, 0),
-(24, 0),
-(25, 0),
-(26, 0),
-(27, 0),
-(28, 0),
-(29, 0),
-(30, 0),
-(31, 0),
-(32, 0),
-(33, 0),
-(34, 0),
-(35, 0),
-(36, 0),
-(37, 0),
-(38, 0),
-(39, 0),
-(40, 0),
-(41, 0),
-(42, 0),
-(43, 0),
-(44, 0),
-(45, 0),
-(46, 0),
-(47, 0),
-(48, 0),
-(49, 0),
-(50, 0),
-(51, 0),
-(52, 0),
-(53, 0),
-(54, 0),
-(55, 0),
-(56, 0),
-(57, 0),
-(58, 0);
 
 -- --------------------------------------------------------
 
@@ -1070,14 +826,14 @@ CREATE TABLE `oc_currency` (
 --
 
 INSERT INTO `oc_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbol_right`, `decimal_place`, `value`, `status`, `date_modified`) VALUES
-(1, 'Pound Sterling', 'GBP', '£', '', 2, 0.78827442, 1, '2025-01-13 14:37:40'),
-(2, 'US Dollar', 'USD', '$', '', 2, 1.00000000, 1, '2025-01-13 14:37:40'),
-(3, 'Euro', 'EUR', '', '€', 2, 0.94186422, 1, '2025-01-13 14:37:40'),
-(4, 'Hong Kong Dollar', 'HKD', 'HK$', '', 2, 7.55601154, 0, '2025-01-13 14:37:40'),
-(5, 'Indian Rupee', 'INR', '₹', '', 2, 83.47412948, 0, '2025-01-13 14:37:40'),
+(1, 'Pound Sterling', 'GBP', '£', '', 2, 0.00010614, 0, '2025-01-21 09:01:21'),
+(2, 'US Dollar', 'USD', '$', '', 2, 0.00012944, 0, '2025-01-21 09:01:21'),
+(3, 'Euro', 'EUR', '', '€', 2, 0.00012547, 0, '2025-01-21 09:01:21'),
+(4, 'Hong Kong Dollar', 'HKD', 'HK$', '', 2, 0.00100757, 0, '2025-01-21 09:01:21'),
+(5, 'Indian Rupee', 'INR', '₹', '', 2, 1.00000000, 1, '2025-01-21 09:01:21'),
 (6, 'Russian Ruble', 'RUB', '', '₽', 2, 56.40360000, 0, '2018-02-16 12:00:00'),
-(7, 'Chinese Yuan Renminbi', 'CNY', '¥', '', 2, 7.11503071, 0, '2025-01-13 14:37:40'),
-(8, 'Australian Dollar', 'AUD', '$', '', 2, 1.56867486, 0, '2025-01-13 14:37:40');
+(7, 'Chinese Yuan Renminbi', 'CNY', '¥', '', 2, 0.00094647, 0, '2025-01-21 09:01:21'),
+(8, 'Australian Dollar', 'AUD', '$', '', 2, 0.00020863, 0, '2025-01-21 09:01:21');
 
 -- --------------------------------------------------------
 
@@ -1104,14 +860,6 @@ CREATE TABLE `oc_customer` (
   `code` varchar(40) NOT NULL,
   `date_added` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
-
---
--- Dumping data for table `oc_customer`
---
-
-INSERT INTO `oc_customer` (`customer_id`, `customer_group_id`, `store_id`, `language_id`, `firstname`, `lastname`, `email`, `telephone`, `password`, `custom_field`, `newsletter`, `ip`, `status`, `safe`, `token`, `code`, `date_added`) VALUES
-(1, 1, 0, 1, 'Rahul', 'test', 'rahul2@mail.com1', '0123456789', '$2y$10$ncHa.37lYKI9W4t1qxdeGeFzchirDd7uUc3wS6bT1DIYtSPp5hqQe', '', 0, '::1', 1, 0, '', '', '2024-12-19 10:11:18'),
-(4, 1, 0, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '$2y$10$F/D4pd8FhJxuVbDfScgfpOU9pVhTvkpcDXnh3mhm49MHfja1L.CO6', '[]', 1, '::1', 1, 0, '', 'd93b0c2c3fdd0e2221b60b6f234b3ee89636780b', '2025-01-06 03:23:57');
 
 -- --------------------------------------------------------
 
@@ -1267,7 +1015,8 @@ INSERT INTO `oc_customer_ip` (`customer_ip_id`, `customer_id`, `store_id`, `ip`,
 (16, 4, 0, '127.0.0.1', '', '2025-01-08 06:13:20'),
 (17, 4, 0, '127.0.0.1', '', '2025-01-08 07:04:35'),
 (18, 4, 0, '127.0.0.1', '', '2025-01-08 07:17:41'),
-(19, 4, 0, '::1', '', '2025-01-13 04:38:31');
+(19, 4, 0, '::1', '', '2025-01-13 04:38:31'),
+(20, 4, 0, '::1', '', '2025-01-19 04:54:01');
 
 -- --------------------------------------------------------
 
@@ -1359,15 +1108,6 @@ CREATE TABLE `oc_customer_token` (
   `last_used` datetime NOT NULL,
   `last_ip` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `oc_customer_token`
---
-
-INSERT INTO `oc_customer_token` (`customer_token_id`, `customer_id`, `token`, `device_id`, `device_info`, `ip`, `user_agent`, `expires_at`, `created_at`, `last_used`, `last_ip`) VALUES
-(25, 1, 'c07cdb3082ff5664f34c07ddfba931f85c0e4988120314e8015d887387b23de0', '49ecc257154036d828b10fcbbb91fa488ce4ac940064487e273a8bbad175a9903c80981c', '{\"user_agent\":\"PostmanRuntime\\/7.43.0\",\"ip\":\"::1\",\"client_data\":[],\"timestamp\":1734603078,\"registration\":true}', '::1', NULL, '2025-01-18 10:11:18', '2024-12-19 10:11:18', '2024-12-19 10:11:18', NULL),
-(36, 4, 'ed7aeed8cc86b75c442cc0652a3cbfd3884a4966064b259640d644815aaf165e', '1f6854f0aea18ed65cd1204ed67471d92d8391667e17a2b622284f847e042797832eae5b', '{\"user_agent\":\"Dart\\/3.6 (dart:io)\",\"ip\":\"127.0.0.1\",\"client_data\":[],\"timestamp\":1736252312}', '127.0.0.1', NULL, '2025-02-05 04:48:26', '2025-01-06 04:48:26', '2025-01-07 12:18:32', NULL),
-(40, 4, '9d9acd6d0690608dfc17f623b1614264e59483741f0a7b2cdd092d4c15323a22', '1f6854f0aea18ed65cd1204ed67471d92d8391667e17a2b622284f847e042797b04f594b', '{\"user_agent\":\"Dart\\/3.6 (dart:io)\",\"ip\":\"127.0.0.1\",\"client_data\":[],\"timestamp\":1737021749}', '127.0.0.1', NULL, '2025-02-07 07:17:41', '2025-01-08 07:17:41', '2025-01-16 11:11:56', NULL);
 
 --
 -- Triggers `oc_customer_token`
@@ -2772,23 +2512,6 @@ CREATE TABLE `oc_option` (
   `sort_order` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
---
--- Dumping data for table `oc_option`
---
-
-INSERT INTO `oc_option` (`option_id`, `type`, `sort_order`) VALUES
-(1, 'radio', 1),
-(2, 'checkbox', 2),
-(4, 'text', 3),
-(5, 'select', 4),
-(6, 'textarea', 5),
-(7, 'file', 6),
-(8, 'date', 7),
-(9, 'time', 8),
-(10, 'datetime', 9),
-(11, 'select', 10),
-(12, 'date', 11);
-
 -- --------------------------------------------------------
 
 --
@@ -2800,23 +2523,6 @@ CREATE TABLE `oc_option_description` (
   `language_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
-
---
--- Dumping data for table `oc_option_description`
---
-
-INSERT INTO `oc_option_description` (`option_id`, `language_id`, `name`) VALUES
-(1, 1, 'Radio'),
-(2, 1, 'Checkbox'),
-(4, 1, 'Text'),
-(5, 1, 'Select'),
-(6, 1, 'Textarea'),
-(7, 1, 'File'),
-(8, 1, 'Date'),
-(9, 1, 'Time'),
-(10, 1, 'Date &amp; Time'),
-(11, 1, 'Size'),
-(12, 1, 'Delivery Date');
 
 -- --------------------------------------------------------
 
@@ -2831,26 +2537,6 @@ CREATE TABLE `oc_option_value` (
   `sort_order` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
---
--- Dumping data for table `oc_option_value`
---
-
-INSERT INTO `oc_option_value` (`option_value_id`, `option_id`, `image`, `sort_order`) VALUES
-(23, 2, '', 1),
-(24, 2, '', 2),
-(31, 1, '', 2),
-(32, 1, '', 1),
-(39, 5, '', 1),
-(40, 5, '', 2),
-(41, 5, '', 3),
-(42, 5, '', 4),
-(43, 1, '', 3),
-(44, 2, '', 3),
-(45, 2, '', 4),
-(46, 11, '', 1),
-(47, 11, '', 2),
-(48, 11, '', 3);
-
 -- --------------------------------------------------------
 
 --
@@ -2863,26 +2549,6 @@ CREATE TABLE `oc_option_value_description` (
   `option_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
-
---
--- Dumping data for table `oc_option_value_description`
---
-
-INSERT INTO `oc_option_value_description` (`option_value_id`, `language_id`, `option_id`, `name`) VALUES
-(23, 1, 2, 'Checkbox 1'),
-(24, 1, 2, 'Checkbox 2'),
-(31, 1, 1, 'Medium'),
-(32, 1, 1, 'Small'),
-(39, 1, 5, 'Red'),
-(40, 1, 5, 'Blue'),
-(41, 1, 5, 'Green'),
-(42, 1, 5, 'Yellow'),
-(43, 1, 1, 'Large'),
-(44, 1, 2, 'Checkbox 3'),
-(45, 1, 2, 'Checkbox 4'),
-(46, 1, 11, 'Small'),
-(47, 1, 11, 'Medium'),
-(48, 1, 11, 'Large');
 
 -- --------------------------------------------------------
 
@@ -2956,40 +2622,6 @@ CREATE TABLE `oc_order` (
   `date_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
---
--- Dumping data for table `oc_order`
---
-
-INSERT INTO `oc_order` (`order_id`, `subscription_id`, `invoice_no`, `invoice_prefix`, `transaction_id`, `store_id`, `store_name`, `store_url`, `customer_id`, `customer_group_id`, `firstname`, `lastname`, `email`, `telephone`, `custom_field`, `payment_address_id`, `payment_firstname`, `payment_lastname`, `payment_company`, `payment_address_1`, `payment_address_2`, `payment_city`, `payment_postcode`, `payment_country`, `payment_country_id`, `payment_zone`, `payment_zone_id`, `payment_address_format`, `payment_custom_field`, `payment_method`, `shipping_address_id`, `shipping_firstname`, `shipping_lastname`, `shipping_company`, `shipping_address_1`, `shipping_address_2`, `shipping_city`, `shipping_postcode`, `shipping_country`, `shipping_country_id`, `shipping_zone`, `shipping_zone_id`, `shipping_address_format`, `shipping_custom_field`, `shipping_method`, `comment`, `total`, `order_status_id`, `affiliate_id`, `commission`, `marketing_id`, `tracking`, `language_id`, `language_code`, `currency_id`, `currency_code`, `currency_value`, `ip`, `forwarded_ip`, `user_agent`, `accept_language`, `date_added`, `date_modified`) VALUES
-(33, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '\"[]\"', 0, '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '\"cod\"', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '\"flat\"', '', 1.0000, 0, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-14 17:44:31', '2025-01-14 17:44:31'),
-(34, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '\"[]\"', 0, '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '\"cod\"', 3, 'Address 2', 'test', 'V Sky', 'Test Add 2', '', 'Test', 'PO21 4TW', 'United Kingdom', 222, 'Anglesey', 3515, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '\"flat\"', '', 1.0000, 0, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-15 08:25:47', '2025-01-15 08:25:47'),
-(35, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '\"[]\"', 0, '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '\"cod\"', 3, 'Address 2', 'test', 'V Sky', 'Test Add 2', '', 'Test', 'PO21 4TW', 'United Kingdom', 222, 'Anglesey', 3515, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '\"flat\"', '', 1.0000, 0, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-15 08:26:16', '2025-01-15 08:26:16'),
-(36, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '\"[]\"', 0, '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '\"cod\"', 3, 'Address 2', 'test', 'V Sky', 'Test Add 2', '', 'Test', 'PO21 4TW', 'United Kingdom', 222, 'Anglesey', 3515, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '\"flat\"', '', 1.0000, 0, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-15 08:26:20', '2025-01-15 08:26:20'),
-(37, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '\"[]\"', 0, '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '\"cod\"', 3, 'Address 2', 'test', 'V Sky', 'Test Add 2', '', 'Test', 'PO21 4TW', 'United Kingdom', 222, 'Anglesey', 3515, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '\"flat\"', '', 1.0000, 0, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-15 08:26:23', '2025-01-15 08:26:23'),
-(38, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '\"[]\"', 0, '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '\"cod\"', 3, 'Address 2', 'test', 'V Sky', 'Test Add 2', '', 'Test', 'PO21 4TW', 'United Kingdom', 222, 'Anglesey', 3515, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '\"flat\"', '', 1.0000, 0, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-15 08:26:55', '2025-01-15 08:26:55'),
-(39, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '\"[]\"', 0, '', '', '', '', '', '', '', '', 0, '', 0, '', '', '\"cod\"', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '\"flat\"', '', 244.0000, 0, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-15 08:31:50', '2025-01-15 08:31:50'),
-(40, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '\"[]\"', 0, '', '', '', '', '', '', '', '', 0, '', 0, '', '', '\"cod\"', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '\"flat\"', '', 244.0000, 0, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-15 08:32:31', '2025-01-15 08:32:31'),
-(41, 0, 0, '', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '[]', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '\"cod\"', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '\"flat\"', '', 244.0000, 0, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', '', '', '2025-01-15 08:44:57', '2025-01-15 08:44:57'),
-(42, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '[]', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '\"cod\"', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '\"flat\"', '', 244.0000, 0, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-15 08:46:34', '2025-01-15 08:46:34'),
-(43, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '[]', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '\"cod\"', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '\"flat\"', '', 244.0000, 0, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-15 08:48:26', '2025-01-15 08:48:26'),
-(46, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '[]', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Cod\",\"code\":\"cod\",\"title\":\"Cod\",\"terms\":\"\"}', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Flat\",\"code\":\"flat\",\"title\":\"Flat\",\"cost\":0,\"tax_class_id\":0}', '', 244.0000, 1, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-15 08:52:33', '2025-01-15 08:52:33'),
-(47, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '[]', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Cod\",\"code\":\"cod\",\"title\":\"Cod\",\"terms\":\"\"}', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Flat\",\"code\":\"flat\",\"title\":\"Flat\",\"cost\":0,\"tax_class_id\":0}', '', 196.0000, 1, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-15 08:55:42', '2025-01-15 08:55:42'),
-(48, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '[]', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Cod\",\"code\":\"cod\",\"title\":\"Cod\",\"terms\":\"\"}', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Flat\",\"code\":\"flat\",\"title\":\"Flat\",\"cost\":0,\"tax_class_id\":0}', '', 725.2000, 1, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-15 08:56:51', '2025-01-15 08:56:51'),
-(49, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '[]', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Cod\",\"code\":\"cod\",\"title\":\"Cod\",\"terms\":\"\"}', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Flat\",\"code\":\"flat\",\"title\":\"Flat\",\"cost\":0,\"tax_class_id\":0}', '', 459.9880, 1, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-15 09:02:16', '2025-01-15 09:02:16'),
-(50, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '[]', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Cod\",\"code\":\"cod\",\"title\":\"Cod\",\"terms\":\"\"}', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Flat\",\"code\":\"flat\",\"title\":\"Flat\",\"cost\":0,\"tax_class_id\":0}', '', 244.0000, 1, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-15 09:05:20', '2025-01-15 09:05:20'),
-(51, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '[]', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Cod\",\"code\":\"cod\",\"title\":\"Cod\",\"terms\":\"\"}', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Flat\",\"code\":\"flat\",\"title\":\"Flat\",\"cost\":0,\"tax_class_id\":0}', '', 244.0000, 1, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-15 09:09:57', '2025-01-15 09:09:57'),
-(52, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '[]', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Cod\",\"code\":\"cod\",\"title\":\"Cod\",\"terms\":\"\"}', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Flat\",\"code\":\"flat\",\"title\":\"Flat\",\"cost\":0,\"tax_class_id\":0}', '', 366.0000, 1, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-15 09:13:29', '2025-01-15 09:13:29'),
-(53, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '[]', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Cod\",\"code\":\"cod\",\"title\":\"Cod\",\"terms\":\"\"}', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Flat\",\"code\":\"flat\",\"title\":\"Flat\",\"cost\":0,\"tax_class_id\":0}', '', 244.0000, 1, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-15 09:15:12', '2025-01-15 09:15:12'),
-(54, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '[]', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Cod\",\"code\":\"cod\",\"title\":\"Cod\",\"terms\":\"\"}', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Flat\",\"code\":\"flat\",\"title\":\"Flat\",\"cost\":0,\"tax_class_id\":0}', '', 244.0000, 1, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-15 09:29:17', '2025-01-15 09:29:17'),
-(55, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '[]', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Free_checkout\",\"code\":\"free_checkout\",\"title\":\"Free_checkout\",\"terms\":\"\"}', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Flat\",\"code\":\"flat\",\"title\":\"Flat\",\"cost\":0,\"tax_class_id\":0}', '', 244.0000, 1, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-16 08:59:48', '2025-01-16 08:59:48'),
-(56, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '[]', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Free_checkout\",\"code\":\"free_checkout\",\"title\":\"Free_checkout\",\"terms\":\"\"}', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Flat\",\"code\":\"flat\",\"title\":\"Flat\",\"cost\":0,\"tax_class_id\":0}', '', 1476.0000, 1, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-16 09:15:38', '2025-01-16 09:15:38'),
-(57, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '[]', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Free_checkout\",\"code\":\"free_checkout\",\"title\":\"Free_checkout\",\"terms\":\"\"}', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Flat\",\"code\":\"flat\",\"title\":\"Flat\",\"cost\":0,\"tax_class_id\":0}', '', 244.0000, 1, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-16 09:17:14', '2025-01-16 09:17:14'),
-(58, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '[]', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Cod\",\"code\":\"cod\",\"title\":\"Cod\",\"terms\":\"\"}', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Flat\",\"code\":\"flat\",\"title\":\"Flat\",\"cost\":0,\"tax_class_id\":0}', '', 123.2000, 1, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-16 09:17:53', '2025-01-16 09:17:53'),
-(59, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '[]', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Cod\",\"code\":\"cod\",\"title\":\"Cod\",\"terms\":\"\"}', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Flat\",\"code\":\"flat\",\"title\":\"Flat\",\"cost\":0,\"tax_class_id\":0}', '', 488.0000, 1, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-16 09:25:43', '2025-01-16 09:25:43'),
-(60, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '[]', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Cod\",\"code\":\"cod\",\"title\":\"Cod\",\"terms\":\"\"}', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Flat\",\"code\":\"flat\",\"title\":\"Flat\",\"cost\":0,\"tax_class_id\":0}', '', 123.2000, 1, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-16 09:28:07', '2025-01-16 09:28:07'),
-(61, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '[]', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Cod\",\"code\":\"cod\",\"title\":\"Cod\",\"terms\":\"\"}', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Flat\",\"code\":\"flat\",\"title\":\"Flat\",\"cost\":0,\"tax_class_id\":0}', '', 123.2000, 1, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-16 09:43:05', '2025-01-16 09:43:05'),
-(62, 0, 0, 'INV-2024-00', '', 0, 'Your Store', 'http://localhost/opencart/', 4, 1, 'Rahul', 'C S', 'rahul@gmail.com', '0123456789', '[]', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Cod\",\"code\":\"cod\",\"title\":\"Cod\",\"terms\":\"\"}', 7, 'Name 1', 'Name 2', 'Company', 'test', 'test', 'test123456', '123333', 'Armenia', 11, 'Lorri', 185, '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', '[]', '{\"name\":\"Flat\",\"code\":\"flat\",\"title\":\"Flat\",\"cost\":0,\"tax_class_id\":0}', '', 244.0000, 1, 0, 0.0000, 0, '', 1, '', 2, 'USD', 1.00000000, '127.0.0.1', '', 'Dart/3.6 (dart:io)', '', '2025-01-16 09:44:49', '2025-01-16 09:44:50');
-
 -- --------------------------------------------------------
 
 --
@@ -3004,29 +2636,6 @@ CREATE TABLE `oc_order_history` (
   `comment` text NOT NULL,
   `date_added` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
-
---
--- Dumping data for table `oc_order_history`
---
-
-INSERT INTO `oc_order_history` (`order_history_id`, `order_id`, `order_status_id`, `notify`, `comment`, `date_added`) VALUES
-(38, 46, 1, 0, '', '2025-01-15 08:52:33'),
-(39, 47, 1, 0, '', '2025-01-15 08:55:42'),
-(40, 48, 1, 0, '', '2025-01-15 08:56:51'),
-(41, 49, 1, 0, '', '2025-01-15 09:02:16'),
-(42, 50, 1, 0, '', '2025-01-15 09:05:20'),
-(43, 51, 1, 0, '', '2025-01-15 09:09:57'),
-(44, 52, 1, 0, '', '2025-01-15 09:13:29'),
-(45, 53, 1, 0, '', '2025-01-15 09:15:12'),
-(46, 54, 1, 0, '', '2025-01-15 09:29:17'),
-(47, 55, 1, 0, '', '2025-01-16 08:59:48'),
-(48, 56, 1, 0, '', '2025-01-16 09:15:38'),
-(49, 57, 1, 0, '', '2025-01-16 09:17:14'),
-(50, 58, 1, 0, '', '2025-01-16 09:17:53'),
-(51, 59, 1, 0, '', '2025-01-16 09:25:43'),
-(52, 60, 1, 0, '', '2025-01-16 09:28:07'),
-(53, 61, 1, 0, '', '2025-01-16 09:43:05'),
-(54, 62, 1, 0, '', '2025-01-16 09:44:50');
 
 -- --------------------------------------------------------
 
@@ -3044,23 +2653,6 @@ CREATE TABLE `oc_order_option` (
   `value` text NOT NULL,
   `type` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
-
---
--- Dumping data for table `oc_order_option`
---
-
-INSERT INTO `oc_order_option` (`order_option_id`, `order_id`, `order_product_id`, `product_option_id`, `product_option_value_id`, `name`, `value`, `type`) VALUES
-(4, 47, 99, 226, 16, 'Select', 'Blue', 'select'),
-(5, 56, 117, 226, 16, 'Select', 'Blue', 'select'),
-(6, 56, 120, 218, 7, 'Radio', 'Large', 'radio'),
-(7, 56, 120, 223, 9, 'Checkbox', 'Checkbox 2', 'checkbox'),
-(8, 56, 120, 223, 10, 'Checkbox', 'Checkbox 3', 'checkbox'),
-(9, 56, 120, 208, 0, 'Text', 'test', 'text'),
-(10, 56, 120, 217, 1, 'Select', 'Green', 'select'),
-(11, 56, 120, 209, 0, 'Textarea', 'test', 'textarea'),
-(12, 56, 120, 219, 0, 'Date', '2025-01-31', 'date'),
-(13, 56, 120, 221, 0, 'Time', '12:44', 'time'),
-(14, 56, 120, 220, 0, 'Date &amp; Time', '2025-01-16 14:44:00', 'datetime');
 
 -- --------------------------------------------------------
 
@@ -3081,69 +2673,6 @@ CREATE TABLE `oc_order_product` (
   `tax` decimal(15,4) NOT NULL DEFAULT 0.0000,
   `reward` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
-
---
--- Dumping data for table `oc_order_product`
---
-
-INSERT INTO `oc_order_product` (`order_product_id`, `order_id`, `product_id`, `master_id`, `name`, `model`, `quantity`, `price`, `total`, `tax`, `reward`) VALUES
-(71, 33, 36, 0, 'iPod Nano', 'Product 9', 1, 100.0000, 100.0000, 22.0000, 0),
-(72, 33, 34, 0, 'iPod Shuffle', 'Product 7', 1, 100.0000, 100.0000, 22.0000, 0),
-(73, 34, 36, 0, 'iPod Nano', 'Product 9', 1, 100.0000, 100.0000, 22.0000, 0),
-(74, 34, 34, 0, 'iPod Shuffle', 'Product 7', 1, 100.0000, 100.0000, 22.0000, 0),
-(75, 35, 36, 0, 'iPod Nano', 'Product 9', 1, 100.0000, 100.0000, 22.0000, 0),
-(76, 35, 34, 0, 'iPod Shuffle', 'Product 7', 1, 100.0000, 100.0000, 22.0000, 0),
-(77, 36, 36, 0, 'iPod Nano', 'Product 9', 1, 100.0000, 100.0000, 22.0000, 0),
-(78, 36, 34, 0, 'iPod Shuffle', 'Product 7', 1, 100.0000, 100.0000, 22.0000, 0),
-(79, 37, 36, 0, 'iPod Nano', 'Product 9', 1, 100.0000, 100.0000, 22.0000, 0),
-(80, 37, 34, 0, 'iPod Shuffle', 'Product 7', 1, 100.0000, 100.0000, 22.0000, 0),
-(81, 38, 36, 0, 'iPod Nano', 'Product 9', 1, 100.0000, 100.0000, 22.0000, 0),
-(82, 38, 34, 0, 'iPod Shuffle', 'Product 7', 1, 100.0000, 100.0000, 22.0000, 0),
-(83, 39, 36, 0, 'iPod Nano', 'Product 9', 1, 100.0000, 100.0000, 22.0000, 0),
-(84, 39, 34, 0, 'iPod Shuffle', 'Product 7', 1, 100.0000, 100.0000, 22.0000, 0),
-(85, 40, 36, 0, 'iPod Nano', 'Product 9', 1, 100.0000, 100.0000, 22.0000, 0),
-(86, 40, 34, 0, 'iPod Shuffle', 'Product 7', 1, 100.0000, 100.0000, 22.0000, 0),
-(87, 41, 36, 0, 'iPod Nano', 'Product 9', 1, 100.0000, 100.0000, 22.0000, 0),
-(88, 41, 34, 0, 'iPod Shuffle', 'Product 7', 1, 100.0000, 100.0000, 22.0000, 0),
-(89, 42, 36, 0, 'iPod Nano', 'Product 9', 1, 100.0000, 100.0000, 22.0000, 0),
-(90, 42, 34, 0, 'iPod Shuffle', 'Product 7', 1, 100.0000, 100.0000, 22.0000, 0),
-(91, 43, 36, 0, 'iPod Nano', 'Product 9', 1, 100.0000, 100.0000, 22.0000, 0),
-(92, 43, 34, 0, 'iPod Shuffle', 'Product 7', 1, 100.0000, 100.0000, 22.0000, 0),
-(97, 46, 36, 0, 'iPod Nano', 'Product 9', 1, 100.0000, 100.0000, 22.0000, 0),
-(98, 46, 34, 0, 'iPod Shuffle', 'Product 7', 1, 100.0000, 100.0000, 22.0000, 0),
-(99, 47, 30, 0, 'Canon EOS 5D', 'Product 3', 2, 80.0000, 160.0000, 18.0000, 0),
-(100, 48, 40, 0, 'iPhone', 'product 11', 1, 101.0000, 101.0000, 22.2000, 0),
-(101, 48, 43, 0, 'MacBook', 'Product 16', 1, 500.0000, 500.0000, 102.0000, 0),
-(102, 49, 29, 0, 'Palm Treo Pro', 'Product 2', 1, 279.9900, 279.9900, 57.9980, 0),
-(103, 49, 28, 0, 'HTC Touch HD', 'Product 1', 1, 100.0000, 100.0000, 22.0000, 0),
-(104, 50, 34, 0, 'iPod Shuffle', 'Product 7', 1, 100.0000, 100.0000, 22.0000, 0),
-(105, 50, 36, 0, 'iPod Nano', 'Product 9', 1, 100.0000, 100.0000, 22.0000, 0),
-(106, 51, 34, 0, 'iPod Shuffle', 'Product 7', 1, 100.0000, 100.0000, 22.0000, 0),
-(107, 51, 48, 0, 'iPod Classic', 'product 20', 1, 100.0000, 100.0000, 22.0000, 0),
-(108, 52, 34, 0, 'iPod Shuffle', 'Product 7', 1, 100.0000, 100.0000, 22.0000, 0),
-(109, 52, 36, 0, 'iPod Nano', 'Product 9', 1, 100.0000, 100.0000, 22.0000, 0),
-(110, 52, 48, 0, 'iPod Classic', 'product 20', 1, 100.0000, 100.0000, 22.0000, 0),
-(111, 53, 34, 0, 'iPod Shuffle', 'Product 7', 1, 100.0000, 100.0000, 22.0000, 0),
-(112, 53, 36, 0, 'iPod Nano', 'Product 9', 1, 100.0000, 100.0000, 22.0000, 0),
-(113, 54, 48, 0, 'iPod Classic', 'product 20', 1, 100.0000, 100.0000, 22.0000, 0),
-(114, 54, 34, 0, 'iPod Shuffle', 'Product 7', 1, 100.0000, 100.0000, 22.0000, 0),
-(115, 55, 34, 0, 'iPod Shuffle', 'Product 7', 1, 100.0000, 100.0000, 22.0000, 0),
-(116, 55, 36, 0, 'iPod Nano', 'Product 9', 1, 100.0000, 100.0000, 22.0000, 0),
-(117, 56, 30, 0, 'Canon EOS 5D', 'Product 3', 2, 80.0000, 160.0000, 18.0000, 0),
-(118, 56, 48, 0, 'iPod Classic', 'product 20', 1, 100.0000, 100.0000, 22.0000, 0),
-(119, 56, 34, 0, 'iPod Shuffle', 'Product 7', 1, 100.0000, 100.0000, 22.0000, 0),
-(120, 56, 42, 0, 'Apple Cinema 30&quot;', 'Product 15', 5, 171.0000, 855.0000, 36.2000, 0),
-(121, 57, 34, 0, 'iPod Shuffle', 'Product 7', 1, 100.0000, 100.0000, 22.0000, 0),
-(122, 57, 36, 0, 'iPod Nano', 'Product 9', 1, 100.0000, 100.0000, 22.0000, 0),
-(123, 58, 40, 0, 'iPhone', 'product 11', 1, 101.0000, 101.0000, 22.2000, 0),
-(124, 59, 34, 0, 'iPod Shuffle', 'Product 7', 1, 100.0000, 100.0000, 22.0000, 0),
-(125, 59, 32, 0, 'iPod Touch', 'Product 5', 1, 100.0000, 100.0000, 22.0000, 0),
-(126, 59, 36, 0, 'iPod Nano', 'Product 9', 1, 100.0000, 100.0000, 22.0000, 0),
-(127, 59, 48, 0, 'iPod Classic', 'product 20', 1, 100.0000, 100.0000, 22.0000, 0),
-(128, 60, 40, 0, 'iPhone', 'product 11', 1, 101.0000, 101.0000, 22.2000, 0),
-(129, 61, 40, 0, 'iPhone', 'product 11', 1, 101.0000, 101.0000, 22.2000, 0),
-(130, 62, 34, 0, 'iPod Shuffle', 'Product 7', 1, 100.0000, 100.0000, 22.0000, 0),
-(131, 62, 32, 0, 'iPod Touch', 'Product 5', 1, 100.0000, 100.0000, 22.0000, 0);
 
 -- --------------------------------------------------------
 
@@ -3268,74 +2797,82 @@ INSERT INTO `oc_order_total` (`order_total_id`, `order_id`, `extension`, `code`,
 (69, 43, 'opencart', 'tax', 'VAT (20%)', 40.0000, 2),
 (70, 43, 'opencart', 'tax', 'Eco Tax (-2.00)', 4.0000, 2),
 (71, 43, 'opencart', 'total', 'Total', 244.0000, 9999),
-(80, 46, 'opencart', 'sub_total', 'Sub-Total', 200.0000, 1),
-(81, 46, 'opencart', 'tax', 'VAT (20%)', 40.0000, 2),
-(82, 46, 'opencart', 'tax', 'Eco Tax (-2.00)', 4.0000, 2),
-(83, 46, 'opencart', 'total', 'Total', 244.0000, 9999),
-(84, 47, 'opencart', 'sub_total', 'Sub-Total', 160.0000, 1),
-(85, 47, 'opencart', 'tax', 'VAT (20%)', 32.0000, 2),
-(86, 47, 'opencart', 'tax', 'Eco Tax (-2.00)', 4.0000, 2),
-(87, 47, 'opencart', 'total', 'Total', 196.0000, 9999),
-(88, 48, 'opencart', 'sub_total', 'Sub-Total', 601.0000, 1),
-(89, 48, 'opencart', 'tax', 'VAT (20%)', 120.2000, 2),
-(90, 48, 'opencart', 'tax', 'Eco Tax (-2.00)', 4.0000, 2),
-(91, 48, 'opencart', 'total', 'Total', 725.2000, 9999),
-(92, 49, 'opencart', 'sub_total', 'Sub-Total', 379.9900, 1),
-(93, 49, 'opencart', 'tax', 'VAT (20%)', 75.9980, 2),
-(94, 49, 'opencart', 'tax', 'Eco Tax (-2.00)', 4.0000, 2),
-(95, 49, 'opencart', 'total', 'Total', 459.9880, 9999),
-(96, 50, 'opencart', 'sub_total', 'Sub-Total', 200.0000, 1),
-(97, 50, 'opencart', 'tax', 'VAT (20%)', 40.0000, 2),
-(98, 50, 'opencart', 'tax', 'Eco Tax (-2.00)', 4.0000, 2),
-(99, 50, 'opencart', 'total', 'Total', 244.0000, 9999),
-(100, 51, 'opencart', 'sub_total', 'Sub-Total', 200.0000, 1),
-(101, 51, 'opencart', 'tax', 'VAT (20%)', 40.0000, 2),
-(102, 51, 'opencart', 'tax', 'Eco Tax (-2.00)', 4.0000, 2),
-(103, 51, 'opencart', 'total', 'Total', 244.0000, 9999),
-(104, 52, 'opencart', 'sub_total', 'Sub-Total', 300.0000, 1),
-(105, 52, 'opencart', 'tax', 'VAT (20%)', 60.0000, 2),
-(106, 52, 'opencart', 'tax', 'Eco Tax (-2.00)', 6.0000, 2),
-(107, 52, 'opencart', 'total', 'Total', 366.0000, 9999),
-(108, 53, 'opencart', 'sub_total', 'Sub-Total', 200.0000, 1),
-(109, 53, 'opencart', 'tax', 'VAT (20%)', 40.0000, 2),
-(110, 53, 'opencart', 'tax', 'Eco Tax (-2.00)', 4.0000, 2),
-(111, 53, 'opencart', 'total', 'Total', 244.0000, 9999),
-(112, 54, 'opencart', 'sub_total', 'Sub-Total', 200.0000, 1),
-(113, 54, 'opencart', 'tax', 'VAT (20%)', 40.0000, 2),
-(114, 54, 'opencart', 'tax', 'Eco Tax (-2.00)', 4.0000, 2),
-(115, 54, 'opencart', 'total', 'Total', 244.0000, 9999),
-(116, 55, 'opencart', 'sub_total', 'Sub-Total', 200.0000, 1),
-(117, 55, 'opencart', 'tax', 'VAT (20%)', 40.0000, 2),
-(118, 55, 'opencart', 'tax', 'Eco Tax (-2.00)', 4.0000, 2),
-(119, 55, 'opencart', 'total', 'Total', 244.0000, 9999),
-(120, 56, 'opencart', 'sub_total', 'Sub-Total', 1215.0000, 1),
-(121, 56, 'opencart', 'tax', 'VAT (20%)', 243.0000, 2),
-(122, 56, 'opencart', 'tax', 'Eco Tax (-2.00)', 18.0000, 2),
-(123, 56, 'opencart', 'total', 'Total', 1476.0000, 9999),
-(124, 57, 'opencart', 'sub_total', 'Sub-Total', 200.0000, 1),
-(125, 57, 'opencart', 'tax', 'VAT (20%)', 40.0000, 2),
-(126, 57, 'opencart', 'tax', 'Eco Tax (-2.00)', 4.0000, 2),
-(127, 57, 'opencart', 'total', 'Total', 244.0000, 9999),
-(128, 58, 'opencart', 'sub_total', 'Sub-Total', 101.0000, 1),
-(129, 58, 'opencart', 'tax', 'VAT (20%)', 20.2000, 2),
-(130, 58, 'opencart', 'tax', 'Eco Tax (-2.00)', 2.0000, 2),
-(131, 58, 'opencart', 'total', 'Total', 123.2000, 9999),
-(132, 59, 'opencart', 'sub_total', 'Sub-Total', 400.0000, 1),
-(133, 59, 'opencart', 'tax', 'VAT (20%)', 80.0000, 2),
-(134, 59, 'opencart', 'tax', 'Eco Tax (-2.00)', 8.0000, 2),
-(135, 59, 'opencart', 'total', 'Total', 488.0000, 9999),
-(136, 60, 'opencart', 'sub_total', 'Sub-Total', 101.0000, 1),
-(137, 60, 'opencart', 'tax', 'VAT (20%)', 20.2000, 2),
-(138, 60, 'opencart', 'tax', 'Eco Tax (-2.00)', 2.0000, 2),
-(139, 60, 'opencart', 'total', 'Total', 123.2000, 9999),
-(140, 61, 'opencart', 'sub_total', 'Sub-Total', 101.0000, 1),
-(141, 61, 'opencart', 'tax', 'VAT (20%)', 20.2000, 2),
-(142, 61, 'opencart', 'tax', 'Eco Tax (-2.00)', 2.0000, 2),
-(143, 61, 'opencart', 'total', 'Total', 123.2000, 9999),
-(144, 62, 'opencart', 'sub_total', 'Sub-Total', 200.0000, 1),
-(145, 62, 'opencart', 'tax', 'VAT (20%)', 40.0000, 2),
-(146, 62, 'opencart', 'tax', 'Eco Tax (-2.00)', 4.0000, 2),
-(147, 62, 'opencart', 'total', 'Total', 244.0000, 9999);
+(160, 66, 'opencart', 'sub_total', 'Sub-Total', 600.0000, 1),
+(161, 66, 'opencart', 'tax', 'VAT (20%)', 120.0000, 2),
+(162, 66, 'opencart', 'tax', 'Eco Tax (-2.00)', 12.0000, 2),
+(163, 66, 'opencart', 'total', 'Total', 732.0000, 9999),
+(164, 66, 'opencart', 'coupon', '-10% Discount', 10.0000, 500),
+(165, 66, 'opencart', '1111', 'Voucher Applied: 1111', 20.0000, 501),
+(166, 67, 'opencart', 'sub_total', 'Sub-Total', 600.0000, 1),
+(167, 67, 'opencart', 'tax', 'VAT (20%)', 120.0000, 2),
+(168, 67, 'opencart', 'tax', 'Eco Tax (-2.00)', 12.0000, 2),
+(169, 67, 'opencart', 'total', 'Total', 732.0000, 9999),
+(170, 67, 'opencart', 'coupon', '-10% Discount', 10.0000, 500),
+(171, 67, 'opencart', '1111', 'Voucher Applied: 1111', 20.0000, 501),
+(172, 68, 'opencart', 'sub_total', 'Sub-Total', 600.0000, 1),
+(173, 68, 'opencart', 'tax', 'VAT (20%)', 120.0000, 2),
+(174, 68, 'opencart', 'tax', 'Eco Tax (-2.00)', 12.0000, 2),
+(175, 68, 'opencart', 'total', 'Total', 732.0000, 9999),
+(176, 68, 'opencart', 'code', '-10% Discount', 10.0000, 500),
+(177, 68, 'opencart', '1111', 'Voucher Applied: 1111', 20.0000, 501),
+(178, 69, 'opencart', 'sub_total', 'Sub-Total', 600.0000, 1),
+(179, 69, 'opencart', 'tax', 'VAT (20%)', 120.0000, 2),
+(180, 69, 'opencart', 'tax', 'Eco Tax (-2.00)', 12.0000, 2),
+(181, 69, 'opencart', 'total', 'Total', 732.0000, 9999),
+(182, 69, 'opencart', 'code', '-10% Discount', 10.0000, 500),
+(183, 69, 'opencart', '1111', 'Voucher Applied: 1111', 20.0000, 501),
+(184, 70, 'opencart', 'sub_total', 'Sub-Total', 600.0000, 1),
+(185, 70, 'opencart', 'tax', 'VAT (20%)', 120.0000, 2),
+(186, 70, 'opencart', 'tax', 'Eco Tax (-2.00)', 12.0000, 2),
+(187, 70, 'opencart', 'total', 'Total', 732.0000, 9999),
+(188, 70, 'opencart', 'code', '-10% Discount', 10.0000, 500),
+(189, 70, 'opencart', '1111', 'Voucher Applied: 1111', 20.0000, 501),
+(190, 71, 'opencart', 'sub_total', 'Sub-Total', 600.0000, 1),
+(191, 71, 'opencart', 'tax', 'VAT (20%)', 120.0000, 2),
+(192, 71, 'opencart', 'tax', 'Eco Tax (-2.00)', 12.0000, 2),
+(193, 71, 'opencart', 'total', 'Total', 732.0000, 9999),
+(194, 71, 'opencart', 'coupon', '-10% Discount', 10.0000, 500),
+(195, 71, 'opencart', '1111', 'Voucher Applied: 1111', 20.0000, 501),
+(196, 72, 'opencart', 'sub_total', 'Sub-Total', 600.0000, 1),
+(197, 72, 'opencart', 'tax', 'VAT (20%)', 120.0000, 2),
+(198, 72, 'opencart', 'tax', 'Eco Tax (-2.00)', 12.0000, 2),
+(199, 72, 'opencart', 'total', 'Total', 732.0000, 9999),
+(200, 72, 'opencart', 'coupon', '-10% Discount', 10.0000, 500),
+(201, 72, 'opencart', '1111', 'Voucher Applied: 1111', 20.0000, 501),
+(202, 73, 'opencart', 'sub_total', 'Sub-Total', 600.0000, 1),
+(203, 73, 'opencart', 'tax', 'VAT (20%)', 120.0000, 2),
+(204, 73, 'opencart', 'tax', 'Eco Tax (-2.00)', 12.0000, 2),
+(205, 73, 'opencart', 'total', 'Total', 732.0000, 9999),
+(206, 73, 'opencart', 'coupon', '-10% Discount', 10.0000, 500),
+(207, 73, 'opencart', 'voucher', 'Voucher Applied: 1111', 20.0000, 501),
+(208, 74, 'opencart', 'sub_total', 'Sub-Total', 200.0000, 1),
+(209, 74, 'opencart', 'tax', 'VAT (20%)', 40.0000, 2),
+(210, 74, 'opencart', 'tax', 'Eco Tax (-2.00)', 4.0000, 2),
+(211, 74, 'opencart', 'total', 'Total', 244.0000, 9999),
+(212, 74, 'opencart', 'coupon', '-10% Discount', -10.0000, 500),
+(213, 74, 'opencart', 'voucher', 'Voucher Applied: 1111', -20.0000, 501),
+(214, 75, 'opencart', 'sub_total', 'Sub-Total', 400.0000, 1),
+(215, 75, 'opencart', 'tax', 'VAT (20%)', 80.0000, 2),
+(216, 75, 'opencart', 'tax', 'Eco Tax (-2.00)', 8.0000, 2),
+(217, 75, 'opencart', 'total', 'Total', 0.0000, 9999),
+(218, 75, 'opencart', 'total', 'Total', 488.0000, 9999),
+(219, 76, 'opencart', 'sub_total', 'Sub-Total', 300.0000, 1),
+(220, 76, 'opencart', 'tax', 'VAT (20%)', 60.0000, 2),
+(221, 76, 'opencart', 'tax', 'Eco Tax (-2.00)', 6.0000, 2),
+(222, 76, 'opencart', 'total', 'Total', 0.0000, 9999),
+(223, 76, 'opencart', 'coupon', '-10% Discount', -10.0000, 500),
+(224, 76, 'opencart', 'voucher', 'Voucher Applied: 1111', -20.0000, 501),
+(225, 76, 'opencart', 'total', 'Total', 336.0000, 9999),
+(226, 77, 'opencart', 'sub_total', 'Sub-Total', 300.0000, 1),
+(227, 77, 'opencart', 'tax', 'VAT (20%)', 60.0000, 2),
+(228, 77, 'opencart', 'tax', 'Eco Tax (-2.00)', 6.0000, 2),
+(229, 77, 'opencart', 'coupon', '-10% Discount', -10.0000, 500),
+(230, 77, 'opencart', 'voucher', 'Voucher Applied: 1111', -20.0000, 501),
+(231, 77, 'opencart', 'total', 'Total', 336.0000, 9999),
+(232, 78, 'opencart', 'sub_total', 'Sub-Total', 300.0000, 1),
+(233, 78, 'opencart', 'tax', 'VAT (20%)', 60.0000, 2),
+(234, 78, 'opencart', 'tax', 'Eco Tax (-2.00)', 6.0000, 2),
+(235, 78, 'opencart', 'total', 'Total', 366.0000, 9999);
 
 -- --------------------------------------------------------
 
@@ -3406,24 +2943,24 @@ CREATE TABLE `oc_product` (
 --
 
 INSERT INTO `oc_product` (`product_id`, `master_id`, `model`, `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`, `location`, `variant`, `override`, `quantity`, `stock_status_id`, `image`, `manufacturer_id`, `shipping`, `price`, `points`, `tax_class_id`, `date_available`, `weight`, `weight_class_id`, `length`, `width`, `height`, `length_class_id`, `subtract`, `minimum`, `rating`, `sort_order`, `status`, `date_added`, `date_modified`) VALUES
-(28, 0, 'Product 1', '', '', '', '', '', '', '', '', '', 938, 7, 'catalog/demo/htc_touch_hd_1.jpg', 5, 1, 100.0000, 200, 9, '2009-02-03', 146.40000000, 2, 0.00000000, 0.00000000, 0.00000000, 1, 1, 1, 0, 0, 1, '2009-02-03 16:06:50', '2011-09-30 01:05:39'),
-(29, 0, 'Product 2', '', '', '', '', '', '', '', '', '', 998, 6, 'catalog/demo/palm_treo_pro_1.jpg', 6, 1, 279.9900, 0, 9, '2009-02-03', 133.00000000, 2, 0.00000000, 0.00000000, 0.00000000, 3, 1, 1, 0, 0, 1, '2009-02-03 16:42:17', '2011-09-30 01:06:08'),
-(30, 0, 'Product 3', '', '', '', '', '', '', '', '', '', 3, 6, 'catalog/demo/canon_eos_5d_1.jpg', 9, 1, 100.0000, 0, 9, '2009-02-03', 0.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 1, 1, 1, 0, 0, 1, '2009-02-03 16:59:00', '2011-09-30 01:05:23'),
+(28, 0, 'Product 1', '', '', '', '', '', '', '', '', '', 939, 7, 'catalog/demo/htc_touch_hd_1.jpg', 5, 1, 100.0000, 200, 9, '2009-02-03', 146.40000000, 2, 0.00000000, 0.00000000, 0.00000000, 1, 1, 1, 0, 0, 1, '2009-02-03 16:06:50', '2011-09-30 01:05:39'),
+(29, 0, 'Product 2', '', '', '', '', '', '', '', '', '', 999, 6, 'catalog/demo/palm_treo_pro_1.jpg', 6, 1, 279.9900, 0, 9, '2009-02-03', 133.00000000, 2, 0.00000000, 0.00000000, 0.00000000, 3, 1, 1, 0, 0, 1, '2009-02-03 16:42:17', '2011-09-30 01:06:08'),
+(30, 0, 'Product 3', '', '', '', '', '', '', '', '', '', 7, 6, 'catalog/demo/canon_eos_5d_1.jpg', 9, 1, 100.0000, 0, 9, '2009-02-03', 0.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 1, 1, 1, 0, 0, 1, '2009-02-03 16:59:00', '2011-09-30 01:05:23'),
 (31, 0, 'Product 4', '', '', '', '', '', '', '', '', '', 1000, 6, 'catalog/demo/nikon_d300_1.jpg', 0, 1, 80.0000, 0, 9, '2009-02-03', 0.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 3, 1, 1, 0, 0, 1, '2009-02-03 17:00:10', '2011-09-30 01:06:00'),
-(32, 0, 'Product 5', '', '', '', '', '', '', '', '', '', 997, 6, 'catalog/demo/ipod_touch_1.jpg', 8, 1, 100.0000, 0, 9, '2009-02-03', 5.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 1, 1, 1, 0, 0, 1, '2009-02-03 17:07:26', '2011-09-30 01:07:22'),
+(32, 0, 'Product 5', '', '', '', '', '', '', '', '', '', 993, 6, 'catalog/demo/ipod_touch_1.jpg', 8, 1, 100.0000, 0, 9, '2009-02-03', 5.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 1, 1, 1, 0, 0, 1, '2009-02-03 17:07:26', '2011-09-30 01:07:22'),
 (33, 0, 'Product 6', '', '', '', '', '', '', '', '', '', 1000, 6, 'catalog/demo/samsung_syncmaster_941bw.jpg', 0, 1, 200.0000, 0, 9, '2009-02-03', 5.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 2, 1, 1, 0, 0, 1, '2009-02-03 17:08:31', '2011-09-30 01:06:29'),
-(34, 0, 'Product 7', '', '', '', '', '', '', '', '', '', 990, 6, 'catalog/demo/ipod_shuffle_1.jpg', 8, 1, 100.0000, 0, 9, '2009-02-03', 5.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 2, 1, 1, 0, 0, 1, '2009-02-03 18:07:54', '2011-09-30 01:07:17'),
+(34, 0, 'Product 7', '', '', '', '', '', '', '', '', '', 993, 6, 'catalog/demo/ipod_shuffle_1.jpg', 8, 1, 100.0000, 0, 9, '2009-02-03', 5.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 2, 1, 1, 0, 0, 1, '2009-02-03 18:07:54', '2011-09-30 01:07:17'),
 (35, 0, 'Product 8', '', '', '', '', '', '', '', '', '', 1000, 5, '', 0, 0, 100.0000, 0, 9, '2009-02-03', 5.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 1, 1, 1, 0, 0, 1, '2009-02-03 18:08:31', '2011-09-30 01:06:17'),
-(36, 0, 'Product 9', '', '', '', '', '', '', '', '', '', 988, 6, 'catalog/demo/ipod_nano_1.jpg', 8, 0, 100.0000, 100, 9, '2009-02-03', 5.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 2, 1, 1, 0, 0, 1, '2009-02-03 18:09:19', '2011-09-30 01:07:12'),
-(40, 0, 'product 11', '', '', '', '', '', '', '', '', '', 966, 5, 'catalog/demo/iphone_1.jpg', 8, 1, 101.0000, 0, 9, '2009-02-03', 10.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 1, 1, 1, 0, 0, 1, '2009-02-03 21:07:12', '2011-09-30 01:06:53'),
+(36, 0, 'Product 9', '', '', '', '', '', '', '', '', '', 992, 6, 'catalog/demo/ipod_nano_1.jpg', 8, 0, 100.0000, 100, 9, '2009-02-03', 5.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 2, 1, 1, 0, 0, 1, '2009-02-03 18:09:19', '2011-09-30 01:07:12'),
+(40, 0, 'product 11', '', '', '', '', '', '', '', '', '', 970, 5, 'catalog/demo/iphone_1.jpg', 8, 1, 101.0000, 0, 9, '2009-02-03', 10.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 1, 1, 1, 0, 0, 1, '2009-02-03 21:07:12', '2011-09-30 01:06:53'),
 (41, 0, 'Product 14', '', '', '', '', '', '', '', '', '', 977, 5, 'catalog/demo/imac_1.jpg', 8, 1, 100.0000, 0, 9, '2009-02-03', 5.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 1, 1, 1, 0, 0, 1, '2009-02-03 21:07:26', '2011-09-30 01:06:44'),
-(42, 0, 'Product 15', '', '', '', '', '', '', '', '', '', 985, 5, 'catalog/demo/apple_cinema_30.jpg', 8, 1, 100.0000, 400, 9, '2009-02-04', 12.50000000, 1, 1.00000000, 2.00000000, 3.00000000, 1, 1, 2, 0, 0, 1, '2009-02-03 21:07:37', '2025-01-08 04:10:08'),
-(43, 0, 'Product 16', '', '', '', '', '', '', '', '', '', 928, 5, 'catalog/demo/macbook_1.jpg', 8, 0, 500.0000, 0, 9, '2009-02-03', 0.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 2, 1, 1, 0, 0, 1, '2009-02-03 21:07:49', '2011-09-30 01:05:46'),
+(42, 0, 'Product 15', '', '', '', '', '', '', '', '', '', 990, 5, 'catalog/demo/apple_cinema_30.jpg', 8, 1, 100.0000, 400, 9, '2009-02-04', 12.50000000, 1, 1.00000000, 2.00000000, 3.00000000, 1, 1, 2, 0, 0, 1, '2009-02-03 21:07:37', '2025-01-08 04:10:08'),
+(43, 0, 'Product 16', '', '', '', '', '', '', '', '', '', 929, 5, 'catalog/demo/macbook_1.jpg', 8, 0, 500.0000, 0, 9, '2009-02-03', 0.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 2, 1, 1, 0, 0, 1, '2009-02-03 21:07:49', '2011-09-30 01:05:46'),
 (44, 0, 'Product 17', '', '', '', '', '', '', '', '', '', 1000, 5, 'catalog/demo/macbook_air_1.jpg', 8, 1, 1000.0000, 0, 9, '2009-02-03', 0.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 2, 1, 1, 0, 0, 1, '2009-02-03 21:08:00', '2011-09-30 01:05:53'),
 (45, 0, 'Product 18', '', '', '', '', '', '', '', '', '', 998, 5, 'catalog/demo/macbook_pro_1.jpg', 8, 1, 2000.0000, 0, 100, '2009-02-03', 0.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 2, 1, 1, 0, 0, 1, '2009-02-03 21:08:17', '2011-09-15 22:22:01'),
 (46, 0, 'Product 19', '', '', '', '', '', '', '', '', '', 1000, 5, 'catalog/demo/sony_vaio_1.jpg', 10, 1, 1000.0000, 0, 9, '2009-02-03', 0.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 2, 1, 1, 0, 0, 1, '2009-02-03 21:08:29', '2011-09-30 01:06:39'),
 (47, 0, 'Product 21', '', '', '', '', '', '', '', '', '', 1000, 5, 'catalog/demo/hp_1.jpg', 7, 1, 100.0000, 400, 9, '2009-02-03', 1.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 1, 0, 1, 0, 0, 1, '2009-02-03 21:08:40', '2011-09-30 01:05:28'),
-(48, 0, 'product 20', 'test 1', '', '', '', '', '', 'test 2', '', '', 990, 5, 'catalog/demo/ipod_classic_1.jpg', 8, 1, 100.0000, 0, 9, '2009-02-08', 1.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 2, 1, 1, 0, 0, 1, '2009-02-08 17:21:51', '2011-09-30 01:07:06'),
+(48, 0, 'product 20', 'test 1', '', '', '', '', '', 'test 2', '', '', 993, 5, 'catalog/demo/ipod_classic_1.jpg', 8, 1, 100.0000, 0, 9, '2009-02-08', 1.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 2, 1, 1, 0, 0, 1, '2009-02-08 17:21:51', '2011-09-30 01:07:06'),
 (49, 0, 'SAM1', '', '', '', '', '', '', '', '', '', 0, 8, 'catalog/demo/samsung_tab_1.jpg', 0, 1, 199.9900, 0, 9, '2011-04-25', 0.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 1, 1, 1, 0, 1, 1, '2011-04-26 08:57:34', '2011-09-30 01:06:23');
 
 -- --------------------------------------------------------
@@ -3438,17 +2975,6 @@ CREATE TABLE `oc_product_attribute` (
   `language_id` int(11) NOT NULL,
   `text` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
-
---
--- Dumping data for table `oc_product_attribute`
---
-
-INSERT INTO `oc_product_attribute` (`product_id`, `attribute_id`, `language_id`, `text`) VALUES
-(42, 3, 1, '100mhz'),
-(43, 2, 1, '1'),
-(43, 4, 1, '8gb'),
-(47, 2, 1, '4'),
-(47, 4, 1, '16GB');
 
 -- --------------------------------------------------------
 
@@ -3467,31 +2993,6 @@ CREATE TABLE `oc_product_description` (
   `meta_keyword` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
---
--- Dumping data for table `oc_product_description`
---
-
-INSERT INTO `oc_product_description` (`product_id`, `language_id`, `name`, `description`, `tag`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
-(28, 1, 'HTC Touch HD', '&lt;p&gt;\r\n	HTC Touch - in High Definition. Watch music videos and streaming content in awe-inspiring high definition clarity for a mobile experience you never thought possible. Seductively sleek, the HTC Touch HD provides the next generation of mobile functionality, all at a simple touch. Fully integrated with Windows Mobile Professional 6.1, ultrafast 3.5G, GPS, 5MP camera, plus lots more - all delivered on a breathtakingly crisp 3.8&amp;quot; WVGA touchscreen - you can take control of your mobile world with the HTC Touch HD.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Features&lt;/strong&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Processor Qualcomm&amp;reg; MSM 7201A&amp;trade; 528 MHz&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Windows Mobile&amp;reg; 6.1 Professional Operating System&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Memory: 512 MB ROM, 288 MB RAM&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Dimensions: 115 mm x 62.8 mm x 12 mm / 146.4 grams&lt;/li&gt;\r\n	&lt;li&gt;\r\n		3.8-inch TFT-LCD flat touch-sensitive screen with 480 x 800 WVGA resolution&lt;/li&gt;\r\n	&lt;li&gt;\r\n		HSDPA/WCDMA: Europe/Asia: 900/2100 MHz; Up to 2 Mbps up-link and 7.2 Mbps down-link speeds&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Quad-band GSM/GPRS/EDGE: Europe/Asia: 850/900/1800/1900 MHz (Band frequency, HSUPA availability, and data speed are operator dependent.)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Device Control via HTC TouchFLO&amp;trade; 3D &amp;amp; Touch-sensitive front panel buttons&lt;/li&gt;\r\n	&lt;li&gt;\r\n		GPS and A-GPS ready&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Bluetooth&amp;reg; 2.0 with Enhanced Data Rate and A2DP for wireless stereo headsets&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Wi-Fi&amp;reg;: IEEE 802.11 b/g&lt;/li&gt;\r\n	&lt;li&gt;\r\n		HTC ExtUSB&amp;trade; (11-pin mini-USB 2.0)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		5 megapixel color camera with auto focus&lt;/li&gt;\r\n	&lt;li&gt;\r\n		VGA CMOS color camera&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Built-in 3.5 mm audio jack, microphone, speaker, and FM radio&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Ring tone formats: AAC, AAC+, eAAC+, AMR-NB, AMR-WB, QCP, MP3, WMA, WAV&lt;/li&gt;\r\n	&lt;li&gt;\r\n		40 polyphonic and standard MIDI format 0 and 1 (SMF)/SP MIDI&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Rechargeable Lithium-ion or Lithium-ion polymer 1350 mAh battery&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Expansion Slot: microSD&amp;trade; memory card (SD 2.0 compatible)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		AC Adapter Voltage range/frequency: 100 ~ 240V AC, 50/60 Hz DC output: 5V and 1A&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Special Features: FM Radio, G-Sensor&lt;/li&gt;\r\n&lt;/ul&gt;\r\n', '', '	 HTC Touch HD', '', ''),
-(29, 1, 'Palm Treo Pro', '&lt;p&gt;\r\n	Redefine your workday with the Palm Treo Pro smartphone. Perfectly balanced, you can respond to business and personal email, stay on top of appointments and contacts, and use Wi-Fi or GPS when you&amp;rsquo;re out and about. Then watch a video on YouTube, catch up with news and sports on the web, or listen to a few songs. Balance your work and play the way you like it, with the Palm Treo Pro.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Features&lt;/strong&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Windows Mobile&amp;reg; 6.1 Professional Edition&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Qualcomm&amp;reg; MSM7201 400MHz Processor&lt;/li&gt;\r\n	&lt;li&gt;\r\n		320x320 transflective colour TFT touchscreen&lt;/li&gt;\r\n	&lt;li&gt;\r\n		HSDPA/UMTS/EDGE/GPRS/GSM radio&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Tri-band UMTS &amp;mdash; 850MHz, 1900MHz, 2100MHz&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Quad-band GSM &amp;mdash; 850/900/1800/1900&lt;/li&gt;\r\n	&lt;li&gt;\r\n		802.11b/g with WPA, WPA2, and 801.1x authentication&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Built-in GPS&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Bluetooth Version: 2.0 + Enhanced Data Rate&lt;/li&gt;\r\n	&lt;li&gt;\r\n		256MB storage (100MB user available), 128MB RAM&lt;/li&gt;\r\n	&lt;li&gt;\r\n		2.0 megapixel camera, up to 8x digital zoom and video capture&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Removable, rechargeable 1500mAh lithium-ion battery&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Up to 5.0 hours talk time and up to 250 hours standby&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MicroSDHC card expansion (up to 32GB supported)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MicroUSB 2.0 for synchronization and charging&lt;/li&gt;\r\n	&lt;li&gt;\r\n		3.5mm stereo headset jack&lt;/li&gt;\r\n	&lt;li&gt;\r\n		60mm (W) x 114mm (L) x 13.5mm (D) / 133g&lt;/li&gt;\r\n&lt;/ul&gt;\r\n', '', 'Palm Treo Pro', '', ''),
-(30, 1, 'Canon EOS 5D', '&lt;p&gt;\r\n	Canon\'s press material for the EOS 5D states that it \'defines (a) new D-SLR category\', while we\'re not typically too concerned with marketing talk this particular statement is clearly pretty accurate. The EOS 5D is unlike any previous digital SLR in that it combines a full-frame (35 mm sized) high resolution sensor (12.8 megapixels) with a relatively compact body (slightly larger than the EOS 20D, although in your hand it feels noticeably \'chunkier\'). The EOS 5D is aimed to slot in between the EOS 20D and the EOS-1D professional digital SLR\'s, an important difference when compared to the latter is that the EOS 5D doesn\'t have any environmental seals. While Canon don\'t specifically refer to the EOS 5D as a \'professional\' digital SLR it will have obvious appeal to professionals who want a high quality digital SLR in a body lighter than the EOS-1D. It will also no doubt appeal to current EOS 20D owners (although lets hope they\'ve not bought too many EF-S lenses...) äë&lt;/p&gt;\r\n', '', 'sdf', '', ''),
-(31, 1, 'Nikon D300', '&lt;div class=&quot;cpt_product_description &quot;&gt;\r\n	&lt;div&gt;\r\n		Engineered with pro-level features and performance, the 12.3-effective-megapixel D300 combines brand new technologies with advanced features inherited from Nikon&amp;#39;s newly announced D3 professional digital SLR camera to offer serious photographers remarkable performance combined with agility.&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		Similar to the D3, the D300 features Nikon&amp;#39;s exclusive EXPEED Image Processing System that is central to driving the speed and processing power needed for many of the camera&amp;#39;s new features. The D300 features a new 51-point autofocus system with Nikon&amp;#39;s 3D Focus Tracking feature and two new LiveView shooting modes that allow users to frame a photograph using the camera&amp;#39;s high-resolution LCD monitor. The D300 shares a similar Scene Recognition System as is found in the D3; it promises to greatly enhance the accuracy of autofocus, autoexposure, and auto white balance by recognizing the subject or scene being photographed and applying this information to the calculations for the three functions.&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		The D300 reacts with lightning speed, powering up in a mere 0.13 seconds and shooting with an imperceptible 45-millisecond shutter release lag time. The D300 is capable of shooting at a rapid six frames per second and can go as fast as eight frames per second when using the optional MB-D10 multi-power battery pack. In continuous bursts, the D300 can shoot up to 100 shots at full 12.3-megapixel resolution. (NORMAL-LARGE image setting, using a SanDisk Extreme IV 1GB CompactFlash card.)&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		The D300 incorporates a range of innovative technologies and features that will significantly improve the accuracy, control, and performance photographers can get from their equipment. Its new Scene Recognition System advances the use of Nikon&amp;#39;s acclaimed 1,005-segment sensor to recognize colors and light patterns that help the camera determine the subject and the type of scene being photographed before a picture is taken. This information is used to improve the accuracy of autofocus, autoexposure, and auto white balance functions in the D300. For example, the camera can track moving subjects better and by identifying them, it can also automatically select focus points faster and with greater accuracy. It can also analyze highlights and more accurately determine exposure, as well as infer light sources to deliver more accurate white balance detection.&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;!-- cpt_container_end --&gt;', '', 'Nikon D300', '', ''),
-(32, 1, 'iPod Touch', '&lt;p&gt;\r\n	&lt;strong&gt;Revolutionary multi-touch interface.&lt;/strong&gt;&lt;br /&gt;\r\n	iPod touch features the same multi-touch screen technology as iPhone. Pinch to zoom in on a photo. Scroll through your songs and videos with a flick. Flip through your library by album artwork with Cover Flow.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Gorgeous 3.5-inch widescreen display.&lt;/strong&gt;&lt;br /&gt;\r\n	Watch your movies, TV shows, and photos come alive with bright, vivid color on the 320-by-480-pixel display.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Music downloads straight from iTunes.&lt;/strong&gt;&lt;br /&gt;\r\n	Shop the iTunes Wi-Fi Music Store from anywhere with Wi-Fi.1 Browse or search to find the music youre looking for, preview it, and buy it with just a tap.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Surf the web with Wi-Fi.&lt;/strong&gt;&lt;br /&gt;\r\n	Browse the web using Safari and watch YouTube videos on the first iPod with Wi-Fi built in&lt;br /&gt;\r\n	&amp;nbsp;&lt;/p&gt;\r\n', '', '	 iPod Touch', '', ''),
-(33, 1, 'Samsung SyncMaster 941BW', '&lt;div&gt;\r\n	Imagine the advantages of going big without slowing down. The big 19&amp;quot; 941BW monitor combines wide aspect ratio with fast pixel response time, for bigger images, more room to work and crisp motion. In addition, the exclusive MagicBright 2, MagicColor and MagicTune technologies help deliver the ideal image in every situation, while sleek, narrow bezels and adjustable stands deliver style just the way you want it. With the Samsung 941BW widescreen analog/digital LCD monitor, it&amp;#39;s not hard to imagine.&lt;/div&gt;\r\n', '', 'Samsung SyncMaster 941BW', '', ''),
-(34, 1, 'iPod Shuffle', '&lt;div&gt;\r\n	&lt;strong&gt;Born to be worn.&lt;/strong&gt;\r\n	&lt;p&gt;\r\n		Clip on the worlds most wearable music player and take up to 240 songs with you anywhere. Choose from five colors including four new hues to make your musical fashion statement.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Random meets rhythm.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		With iTunes autofill, iPod shuffle can deliver a new musical experience every time you sync. For more randomness, you can shuffle songs during playback with the slide of a switch.&lt;/p&gt;\r\n	&lt;strong&gt;Everything is easy.&lt;/strong&gt;\r\n	&lt;p&gt;\r\n		Charge and sync with the included USB dock. Operate the iPod shuffle controls with one hand. Enjoy up to 12 hours straight of skip-free music playback.&lt;/p&gt;\r\n&lt;/div&gt;\r\n', '', 'iPod Shuffle', '', ''),
-(35, 1, 'Product 8', '&lt;p&gt;\r\n	Product 8&lt;/p&gt;\r\n', '', 'Product 8', '', ''),
-(36, 1, 'iPod Nano', '&lt;div&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Video in your pocket.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Its the small iPod with one very big idea: video. The worlds most popular music player now lets you enjoy movies, TV shows, and more on a two-inch display thats 65% brighter than before.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Cover Flow.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Browse through your music collection by flipping through album art. Select an album to turn it over and see the track list.&lt;strong&gt;&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Enhanced interface.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Experience a whole new way to browse and view your music and video.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Sleek and colorful.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		With an anodized aluminum and polished stainless steel enclosure and a choice of five colors, iPod nano is dressed to impress.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;iTunes.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Available as a free download, iTunes makes it easy to browse and buy millions of songs, movies, TV shows, audiobooks, and games and download free podcasts all at the iTunes Store. And you can import your own music, manage your whole media library, and sync your iPod or iPhone with ease.&lt;/p&gt;\r\n&lt;/div&gt;\r\n', '', 'iPod Nano', '', ''),
-(40, 1, 'iPhone', '&lt;p class=&quot;intro&quot;&gt;\r\n	iPhone is a revolutionary new mobile phone that allows you to make a call by simply tapping a name or number in your address book, a favorites list, or a call log. It also automatically syncs all your contacts from a PC, Mac, or Internet service. And it lets you select and listen to voicemail messages in whatever order you want just like email.&lt;/p&gt;\r\n', '', 'iPhone', '', ''),
-(41, 1, 'iMac', '&lt;div&gt;\r\n	Just when you thought iMac had everything, now there&acute;s even more. More powerful Intel Core 2 Duo processors. And more memory standard. Combine this with Mac OS X Leopard and iLife &acute;08, and it&acute;s more all-in-one than ever. iMac packs amazing performance into a stunningly slim space.&lt;/div&gt;\r\n', '', 'iMac', '', ''),
-(42, 1, 'Apple Cinema 30&quot;', '&lt;p&gt;&lt;font face=&quot;helvetica,geneva,arial&quot; size=&quot;2&quot;&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The 30-inch Apple Cinema HD Display delivers an amazing 2560 x 1600 pixel resolution. Designed specifically for the creative professional, this display provides more space for easier access to all the tools and palettes needed to edit, format and composite your work. Combine this display with a Mac Pro, MacBook Pro, or PowerMac G5 and there\'s no limit to what you can achieve. &lt;/font&gt;&lt;br /&gt;\r\n&lt;br /&gt;\r\n&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The Cinema HD features an active-matrix liquid crystal display that produces flicker-free images that deliver twice the brightness, twice the sharpness and twice the contrast ratio of a typical CRT display. Unlike other flat panels, it\'s designed with a pure digital interface to deliver distortion-free images that never need adjusting. With over 4 million digital pixels, the display is uniquely suited for scientific and technical applications such as visualizing molecular structures or analyzing geological data. &lt;/font&gt;&lt;br /&gt;\r\n&lt;br /&gt;\r\n&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;Offering accurate, brilliant color performance, the Cinema HD delivers up to 16.7 million colors across a wide gamut allowing you to see subtle nuances between colors from soft pastels to rich jewel tones. A wide viewing angle ensures uniform color from edge to edge. Apple\'s ColorSync technology allows you to create custom profiles to maintain consistent color onscreen and in print. The result: You can confidently use this display in all your color-critical applications. &lt;/font&gt;&lt;br /&gt;\r\n&lt;br /&gt;\r\n&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;Housed in a new aluminum design, the display has a very thin bezel that enhances visual accuracy. Each display features two FireWire 400 ports and two USB 2.0 ports, making attachment of desktop peripherals, such as iSight, iPod, digital and still cameras, hard drives, printers and scanners, even more accessible and convenient. Taking advantage of the much thinner and lighter footprint of an LCD, the new displays support the VESA (Video Electronics Standards Association) mounting interface standard. Customers with the optional Cinema Display VESA Mount Adapter kit gain the flexibility to mount their display in locations most appropriate for their work environment. &lt;/font&gt;&lt;br /&gt;\r\n&lt;br /&gt;\r\n&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The Cinema HD features a single cable design with elegant breakout for the USB 2.0, FireWire 400 and a pure digital connection using the industry standard Digital Video Interface (DVI) interface. The DVI connection allows for a direct pure-digital connection.&lt;/font&gt;&lt;/font&gt;&lt;/p&gt;\r\n\r\n&lt;h3&gt;Features:&lt;/h3&gt;\r\n\r\n&lt;p&gt;Unrivaled display performance&lt;/p&gt;\r\n\r\n&lt;ul&gt;\r\n	&lt;li&gt;30-inch (viewable) active-matrix liquid crystal display provides breathtaking image quality and vivid, richly saturated color.&lt;/li&gt;\r\n	&lt;li&gt;Support for 2560-by-1600 pixel resolution for display of high definition still and video imagery.&lt;/li&gt;\r\n	&lt;li&gt;Wide-format design for simultaneous display of two full pages of text and graphics.&lt;/li&gt;\r\n	&lt;li&gt;Industry standard DVI connector for direct attachment to Mac- and Windows-based desktops and notebooks&lt;/li&gt;\r\n	&lt;li&gt;Incredibly wide (170 degree) horizontal and vertical viewing angle for maximum visibility and color performance.&lt;/li&gt;\r\n	&lt;li&gt;Lightning-fast pixel response for full-motion digital video playback.&lt;/li&gt;\r\n	&lt;li&gt;Support for 16.7 million saturated colors, for use in all graphics-intensive applications.&lt;/li&gt;\r\n&lt;/ul&gt;\r\n\r\n&lt;p&gt;Simple setup and operation&lt;/p&gt;\r\n\r\n&lt;ul&gt;\r\n	&lt;li&gt;Single cable with elegant breakout for connection to DVI, USB and FireWire ports&lt;/li&gt;\r\n	&lt;li&gt;Built-in two-port USB 2.0 hub for easy connection of desktop peripheral devices.&lt;/li&gt;\r\n	&lt;li&gt;Two FireWire 400 ports to support iSight and other desktop peripherals&lt;/li&gt;\r\n&lt;/ul&gt;\r\n\r\n&lt;p&gt;Sleek, elegant design&lt;/p&gt;\r\n\r\n&lt;ul&gt;\r\n	&lt;li&gt;Huge virtual workspace, very small footprint.&lt;/li&gt;\r\n	&lt;li&gt;Narrow Bezel design to minimize visual impact of using dual displays&lt;/li&gt;\r\n	&lt;li&gt;Unique hinge design for effortless adjustment&lt;/li&gt;\r\n	&lt;li&gt;Support for VESA mounting solutions (Apple Cinema Display VESA Mount Adapter sold separately)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n\r\n&lt;h3&gt;Technical specifications&lt;/h3&gt;\r\n\r\n&lt;p&gt;&lt;b&gt;Screen size (diagonal viewable image size)&lt;/b&gt;&lt;/p&gt;\r\n\r\n&lt;ul&gt;\r\n	&lt;li&gt;Apple Cinema HD Display: 30 inches (29.7-inch viewable)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n\r\n&lt;p&gt;&lt;b&gt;Screen type&lt;/b&gt;&lt;/p&gt;\r\n\r\n&lt;ul&gt;\r\n	&lt;li&gt;Thin film transistor (TFT) active-matrix liquid crystal display (AMLCD)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n\r\n&lt;p&gt;&lt;b&gt;Resolutions&lt;/b&gt;&lt;/p&gt;\r\n\r\n&lt;ul&gt;\r\n	&lt;li&gt;2560 x 1600 pixels (optimum resolution)&lt;/li&gt;\r\n	&lt;li&gt;2048 x 1280&lt;/li&gt;\r\n	&lt;li&gt;1920 x 1200&lt;/li&gt;\r\n	&lt;li&gt;1280 x 800&lt;/li&gt;\r\n	&lt;li&gt;1024 x 640&lt;/li&gt;\r\n&lt;/ul&gt;\r\n\r\n&lt;p&gt;&lt;b&gt;Display colors (maximum)&lt;/b&gt;&lt;/p&gt;\r\n\r\n&lt;ul&gt;\r\n	&lt;li&gt;16.7 million&lt;/li&gt;\r\n&lt;/ul&gt;\r\n\r\n&lt;p&gt;&lt;b&gt;Viewing angle (typical)&lt;/b&gt;&lt;/p&gt;\r\n\r\n&lt;ul&gt;\r\n	&lt;li&gt;170° horizontal; 170° vertical&lt;/li&gt;\r\n&lt;/ul&gt;\r\n\r\n&lt;p&gt;&lt;b&gt;Brightness (typical)&lt;/b&gt;&lt;/p&gt;\r\n\r\n&lt;ul&gt;\r\n	&lt;li&gt;30-inch Cinema HD Display: 400 cd/m2&lt;/li&gt;\r\n&lt;/ul&gt;\r\n\r\n&lt;p&gt;&lt;b&gt;Contrast ratio (typical)&lt;/b&gt;&lt;/p&gt;\r\n\r\n&lt;ul&gt;\r\n	&lt;li&gt;700:1&lt;/li&gt;\r\n&lt;/ul&gt;\r\n\r\n&lt;p&gt;&lt;b&gt;Response time (typical)&lt;/b&gt;&lt;/p&gt;\r\n\r\n&lt;ul&gt;\r\n	&lt;li&gt;16 ms&lt;/li&gt;\r\n&lt;/ul&gt;\r\n\r\n&lt;p&gt;&lt;b&gt;Pixel pitch&lt;/b&gt;&lt;/p&gt;\r\n\r\n&lt;ul&gt;\r\n	&lt;li&gt;30-inch Cinema HD Display: 0.250 mm&lt;/li&gt;\r\n&lt;/ul&gt;\r\n\r\n&lt;p&gt;&lt;b&gt;Screen treatment&lt;/b&gt;&lt;/p&gt;\r\n\r\n&lt;ul&gt;\r\n	&lt;li&gt;Antiglare hardcoat&lt;/li&gt;\r\n&lt;/ul&gt;\r\n\r\n&lt;p&gt;&lt;b&gt;User controls (hardware and software)&lt;/b&gt;&lt;/p&gt;\r\n\r\n&lt;ul&gt;\r\n	&lt;li&gt;Display Power,&lt;/li&gt;\r\n	&lt;li&gt;System sleep, wake&lt;/li&gt;\r\n	&lt;li&gt;Brightness&lt;/li&gt;\r\n	&lt;li&gt;Monitor tilt&lt;/li&gt;\r\n&lt;/ul&gt;\r\n\r\n&lt;p&gt;&lt;b&gt;Connectors and cables&lt;/b&gt;&lt;br /&gt;\r\nCable&lt;/p&gt;\r\n\r\n&lt;ul&gt;\r\n	&lt;li&gt;DVI (Digital Visual Interface)&lt;/li&gt;\r\n	&lt;li&gt;FireWire 400&lt;/li&gt;\r\n	&lt;li&gt;USB 2.0&lt;/li&gt;\r\n	&lt;li&gt;DC power (24 V)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n\r\n&lt;p&gt;Connectors&lt;/p&gt;\r\n\r\n&lt;ul&gt;\r\n	&lt;li&gt;Two-port, self-powered USB 2.0 hub&lt;/li&gt;\r\n	&lt;li&gt;Two FireWire 400 ports&lt;/li&gt;\r\n	&lt;li&gt;Kensington security port&lt;/li&gt;\r\n&lt;/ul&gt;\r\n\r\n&lt;p&gt;&lt;b&gt;VESA mount adapter&lt;/b&gt;&lt;br /&gt;\r\nRequires optional Cinema Display VESA Mount Adapter (M9649G/A)&lt;/p&gt;\r\n\r\n&lt;ul&gt;\r\n	&lt;li&gt;Compatible with VESA FDMI (MIS-D, 100, C) compliant mounting solutions&lt;/li&gt;\r\n&lt;/ul&gt;\r\n\r\n&lt;p&gt;&lt;b&gt;Electrical requirements&lt;/b&gt;&lt;/p&gt;\r\n\r\n&lt;ul&gt;\r\n	&lt;li&gt;Input voltage: 100-240 VAC 50-60Hz&lt;/li&gt;\r\n	&lt;li&gt;Maximum power when operating: 150W&lt;/li&gt;\r\n	&lt;li&gt;Energy saver mode: 3W or less&lt;/li&gt;\r\n&lt;/ul&gt;\r\n\r\n&lt;p&gt;&lt;b&gt;Environmental requirements&lt;/b&gt;&lt;/p&gt;\r\n\r\n&lt;ul&gt;\r\n	&lt;li&gt;Operating temperature: 50° to 95° F (10° to 35° C)&lt;/li&gt;\r\n	&lt;li&gt;Storage temperature: -40° to 116° F (-40° to 47° C)&lt;/li&gt;\r\n	&lt;li&gt;Operating humidity: 20% to 80% noncondensing&lt;/li&gt;\r\n	&lt;li&gt;Maximum operating altitude: 10,000 feet&lt;/li&gt;\r\n&lt;/ul&gt;\r\n\r\n&lt;p&gt;&lt;b&gt;Agency approvals&lt;/b&gt;&lt;/p&gt;\r\n\r\n&lt;ul&gt;\r\n	&lt;li&gt;FCC Part 15 Class B&lt;/li&gt;\r\n	&lt;li&gt;EN55022 Class B&lt;/li&gt;\r\n	&lt;li&gt;EN55024&lt;/li&gt;\r\n	&lt;li&gt;VCCI Class B&lt;/li&gt;\r\n	&lt;li&gt;AS/NZS 3548 Class B&lt;/li&gt;\r\n	&lt;li&gt;CNS 13438 Class B&lt;/li&gt;\r\n	&lt;li&gt;ICES-003 Class B&lt;/li&gt;\r\n	&lt;li&gt;ISO 13406 part 2&lt;/li&gt;\r\n	&lt;li&gt;MPR II&lt;/li&gt;\r\n	&lt;li&gt;IEC 60950&lt;/li&gt;\r\n	&lt;li&gt;UL 60950&lt;/li&gt;\r\n	&lt;li&gt;CSA 60950&lt;/li&gt;\r\n	&lt;li&gt;EN60950&lt;/li&gt;\r\n	&lt;li&gt;ENERGY STAR&lt;/li&gt;\r\n	&lt;li&gt;TCO \'03&lt;/li&gt;\r\n&lt;/ul&gt;\r\n\r\n&lt;p&gt;&lt;b&gt;Size and weight&lt;/b&gt;&lt;br /&gt;\r\n30-inch Apple Cinema HD Display&lt;/p&gt;\r\n\r\n&lt;ul&gt;\r\n	&lt;li&gt;Height: 21.3 inches (54.3 cm)&lt;/li&gt;\r\n	&lt;li&gt;Width: 27.2 inches (68.8 cm)&lt;/li&gt;\r\n	&lt;li&gt;Depth: 8.46 inches (21.5 cm)&lt;/li&gt;\r\n	&lt;li&gt;Weight: 27.5 pounds (12.5 kg)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n\r\n&lt;p&gt;&lt;b&gt;System Requirements&lt;/b&gt;&lt;/p&gt;\r\n\r\n&lt;ul&gt;\r\n	&lt;li&gt;Mac Pro, all graphic options&lt;/li&gt;\r\n	&lt;li&gt;MacBook Pro&lt;/li&gt;\r\n	&lt;li&gt;Power Mac G5 (PCI-X) with ATI Radeon 9650 or better or NVIDIA GeForce 6800 GT DDL or better&lt;/li&gt;\r\n	&lt;li&gt;Power Mac G5 (PCI Express), all graphics options&lt;/li&gt;\r\n	&lt;li&gt;PowerBook G4 with dual-link DVI support&lt;/li&gt;\r\n	&lt;li&gt;Windows PC and graphics card that supports DVI ports with dual-link digital bandwidth and VESA DDC standard for plug-and-play setup&lt;/li&gt;\r\n&lt;/ul&gt;', '', 'Apple Cinema 30', '', ''),
-(43, 1, 'MacBook', '&lt;div&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;Intel Core 2 Duo processor&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Powered by an Intel Core 2 Duo processor at speeds up to 2.16GHz, the new MacBook is the fastest ever.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;1GB memory, larger hard drives&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		The new MacBook now comes with 1GB of memory standard and larger hard drives for the entire line perfect for running more of your favorite applications and storing growing media collections.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;Sleek, 1.08-inch-thin design&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		MacBook makes it easy to hit the road thanks to its tough polycarbonate case, built-in wireless technologies, and innovative MagSafe Power Adapter that releases automatically if someone accidentally trips on the cord.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;Built-in iSight camera&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Right out of the box, you can have a video chat with friends or family,2 record a video at your desk, or take fun pictures with Photo Booth&lt;/p&gt;\r\n&lt;/div&gt;\r\n', '', 'MacBook', '', ''),
-(44, 1, 'MacBook Air', '&lt;div&gt;\r\n	MacBook Air is ultrathin, ultraportable, and ultra unlike anything else. But you don&amp;rsquo;t lose inches and pounds overnight. It&amp;rsquo;s the result of rethinking conventions. Of multiple wireless innovations. And of breakthrough design. With MacBook Air, mobile computing suddenly has a new standard.&lt;/div&gt;\r\n', '', 'MacBook Air', '', ''),
-(45, 1, 'MacBook Pro', '&lt;div class=&quot;cpt_product_description &quot;&gt;\r\n	&lt;div&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Latest Intel mobile architecture&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Powered by the most advanced mobile processors from Intel, the new Core 2 Duo MacBook Pro is over 50% faster than the original Core Duo MacBook Pro and now supports up to 4GB of RAM.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Leading-edge graphics&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			The NVIDIA GeForce 8600M GT delivers exceptional graphics processing power. For the ultimate creative canvas, you can even configure the 17-inch model with a 1920-by-1200 resolution display.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Designed for life on the road&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Innovations such as a magnetic power connection and an illuminated keyboard with ambient light sensor put the MacBook Pro in a class by itself.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Connect. Create. Communicate.&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Quickly set up a video conference with the built-in iSight camera. Control presentations and media from up to 30 feet away with the included Apple Remote. Connect to high-bandwidth peripherals with FireWire 800 and DVI.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Next-generation wireless&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Featuring 802.11n wireless technology, the MacBook Pro delivers up to five times the performance and up to twice the range of previous-generation technologies.&lt;/p&gt;\r\n	&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;!-- cpt_container_end --&gt;', '', 'MacBook Pro', '', ''),
-(46, 1, 'Sony VAIO', '&lt;div&gt;\r\n	Unprecedented power. The next generation of processing technology has arrived. Built into the newest VAIO notebooks lies Intel&amp;#39;s latest, most powerful innovation yet: Intel&amp;reg; Centrino&amp;reg; 2 processor technology. Boasting incredible speed, expanded wireless connectivity, enhanced multimedia support and greater energy efficiency, all the high-performance essentials are seamlessly combined into a single chip.&lt;/div&gt;\r\n', '', 'Sony VAIO', '', ''),
-(47, 1, 'HP LP3065', '&lt;p&gt;\r\n	Stop your co-workers in their tracks with the stunning new 30-inch diagonal HP LP3065 Flat Panel Monitor. This flagship monitor features best-in-class performance and presentation features on a huge wide-aspect screen while letting you work as comfortably as possible - you might even forget you&amp;#39;re at the office&lt;/p&gt;\r\n', '', 'HP LP3065', '', ''),
-(48, 1, 'iPod Classic', '&lt;div class=&quot;cpt_product_description &quot;&gt;\r\n	&lt;div&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;More room to move.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			With 80GB or 160GB of storage and up to 40 hours of battery life, the new iPod classic lets you enjoy up to 40,000 songs or up to 200 hours of video or any combination wherever you go.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Cover Flow.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Browse through your music collection by flipping through album art. Select an album to turn it over and see the track list.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Enhanced interface.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Experience a whole new way to browse and view your music and video.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Sleeker design.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Beautiful, durable, and sleeker than ever, iPod classic now features an anodized aluminum and polished stainless steel enclosure with rounded edges.&lt;/p&gt;\r\n	&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;!-- cpt_container_end --&gt;', '', 'iPod Classic', '', ''),
-(49, 1, 'Samsung Galaxy Tab 10.1', '&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1, is the world&amp;rsquo;s thinnest tablet, measuring 8.6 mm thickness, running with Android 3.0 Honeycomb OS on a 1GHz dual-core Tegra 2 processor, similar to its younger brother Samsung Galaxy Tab 8.9.&lt;/p&gt;\r\n&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1 gives pure Android 3.0 experience, adding its new TouchWiz UX or TouchWiz 4.0 &amp;ndash; includes a live panel, which lets you to customize with different content, such as your pictures, bookmarks, and social feeds, sporting a 10.1 inches WXGA capacitive touch screen with 1280 x 800 pixels of resolution, equipped with 3 megapixel rear camera with LED flash and a 2 megapixel front camera, HSPA+ connectivity up to 21Mbps, 720p HD video recording capability, 1080p HD playback, DLNA support, Bluetooth 2.1, USB 2.0, gyroscope, Wi-Fi 802.11 a/b/g/n, micro-SD slot, 3.5mm headphone jack, and SIM slot, including the Samsung Stick &amp;ndash; a Bluetooth microphone that can be carried in a pocket like a pen and sound dock with powered subwoofer.&lt;/p&gt;\r\n&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1 will come in 16GB / 32GB / 64GB verities and pre-loaded with Social Hub, Reader&amp;rsquo;s Hub, Music Hub and Samsung Mini Apps Tray &amp;ndash; which gives you access to more commonly used apps to help ease multitasking and it is capable of Adobe Flash Player 10.2, powered by 6860mAh battery that gives you 10hours of video-playback time.&amp;nbsp;&amp;auml;&amp;ouml;&lt;/p&gt;\r\n', '', 'Samsung Galaxy Tab 10.1', '', '');
-
 -- --------------------------------------------------------
 
 --
@@ -3508,15 +3009,6 @@ CREATE TABLE `oc_product_discount` (
   `date_start` date NOT NULL,
   `date_end` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
-
---
--- Dumping data for table `oc_product_discount`
---
-
-INSERT INTO `oc_product_discount` (`product_discount_id`, `product_id`, `customer_group_id`, `quantity`, `priority`, `price`, `date_start`, `date_end`) VALUES
-(441, 42, 1, 10, 1, 88.0000, '0000-00-00', '0000-00-00'),
-(442, 42, 1, 20, 1, 77.0000, '0000-00-00', '0000-00-00'),
-(443, 42, 1, 30, 1, 66.0000, '0000-00-00', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -3542,73 +3034,6 @@ CREATE TABLE `oc_product_image` (
   `sort_order` int(3) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
---
--- Dumping data for table `oc_product_image`
---
-
-INSERT INTO `oc_product_image` (`product_image_id`, `product_id`, `image`, `sort_order`) VALUES
-(1968, 43, 'catalog/demo/macbook_3.jpg', 0),
-(1969, 43, 'catalog/demo/macbook_2.jpg', 0),
-(1970, 43, 'catalog/demo/macbook_4.jpg', 0),
-(1971, 43, 'catalog/demo/macbook_5.jpg', 0),
-(1972, 44, 'catalog/demo/macbook_air_3.jpg', 0),
-(1973, 44, 'catalog/demo/macbook_air_2.jpg', 0),
-(1974, 44, 'catalog/demo/macbook_air_4.jpg', 0),
-(1975, 45, 'catalog/demo/macbook_pro_4.jpg', 0),
-(1976, 45, 'catalog/demo/macbook_pro_3.jpg', 0),
-(1977, 45, 'catalog/demo/macbook_pro_2.jpg', 0),
-(1978, 40, 'catalog/demo/iphone_4.jpg', 0),
-(1979, 40, 'catalog/demo/iphone_3.jpg', 0),
-(1980, 40, 'catalog/demo/iphone_5.jpg', 0),
-(1981, 40, 'catalog/demo/iphone_2.jpg', 0),
-(1982, 40, 'catalog/demo/iphone_6.jpg', 0),
-(1983, 31, 'catalog/demo/nikon_d300_5.jpg', 0),
-(1984, 31, 'catalog/demo/nikon_d300_4.jpg', 0),
-(1985, 31, 'catalog/demo/nikon_d300_2.jpg', 0),
-(1986, 31, 'catalog/demo/nikon_d300_3.jpg', 0),
-(1987, 29, 'catalog/demo/palm_treo_pro_2.jpg', 0),
-(1988, 29, 'catalog/demo/palm_treo_pro_3.jpg', 0),
-(1989, 48, 'catalog/demo/ipod_classic_2.jpg', 0),
-(1990, 48, 'catalog/demo/ipod_classic_3.jpg', 0),
-(1991, 48, 'catalog/demo/ipod_classic_4.jpg', 0),
-(1992, 46, 'catalog/demo/sony_vaio_3.jpg', 0),
-(1993, 46, 'catalog/demo/sony_vaio_2.jpg', 0),
-(1994, 46, 'catalog/demo/sony_vaio_4.jpg', 0),
-(1995, 46, 'catalog/demo/sony_vaio_5.jpg', 0),
-(1998, 36, 'catalog/demo/ipod_nano_3.jpg', 0),
-(1999, 36, 'catalog/demo/ipod_nano_2.jpg', 0),
-(2000, 36, 'catalog/demo/ipod_nano_4.jpg', 0),
-(2001, 36, 'catalog/demo/ipod_nano_5.jpg', 0),
-(2002, 34, 'catalog/demo/ipod_shuffle_3.jpg', 0),
-(2003, 34, 'catalog/demo/ipod_shuffle_2.jpg', 0),
-(2004, 34, 'catalog/demo/ipod_shuffle_4.jpg', 0),
-(2005, 34, 'catalog/demo/ipod_shuffle_5.jpg', 0),
-(2006, 32, 'catalog/demo/ipod_touch_4.jpg', 0),
-(2007, 32, 'catalog/demo/ipod_touch_3.jpg', 0),
-(2008, 32, 'catalog/demo/ipod_touch_2.jpg', 0),
-(2009, 32, 'catalog/demo/ipod_touch_5.jpg', 0),
-(2010, 32, 'catalog/demo/ipod_touch_6.jpg', 0),
-(2011, 32, 'catalog/demo/ipod_touch_7.jpg', 0),
-(2034, 28, 'catalog/demo/htc_touch_hd_3.jpg', 0),
-(2035, 28, 'catalog/demo/htc_touch_hd_2.jpg', 0),
-(2320, 47, 'catalog/demo/hp_2.jpg', 0),
-(2321, 47, 'catalog/demo/hp_3.jpg', 0),
-(2322, 49, 'catalog/demo/samsung_tab_2.jpg', 0),
-(2323, 49, 'catalog/demo/samsung_tab_3.jpg', 0),
-(2324, 49, 'catalog/demo/samsung_tab_4.jpg', 0),
-(2325, 49, 'catalog/demo/samsung_tab_5.jpg', 0),
-(2326, 49, 'catalog/demo/samsung_tab_6.jpg', 0),
-(2327, 49, 'catalog/demo/samsung_tab_7.jpg', 0),
-(2344, 30, 'catalog/demo/canon_eos_5d_3.jpg', 0),
-(2345, 30, 'catalog/demo/canon_eos_5d_2.jpg', 0),
-(2350, 41, 'catalog/demo/imac_2.jpg', 0),
-(2351, 41, 'catalog/demo/imac_3.jpg', 0),
-(2352, 42, 'catalog/demo/canon_eos_5d_2.jpg', 0),
-(2353, 42, 'catalog/demo/canon_eos_5d_1.jpg', 0),
-(2354, 42, 'catalog/demo/compaq_presario.jpg', 0),
-(2355, 42, 'catalog/demo/hp_1.jpg', 0),
-(2356, 42, 'catalog/demo/canon_logo.jpg', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -3622,23 +3047,6 @@ CREATE TABLE `oc_product_option` (
   `value` text NOT NULL,
   `required` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
-
---
--- Dumping data for table `oc_product_option`
---
-
-INSERT INTO `oc_product_option` (`product_option_id`, `product_id`, `option_id`, `value`, `required`) VALUES
-(208, 42, 4, 'test', 1),
-(209, 42, 6, '', 1),
-(217, 42, 5, '', 1),
-(218, 42, 1, '', 1),
-(219, 42, 8, '2011-02-20', 1),
-(220, 42, 10, '2011-02-20 22:25', 1),
-(221, 42, 9, '22:25', 1),
-(223, 42, 2, '', 1),
-(224, 35, 11, '', 1),
-(225, 47, 12, '2011-04-22', 1),
-(226, 30, 5, '', 1);
 
 -- --------------------------------------------------------
 
@@ -3662,28 +3070,6 @@ CREATE TABLE `oc_product_option_value` (
   `weight_prefix` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
---
--- Dumping data for table `oc_product_option_value`
---
-
-INSERT INTO `oc_product_option_value` (`product_option_value_id`, `product_option_id`, `product_id`, `option_id`, `option_value_id`, `quantity`, `subtract`, `price`, `price_prefix`, `points`, `points_prefix`, `weight`, `weight_prefix`) VALUES
-(1, 217, 42, 5, 41, 100, 0, 1.0000, '+', 0, '+', 1.00000000, '+'),
-(2, 217, 42, 5, 42, 200, 1, 2.0000, '+', 0, '+', 2.00000000, '+'),
-(3, 217, 42, 5, 40, 300, 0, 3.0000, '+', 0, '+', 3.00000000, '+'),
-(4, 217, 42, 5, 39, 92, 1, 4.0000, '+', 0, '+', 4.00000000, '+'),
-(5, 218, 42, 1, 32, 96, 1, 10.0000, '+', 1, '+', 10.00000000, '+'),
-(6, 218, 42, 1, 31, 146, 1, 20.0000, '+', 2, '-', 20.00000000, '+'),
-(7, 218, 42, 1, 43, 295, 1, 30.0000, '+', 3, '+', 30.00000000, '+'),
-(8, 223, 42, 2, 23, 48, 1, 10.0000, '+', 0, '+', 10.00000000, '+'),
-(9, 223, 42, 2, 24, 189, 1, 20.0000, '+', 0, '+', 20.00000000, '+'),
-(10, 223, 42, 2, 44, 2691, 1, 30.0000, '+', 0, '+', 30.00000000, '+'),
-(11, 223, 42, 2, 45, 3998, 1, 40.0000, '+', 0, '+', 40.00000000, '+'),
-(12, 224, 35, 11, 46, 0, 1, 5.0000, '+', 0, '+', 0.00000000, '+'),
-(13, 224, 35, 11, 47, 10, 1, 10.0000, '+', 0, '+', 0.00000000, '+'),
-(14, 224, 35, 11, 48, 15, 1, 15.0000, '+', 0, '+', 0.00000000, '+'),
-(15, 226, 30, 5, 39, 2, 1, 0.0000, '+', 0, '+', 0.00000000, '+'),
-(16, 226, 30, 5, 40, 1, 1, 0.0000, '+', 0, '+', 0.00000000, '+');
-
 -- --------------------------------------------------------
 
 --
@@ -3694,16 +3080,6 @@ CREATE TABLE `oc_product_related` (
   `product_id` int(11) NOT NULL,
   `related_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
-
---
--- Dumping data for table `oc_product_related`
---
-
-INSERT INTO `oc_product_related` (`product_id`, `related_id`) VALUES
-(40, 42),
-(41, 42),
-(42, 40),
-(42, 41);
 
 -- --------------------------------------------------------
 
@@ -3733,31 +3109,6 @@ CREATE TABLE `oc_product_reward` (
   `points` int(8) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
---
--- Dumping data for table `oc_product_reward`
---
-
-INSERT INTO `oc_product_reward` (`product_reward_id`, `product_id`, `customer_group_id`, `points`) VALUES
-(329, 43, 1, 600),
-(331, 44, 1, 700),
-(333, 45, 1, 800),
-(335, 40, 1, 0),
-(337, 31, 1, 0),
-(339, 29, 1, 0),
-(343, 48, 1, 0),
-(345, 33, 1, 0),
-(347, 46, 1, 0),
-(351, 36, 1, 0),
-(353, 34, 1, 0),
-(355, 32, 1, 0),
-(379, 28, 1, 400),
-(425, 35, 1, 0),
-(519, 47, 1, 300),
-(521, 49, 1, 1000),
-(539, 30, 1, 200),
-(545, 41, 1, 0),
-(546, 42, 1, 100);
-
 -- --------------------------------------------------------
 
 --
@@ -3773,15 +3124,6 @@ CREATE TABLE `oc_product_special` (
   `date_start` date NOT NULL,
   `date_end` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
-
---
--- Dumping data for table `oc_product_special`
---
-
-INSERT INTO `oc_product_special` (`product_special_id`, `product_id`, `customer_group_id`, `priority`, `price`, `date_start`, `date_end`) VALUES
-(438, 30, 1, 1, 80.0000, '0000-00-00', '0000-00-00'),
-(439, 30, 1, 2, 90.0000, '0000-00-00', '0000-00-00'),
-(440, 42, 1, 1, 90.0000, '0000-00-00', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -3808,42 +3150,6 @@ CREATE TABLE `oc_product_to_category` (
   `category_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
---
--- Dumping data for table `oc_product_to_category`
---
-
-INSERT INTO `oc_product_to_category` (`product_id`, `category_id`) VALUES
-(28, 20),
-(28, 24),
-(29, 20),
-(29, 24),
-(30, 20),
-(30, 33),
-(31, 33),
-(32, 34),
-(33, 20),
-(33, 28),
-(34, 34),
-(35, 20),
-(36, 34),
-(40, 20),
-(40, 24),
-(41, 27),
-(42, 20),
-(42, 28),
-(43, 18),
-(43, 20),
-(44, 18),
-(44, 20),
-(45, 18),
-(46, 18),
-(46, 20),
-(47, 18),
-(47, 20),
-(48, 20),
-(48, 34),
-(49, 57);
-
 -- --------------------------------------------------------
 
 --
@@ -3866,13 +3172,6 @@ CREATE TABLE `oc_product_to_layout` (
   `store_id` int(11) NOT NULL,
   `layout_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
-
---
--- Dumping data for table `oc_product_to_layout`
---
-
-INSERT INTO `oc_product_to_layout` (`product_id`, `store_id`, `layout_id`) VALUES
-(42, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -4068,70 +3367,7 @@ CREATE TABLE `oc_seo_url` (
 --
 
 INSERT INTO `oc_seo_url` (`seo_url_id`, `store_id`, `language_id`, `key`, `value`, `keyword`, `sort_order`) VALUES
-(1, 0, 1, 'product_id', '47', 'hp-lp3065', 1),
-(2, 0, 1, 'product_id', '48', 'ipod-classic', 1),
-(3, 0, 1, 'product_id', '28', 'htc-touch-hd', 1),
-(4, 0, 1, 'product_id', '43', 'macbook', 1),
-(5, 0, 1, 'product_id', '44', 'macbook-air', 1),
-(6, 0, 1, 'product_id', '45', 'macbook-pro', 1),
-(7, 0, 1, 'product_id', '30', 'canon-eos-5d', 1),
-(8, 0, 1, 'product_id', '31', 'nikon-d300', 1),
-(9, 0, 1, 'product_id', '29', 'palm-treo-pro', 1),
-(10, 0, 1, 'product_id', '35', 'product-8', 1),
-(11, 0, 1, 'product_id', '49', 'samsung-galaxy-tab-10-1', 1),
-(12, 0, 1, 'product_id', '33', 'samsung-syncmaster-941bw', 1),
-(13, 0, 1, 'product_id', '46', 'sony-vaio', 1),
-(14, 0, 1, 'product_id', '41', 'imac', 1),
-(15, 0, 1, 'product_id', '40', 'iphone', 1),
-(16, 0, 1, 'product_id', '36', 'ipod-nano', 1),
-(17, 0, 1, 'product_id', '34', 'ipod-shuffle', 1),
-(18, 0, 1, 'product_id', '32', 'ipod-touch', 1),
-(19, 0, 1, 'product_id', '50', 'apple-4', 1),
-(21, 0, 1, 'manufacturer_id', '5', 'htc', 0),
-(22, 0, 1, 'manufacturer_id', '7', 'hewlett-packard', 0),
-(23, 0, 1, 'manufacturer_id', '6', 'palm', 0),
-(24, 0, 1, 'manufacturer_id', '10', 'sony', 0),
-(25, 0, 1, 'manufacturer_id', '9', 'canon', 0),
 (26, 0, 1, 'manufacturer_id', '8', 'apple', 0),
-(27, 0, 1, 'path', '30', 'printer', 0),
-(28, 0, 1, 'path', '20_27', 'desktops/mac', 0),
-(29, 0, 1, 'path', '20_26', 'desktops/pc', 0),
-(30, 0, 1, 'path', '25', 'component', 0),
-(31, 0, 1, 'path', '25_29', 'component/mouse', 0),
-(32, 0, 1, 'path', '33', 'cameras', 0),
-(33, 0, 1, 'path', '25_28', 'component/monitor', 0),
-(34, 0, 1, 'path', '25_28_35', 'component/monitor/test-1', 0),
-(35, 0, 1, 'path', '25_28_36', 'component/monitor/test-2', 0),
-(36, 0, 1, 'path', '25_30', 'component/printers', 0),
-(37, 0, 1, 'path', '25_31', 'component/scanner', 0),
-(38, 0, 1, 'path', '25_32', 'component/web-camera', 0),
-(39, 0, 1, 'path', '20', 'desktops', 0),
-(40, 0, 1, 'path', '18', 'laptop-notebook', 0),
-(41, 0, 1, 'path', '18_46', 'laptop-notebook/macs', 0),
-(42, 0, 1, 'path', '18_45', 'laptop-notebook/windows', 0),
-(43, 0, 1, 'path', '34', 'mp3-players', 0),
-(44, 0, 1, 'path', '34_43', 'mp3-players/test-11', 0),
-(45, 0, 1, 'path', '34_44', 'mp3-players/test-12', 0),
-(46, 0, 1, 'path', '34_47', 'mp3-players/test-15', 0),
-(47, 0, 1, 'path', '34_48', 'mp3-players/test-16', 0),
-(48, 0, 1, 'path', '34_49', 'mp3-players/test-17', 0),
-(49, 0, 1, 'path', '34_50', 'mp3-players/test-18', 0),
-(50, 0, 1, 'path', '34_51', 'mp3-players/test-19', 0),
-(51, 0, 1, 'path', '34_52', 'mp3-players/test-20', 0),
-(52, 0, 1, 'path', '34_52_58', 'mp3-players/test-20/test-25', 0),
-(53, 0, 1, 'path', '34_53', 'mp3-players/test-21', 0),
-(54, 0, 1, 'path', '34_54', 'mp3-players/test-22', 0),
-(55, 0, 1, 'path', '34_55', 'mp3-players/test-23', 0),
-(56, 0, 1, 'path', '34_56', 'mp3-players/test-24', 0),
-(57, 0, 1, 'path', '34_38', 'mp3-players/test-4', 0),
-(58, 0, 1, 'path', '34_37', 'mp3-players/test-5', 0),
-(59, 0, 1, 'path', '34_39', 'mp3-players/test-6', 0),
-(60, 0, 1, 'path', '34_40', 'mp3-players/test-7', 0),
-(61, 0, 1, 'path', '34_41', 'mp3-players/test-8', 0),
-(62, 0, 1, 'path', '34_42', 'mp3-players/test-9', 0),
-(63, 0, 1, 'path', '24', 'smartphone', 0),
-(64, 0, 1, 'path', '17', 'software', 0),
-(65, 0, 1, 'path', '57', 'tablet', 0),
 (67, 0, 1, 'information_id', '2', 'terms', 0),
 (69, 0, 1, 'information_id', '3', 'privacy', 0),
 (70, 0, 1, 'language', 'en-gb', 'en-gb', -2),
@@ -4141,8 +3377,7 @@ INSERT INTO `oc_seo_url` (`seo_url_id`, `store_id`, `language_id`, `key`, `value
 (74, 0, 1, 'route', 'product/category', 'catalog', -1),
 (75, 0, 1, 'route', 'product/manufacturer', 'brands', -1),
 (76, 0, 1, 'information_id', '1', 'about-us', 0),
-(78, 0, 1, 'information_id', '4', 'delivery', 0),
-(79, 0, 1, 'product_id', '42', 'apple-cinema', 0);
+(78, 0, 1, 'information_id', '4', 'delivery', 0);
 
 -- --------------------------------------------------------
 
@@ -4161,351 +3396,476 @@ CREATE TABLE `oc_session` (
 --
 
 INSERT INTO `oc_session` (`session_id`, `data`, `expire`) VALUES
-('026939e59b756fde02940560c0', '{\"currency\":\"USD\"}', '2025-01-17 08:40:43'),
-('02b5639b20501deba55682aa16', '{\"currency\":\"USD\"}', '2025-01-17 09:17:48'),
-('04148bc6a6903b27e381af5a32', '{\"currency\":\"USD\"}', '2025-01-17 08:40:43'),
-('04864371101c9bd355856b44d4', '{\"currency\":\"USD\"}', '2025-01-17 08:41:17'),
-('04fc1f2495b4bae31ae8250268', '{\"currency\":\"USD\"}', '2025-01-17 09:17:04'),
-('05f8f90b3c916e4c03a1dd5e34', '{\"currency\":\"USD\"}', '2025-01-17 10:01:30'),
-('0725a44b5ded34ed378efe1141', '{\"currency\":\"USD\"}', '2025-01-17 09:01:55'),
-('08ae9996e8b26744d866b3cdbd', '{\"currency\":\"USD\"}', '2025-01-17 09:52:38'),
-('08d11c612c6194fe28cc235932', '{\"currency\":\"USD\"}', '2025-01-17 08:20:30'),
-('08e70c5ce415985bf1eb1864b7', '{\"currency\":\"USD\"}', '2025-01-17 09:42:59'),
-('099357bec5cc66a3207624c6b4', '{\"currency\":\"USD\"}', '2025-01-17 09:17:25'),
-('09c2f325cdf3df512755a42152', '{\"currency\":\"USD\"}', '2025-01-17 09:55:59'),
-('0af2d249bc583d952a3b4ebdac', '{\"currency\":\"USD\"}', '2025-01-17 09:15:21'),
-('0b031fec997d8cb1a5a360b147', '{\"currency\":\"USD\"}', '2025-01-17 08:51:54'),
-('0b7ccd3a3f01c9f682f69e300c', '{\"currency\":\"USD\"}', '2025-01-17 09:12:40'),
-('0be5717071a2d907c3255a01a3', '{\"currency\":\"USD\"}', '2025-01-17 09:17:08'),
-('0c3fc014732d0f3c56576aba02', '{\"currency\":\"USD\"}', '2025-01-17 09:17:06'),
-('0c4fbc4360d46a6d86e436d4f0', '{\"currency\":\"USD\"}', '2025-01-17 08:57:37'),
-('0d87dc9dd191a4e8959a3036b4', '{\"currency\":\"USD\"}', '2025-01-17 09:44:47'),
-('0d95b82b211dfcd000c6452f8c', '{\"currency\":\"USD\"}', '2025-01-17 09:53:32'),
-('0df4e197f4c6db7577e52baf73', '{\"currency\":\"USD\"}', '2025-01-17 09:14:58'),
-('0e22691c5dc414c508261a911b', '{\"currency\":\"USD\"}', '2025-01-17 09:17:44'),
-('0e87eb1de7db560e9093788dd6', '{\"currency\":\"USD\"}', '2025-01-17 08:21:33'),
-('0ef74b50c1a35f3b8095167434', '{\"currency\":\"USD\"}', '2025-01-17 08:58:38'),
-('0f3096d605e000db8f8ba1d342', '{\"currency\":\"USD\"}', '2025-01-17 09:43:02'),
-('10b4b62810bc0eaa436e830c8f', '{\"currency\":\"USD\"}', '2025-01-17 09:53:44'),
-('11f2800f3da9e674cf401615a5', '{\"currency\":\"USD\"}', '2025-01-17 08:57:40'),
-('123b554436c130b4f2acf40f76', '{\"currency\":\"USD\"}', '2025-01-17 09:15:24'),
-('137daf736e825d5e5551d6432b', '{\"currency\":\"USD\"}', '2025-01-17 08:21:10'),
-('14ba6b75d5deb2b0fb0ba00a2f', '{\"currency\":\"USD\"}', '2025-01-17 09:43:05'),
-('155bd537c1e5af5d7f31234f57', '{\"currency\":\"USD\"}', '2025-01-17 08:51:52'),
-('1737d6583ad30fa0a627be7b1e', '{\"currency\":\"USD\"}', '2025-01-17 09:25:39'),
-('17f8b6189d8f6dedce6825d338', '{\"currency\":\"USD\"}', '2025-01-17 08:26:03'),
-('18aedd281f3fe3fafa3f31d768', '{\"currency\":\"USD\"}', '2025-01-17 09:59:45'),
-('1940b77e1f11ac82756eaf2279', '{\"currency\":\"USD\"}', '2025-01-17 09:25:06'),
-('1abfedc874868112950cd566bd', '{\"currency\":\"USD\"}', '2025-01-17 09:17:48'),
-('1ae329673864aad56233a3d32f', '{\"currency\":\"USD\"}', '2025-01-17 09:42:55'),
-('1c0ce9b37ce115195e1445b647', '{\"currency\":\"USD\"}', '2025-01-17 11:11:57'),
-('1cee76105e4ce57ff3252df1b6', '{\"currency\":\"USD\"}', '2025-01-17 09:56:01'),
-('1d28d0527d1dd86c9711a1d07c', '{\"currency\":\"USD\"}', '2025-01-17 08:24:35'),
-('1d38c0cd8696d6ac3718684bca', '{\"currency\":\"USD\"}', '2025-01-17 09:42:36'),
-('1decf44a969f52b0b781743629', '{\"currency\":\"USD\"}', '2025-01-17 09:25:09'),
-('1e234f2e12dc8c59e8e3a58fb1', '{\"currency\":\"USD\"}', '2025-01-17 09:28:07'),
-('1f0efcb9a7979713f952038888', '{\"currency\":\"USD\"}', '2025-01-17 09:52:38'),
-('20aa940644be99bc9f9c8ca8d3', '{\"currency\":\"USD\"}', '2025-01-17 09:48:17'),
-('224063ed1e0c41d9644075851f', '{\"currency\":\"USD\"}', '2025-01-17 08:51:54'),
-('22ba7712f7d1d25a862fac321d', '{\"currency\":\"USD\"}', '2025-01-17 09:15:26'),
-('23ab30749a0026e8482f4b6106', '{\"currency\":\"USD\"}', '2025-01-17 09:15:28'),
-('24935f009c0abeb042c86f7bd0', '{\"currency\":\"USD\"}', '2025-01-17 09:49:29'),
-('2494c7f617c70326007e218f00', '{\"currency\":\"USD\"}', '2025-01-17 08:51:53'),
-('24f4290877606d4d2e99f19a28', '{\"currency\":\"USD\"}', '2025-01-17 08:21:09'),
-('250028ac35beb75c00786c7e95', '{\"currency\":\"USD\"}', '2025-01-17 09:59:43'),
-('26730fa5fb320ffa794413227c', '{\"currency\":\"USD\"}', '2025-01-17 09:44:23'),
-('271a28870cc1a185019c62a4bd', '{\"currency\":\"USD\"}', '2025-01-17 09:55:59'),
-('2739dbf7653901e9eb5a1ced27', '{\"currency\":\"USD\"}', '2025-01-17 09:43:02'),
-('2a2ab3b0cbc75819414cc7b223', '{\"currency\":\"USD\"}', '2025-01-17 09:44:22'),
-('2c0edb07f03e7334ba6af40ec0', '{\"currency\":\"USD\"}', '2025-01-17 10:00:35'),
-('2c596d21b6c806485027f4e9aa', '{\"currency\":\"USD\"}', '2025-01-17 08:27:36'),
-('2e457f840e3aaf5e56ec01a466', '{\"currency\":\"USD\"}', '2025-01-17 08:20:30'),
-('2f2dd429a1ae5ce627abbd0342', '{\"currency\":\"USD\"}', '2025-01-17 08:58:03'),
-('306895bda18ffa923829b41fda', '{\"currency\":\"USD\"}', '2025-01-17 09:53:20'),
-('30fe0541cacc4899eae356d04d', '{\"currency\":\"USD\"}', '2025-01-17 09:42:59'),
-('31f1068d8ed69bca18871d1ec6', '{\"currency\":\"USD\"}', '2025-01-17 09:17:48'),
-('3348eb6049b04097cf6bad064b', '{\"currency\":\"USD\"}', '2025-01-17 09:42:36'),
-('33b8fd2bbbf5cf0d7c9ab0c53f', '{\"currency\":\"USD\"}', '2025-01-17 10:01:53'),
-('33e1f742e8baf62cbd9c570298', '{\"currency\":\"USD\"}', '2025-01-17 08:57:40'),
-('3491d8d8383fd895ea23499bb1', '{\"currency\":\"USD\"}', '2025-01-17 09:43:00'),
-('352c5b58399f4ec8856ead780f', '{\"currency\":\"USD\"}', '2025-01-17 08:21:29'),
-('3560b84d7b0ad6bdcf4b575e79', '{\"currency\":\"USD\"}', '2025-01-17 08:37:07'),
-('376bb5a1cf7a2908ad6fa516bb', '{\"currency\":\"USD\"}', '2025-01-17 09:17:44'),
-('380d9d75977cdf8906c8857cd7', '{\"currency\":\"USD\"}', '2025-01-17 09:15:26'),
-('381764513fc2a57a50a04093f8', '{\"currency\":\"USD\"}', '2025-01-17 09:25:38'),
-('382c77fc66ee37614570909074', '{\"currency\":\"USD\"}', '2025-01-17 09:52:38'),
-('38da4a3616e83376f4ce1542d1', '{\"currency\":\"USD\"}', '2025-01-17 09:44:43'),
-('39113e8730301c794abf6f4b20', '{\"currency\":\"USD\"}', '2025-01-17 09:17:31'),
-('3960956ece5d4592f8e51b738e', '{\"currency\":\"USD\"}', '2025-01-17 09:25:38'),
-('3968abf751c170223ed39cf616', '{\"currency\":\"USD\"}', '2025-01-17 08:27:36'),
-('3a42887f287507dc7c9b30f322', '{\"currency\":\"USD\"}', '2025-01-17 08:24:35'),
-('3a9a58892c2b21fc1b045b3c0e', '{\"currency\":\"USD\"}', '2025-01-17 09:49:16'),
-('3ac301c11f71499ead8b0ebf27', '{\"currency\":\"USD\"}', '2025-01-17 09:56:00'),
-('3c2db6d840034f22247ad772bc', '{\"currency\":\"USD\"}', '2025-01-17 09:28:04'),
-('3ccacc193c35273b515f87cf63', '{\"currency\":\"USD\"}', '2025-01-17 09:46:25'),
-('3d469e6820de1dd4b31722875c', '{\"currency\":\"USD\"}', '2025-01-17 09:46:26'),
-('3e30104515977a123cf804edfb', '{\"currency\":\"USD\"}', '2025-01-17 09:17:08'),
-('3e61c1d9bc142504e71e082329', '{\"currency\":\"USD\"}', '2025-01-17 10:02:29'),
-('3ef59e521435baf287d55b4861', '{\"currency\":\"USD\"}', '2025-01-17 09:49:16'),
-('3f375605e8b124f8a214fc2782', '{\"currency\":\"USD\"}', '2025-01-17 08:26:03'),
-('3f8241a889e2413b5dd00150eb', '{\"currency\":\"USD\",\"review_token\":\"736934dc1bd0f555598b7edbefc949bd\",\"customer_id\":\"4\",\"customer\":{\"customer_id\":\"4\",\"customer_group_id\":\"1\",\"firstname\":\"Rahul\",\"lastname\":\"C S\",\"email\":\"rahul@gmail.com\",\"telephone\":\"0123456789\",\"custom_field\":\"[]\"},\"customer_token\":\"f54c4d82615b5c3e30f48653b3\",\"shipping_address\":{\"address_id\":\"7\",\"firstname\":\"Name 1\",\"lastname\":\"Name 2\",\"company\":\"Company\",\"address_1\":\"test\",\"address_2\":\"test\",\"city\":\"test123456\",\"postcode\":\"123333\",\"zone_id\":\"185\",\"zone\":\"Lorri\",\"zone_code\":\"LOR\",\"country_id\":\"11\",\"country\":\"Armenia\",\"iso_code_2\":\"AM\",\"iso_code_3\":\"ARM\",\"address_format\":\"{firstname} {lastname}\\r\\n{company}\\r\\n{address_1}\\r\\n{address_2}\\r\\n{city}, {zone} {postcode}\\r\\n{country}\",\"custom_field\":null,\"default\":\"0\"},\"user_id\":\"1\",\"user_token\":\"6a96223e8052c2afde68245fe030e25b\",\"coupon\":\"2222\",\"api_session\":\"af8003d8929c3edef12d421ea7\"}', '2025-01-17 11:13:42'),
-('3fcc001ec28065cfb19d643b9c', '{\"currency\":\"USD\"}', '2025-01-17 09:48:02'),
-('3ff7636b3cfbfd1222a21de54c', '{\"currency\":\"USD\"}', '2025-01-17 09:25:06'),
-('40009e598a11bc42256d06cd05', '{\"currency\":\"USD\"}', '2025-01-17 09:44:46'),
-('405ef02b6d4e14200dcc4a75e5', '{\"currency\":\"USD\"}', '2025-01-17 08:20:59'),
-('40d0712f76f5790fee7b7abb90', '{\"currency\":\"USD\"}', '2025-01-17 09:28:00'),
-('4205ce8378860816379467df3d', '{\"currency\":\"USD\"}', '2025-01-17 09:16:50'),
-('4250983cbc7c0510cb0e4919c7', '{\"currency\":\"USD\"}', '2025-01-17 09:44:31'),
-('42faaaa6333dd096bdd1eb912d', '{\"currency\":\"USD\"}', '2025-01-17 09:42:57'),
-('439d6cd10c7f3f3b5d8d30f898', '{\"currency\":\"USD\"}', '2025-01-17 09:59:43'),
-('441043941f95ba68200654ba84', '{\"currency\":\"USD\"}', '2025-01-17 08:40:43'),
-('446d68ef632caf4e7c33eb247f', '{\"currency\":\"USD\"}', '2025-01-17 09:44:54'),
-('44b1c9b22a1e939ec9cb4c540a', '{\"currency\":\"USD\"}', '2025-01-17 09:17:34'),
-('4539d7c4672e956d0cd79812eb', '{\"currency\":\"USD\"}', '2025-01-17 09:44:43'),
-('46d07ea6b3b98a62bf73058265', '{\"currency\":\"USD\"}', '2025-01-17 09:48:13'),
-('4709f03092cc1069b7be7345c6', '{\"currency\":\"USD\"}', '2025-01-17 09:25:35'),
-('47abeb1a087370049e7d6216bc', '{\"currency\":\"USD\"}', '2025-01-17 09:28:02'),
-('47e452a8cd3e5a0f188e2c8694', '{\"currency\":\"USD\"}', '2025-01-17 09:12:17'),
-('48e035bffcca0b144a44289afc', '{\"currency\":\"USD\"}', '2025-01-17 09:27:54'),
-('4979c1e7f9293a597d3523569e', '{\"currency\":\"USD\"}', '2025-01-17 08:51:53'),
-('49829b9d68fbfcfc81334575d5', '{\"currency\":\"USD\"}', '2025-01-17 09:17:08'),
-('499bf98f5016c6ec355566db38', '{\"currency\":\"USD\"}', '2025-01-17 09:44:47'),
-('49b154b1ed8d7f6b9a36068ab7', '{\"currency\":\"USD\"}', '2025-01-17 10:00:36'),
-('4a7f2b5cb057ece388a1f28c3b', '{\"currency\":\"USD\"}', '2025-01-17 09:12:09'),
-('4ad099083a0ce175c8ea18d2ca', '{\"currency\":\"USD\"}', '2025-01-17 09:25:39'),
-('4b05cb4a14174e337768c9681f', '{\"currency\":\"USD\"}', '2025-01-17 09:28:04'),
-('4d8cf58823563de6ea3874b015', '{\"currency\":\"USD\"}', '2025-01-17 08:37:07'),
-('4f4991462e2b64b21f1deac81b', '{\"currency\":\"USD\"}', '2025-01-17 09:42:36'),
-('4f65bb64a27279837b32f3d0b9', '{\"currency\":\"USD\"}', '2025-01-17 09:44:22'),
-('505d5b335a32db0ac9afd39fe7', '{\"currency\":\"USD\"}', '2025-01-17 09:44:43'),
-('5191b9f50880b44ea3cd607ee1', '{\"currency\":\"USD\"}', '2025-01-17 08:57:43'),
-('51ee822a7eabc2dd7df6330933', '{\"currency\":\"USD\"}', '2025-01-17 09:42:53'),
-('538b790ff84de909e91569addb', '{\"currency\":\"USD\"}', '2025-01-17 08:58:48'),
-('539382656ae07b74eeb2d3e3be', '{\"currency\":\"USD\"}', '2025-01-17 09:15:06'),
-('53ce0eef3913ad388cf10408a7', '{\"currency\":\"USD\"}', '2025-01-17 09:43:01'),
-('5408b1234f6151c95f4667b629', '{\"currency\":\"USD\"}', '2025-01-17 08:56:44'),
-('54b25ee135ecdb8292b6632966', '{\"currency\":\"USD\"}', '2025-01-17 09:17:06'),
-('553467b61b3a12fb0697b626e6', '{\"currency\":\"USD\"}', '2025-01-17 08:21:21'),
-('55b0b82711dd7921233e0d462a', '{\"currency\":\"USD\"}', '2025-01-17 09:12:41'),
-('59f6b7141386d91af7833c7473', '{\"currency\":\"USD\"}', '2025-01-17 09:17:10'),
-('5ac1e464e06ca7ae72d0cf25bf', '{\"currency\":\"USD\"}', '2025-01-17 08:21:29'),
-('5bd64b8c373645fb9173ce405c', '{\"currency\":\"USD\"}', '2025-01-17 08:58:38'),
-('5bf058e64253f34a60eb20bdd2', '{\"currency\":\"USD\"}', '2025-01-17 09:44:43'),
-('5cb4b7f259b5595135bc7cddf6', '{\"currency\":\"USD\"}', '2025-01-17 09:53:03'),
-('5cdfcbad8aba206c0f19acc872', '{\"currency\":\"USD\"}', '2025-01-17 09:59:54'),
-('5dab3883e99b3ecd639330002b', '{\"currency\":\"USD\"}', '2025-01-17 08:21:29'),
-('5dfd30325be03a11130d06a204', '{\"currency\":\"USD\"}', '2025-01-17 09:17:11'),
-('5e7e6ce36cc03d5bb90c9f9b98', '{\"currency\":\"USD\"}', '2025-01-17 09:28:03'),
-('6047aeabc249780ca2280e9602', '{\"currency\":\"USD\"}', '2025-01-17 09:25:33'),
-('60bc77a6bab8a0c400cb094ad2', '{\"currency\":\"USD\"}', '2025-01-17 09:44:38'),
-('61048ea6db3db0ca131c3b58e6', '{\"currency\":\"USD\"}', '2025-01-17 09:25:17'),
-('62b5498dfd65eeda1aa20cb016', '{\"currency\":\"USD\"}', '2025-01-17 09:12:22'),
-('6501af56bcb57228262697ab41', '{\"currency\":\"USD\"}', '2025-01-17 09:17:46'),
-('66d79a2980a690a87af250cd65', '{\"currency\":\"USD\"}', '2025-01-17 09:17:11'),
-('674f07ac07892f0e9f8c79c382', '{\"currency\":\"USD\"}', '2025-01-17 08:57:42'),
-('676357d87f2a29c5b3b76ebaa8', '{\"currency\":\"USD\"}', '2025-01-17 09:52:38'),
-('67d21a4e181df3cbd819b53948', '{\"currency\":\"USD\"}', '2025-01-17 09:25:35'),
-('69f0383e58d9185fd214db72ae', '{\"currency\":\"USD\"}', '2025-01-17 09:15:24'),
-('69faf927b079b53d7d802121e5', '{\"currency\":\"USD\"}', '2025-01-17 09:16:52'),
-('6a9efde17dd4bac6a92b9d757c', '{\"currency\":\"USD\"}', '2025-01-17 09:42:59'),
-('6b2c98e07b46d94d258590f36b', '{\"currency\":\"USD\"}', '2025-01-17 09:44:46'),
-('6bea258ee97f230f86b6c21069', '{\"currency\":\"USD\"}', '2025-01-17 09:17:45'),
-('6bf39bbd3467c131beb136e275', '{\"currency\":\"USD\"}', '2025-01-17 09:46:15'),
-('6d4f83c74ea15e483fb1907ffe', '{\"currency\":\"USD\"}', '2025-01-17 10:02:04'),
-('6d52da3d6e31353c80bfa41108', '{\"currency\":\"USD\"}', '2025-01-17 09:48:09'),
-('6e445475303a49d7d3e8908625', '{\"currency\":\"USD\"}', '2025-01-17 09:25:18'),
-('6fcc59d34a8bd233ba9cf2b823', '{\"currency\":\"USD\"}', '2025-01-17 09:44:47'),
-('6fd629da539e3e88a0759257da', '{\"currency\":\"USD\"}', '2025-01-17 09:39:29'),
-('711bdf5a8eb7a6b674530fa4d6', '{\"currency\":\"USD\"}', '2025-01-17 08:58:02'),
-('7355c81d1eac58de0a27f4b477', '{\"currency\":\"USD\"}', '2025-01-17 09:15:29'),
-('747f4acc1ac579015808669353', '{\"currency\":\"USD\"}', '2025-01-17 09:56:01'),
-('74ab09bb1534358ef78fbbb7df', '{\"currency\":\"USD\"}', '2025-01-17 10:00:13'),
-('7515a38fa377dbac19efb5dba1', '{\"currency\":\"USD\"}', '2025-01-17 09:44:29'),
-('7558573eabdadb5791a01accde', '{\"currency\":\"USD\"}', '2025-01-17 09:42:43'),
-('75fb8721c9eba3719eb6f7e9ae', '{\"currency\":\"USD\"}', '2025-01-17 09:27:31'),
-('76727f2712af9e08bd4f4e0c00', '{\"currency\":\"USD\"}', '2025-01-17 09:44:46'),
-('7682b15110577815d71f8f3bfe', '{\"currency\":\"USD\"}', '2025-01-17 08:58:03'),
-('76b2844ad54fed16db0e184697', '{\"currency\":\"USD\"}', '2025-01-17 09:27:36'),
-('76c4c27e7f6e208b5369400057', '{\"currency\":\"USD\"}', '2025-01-17 09:56:16'),
-('776cf8c04ebbed86e6b1f16a35', '{\"currency\":\"USD\"}', '2025-01-17 09:17:14'),
-('7a509faa2196e128d1cdc25470', '{\"currency\":\"USD\"}', '2025-01-17 08:41:19'),
-('7b20b693a3d3f9e89ce21f1eff', '{\"currency\":\"USD\"}', '2025-01-17 09:43:02'),
-('7bbff9026b8b455fcd281f0d8b', '{\"currency\":\"USD\"}', '2025-01-17 08:58:48'),
-('7d30632df165f4120e07b37d18', '{\"currency\":\"USD\"}', '2025-01-17 09:49:29'),
-('7d59f736aa2e18c12214b6f4c6', '{\"currency\":\"USD\"}', '2025-01-17 09:52:38'),
-('7dbb8fbe82ba6aa7036b7a620a', '{\"currency\":\"USD\"}', '2025-01-17 09:46:25'),
-('80d1e4daee2468ef30cc6c4448', '{\"currency\":\"USD\"}', '2025-01-17 08:57:45'),
-('8179368465f5258e94418d7ca4', '{\"currency\":\"USD\"}', '2025-01-17 09:15:28'),
-('81ed8a5c14efb504cb37f92451', '{\"currency\":\"USD\"}', '2025-01-17 09:25:38'),
-('8229399098b4aab5025f96f339', '{\"currency\":\"USD\"}', '2025-01-17 10:01:24'),
-('82700a3cd605df65038f1084f0', '{\"currency\":\"USD\"}', '2025-01-17 09:44:36'),
-('8446dd905c2d2c17408b9ecc1c', '{\"currency\":\"USD\"}', '2025-01-17 09:28:01'),
-('8481f7ec381ecd237036e7dd62', '{\"currency\":\"USD\"}', '2025-01-17 09:53:41'),
-('853e9b13baff654c6eb2e447ae', '{\"currency\":\"USD\"}', '2025-01-17 09:25:36'),
-('85ba9bd37f499f56444508365d', '{\"currency\":\"USD\"}', '2025-01-17 09:28:02'),
-('85bb1b807a04c5554e788a144c', '{\"currency\":\"USD\"}', '2025-01-17 09:28:02'),
-('866e34ad520eff9d7229f9dd69', '{\"currency\":\"USD\"}', '2025-01-17 09:48:06'),
-('875970ae1f8aff3929cbc31f39', '{\"currency\":\"USD\"}', '2025-01-17 09:28:03'),
-('878af167fadfc7a2d01faf9569', '{\"currency\":\"USD\"}', '2025-01-17 09:39:29'),
-('89f2e8da0f692b52587ae3a0e6', '{\"currency\":\"USD\"}', '2025-01-17 09:53:17'),
-('8aaf483b5c3be2874852dd4100', '{\"currency\":\"USD\"}', '2025-01-17 08:20:29'),
-('8ba2d6072d6fb641caeb32637d', '{\"currency\":\"USD\"}', '2025-01-17 09:42:59'),
-('8d99cecfed927f3440a3e2faeb', '{\"currency\":\"USD\"}', '2025-01-17 09:55:54'),
-('8e0e7effea956130c371edf72e', '{\"currency\":\"USD\"}', '2025-01-17 10:00:16'),
-('90172c7a99313039e0dc35298d', '{\"currency\":\"USD\"}', '2025-01-17 09:17:48'),
-('91143d1f40f23ea3d2c7b90861', '{\"currency\":\"USD\"}', '2025-01-17 09:15:12'),
-('926079966d6f56ae61b5d37142', '{\"currency\":\"USD\"}', '2025-01-17 09:17:53'),
-('929851fe88222782790c5c1db7', '{\"currency\":\"USD\"}', '2025-01-17 09:55:54'),
-('934c8abfeb70712e698650b7af', '{\"currency\":\"USD\"}', '2025-01-17 08:58:48'),
-('93991e17aa426a444ce11e42b4', '{\"currency\":\"USD\"}', '2025-01-17 09:27:31'),
-('93a5dca1e31941a01bc9dee3f5', '{\"currency\":\"USD\"}', '2025-01-17 09:28:01'),
-('94015aa9cd0f0769ff131c97d9', '{\"currency\":\"USD\"}', '2025-01-17 09:15:28'),
-('94b8d04f93898eb89169f2eee7', '{\"currency\":\"USD\"}', '2025-01-17 10:01:33'),
-('94c8c952b3e40dfe65fd4e5754', '{\"currency\":\"USD\"}', '2025-01-17 09:12:17'),
-('94e4122a9ebe1a5136c703ef3d', '{\"currency\":\"USD\"}', '2025-01-17 08:57:40'),
-('95963bf598a3cc2124cf67180a', '{\"currency\":\"USD\"}', '2025-01-17 09:52:38'),
-('95fc0202a0d5ac0de878855004', '{\"currency\":\"USD\"}', '2025-01-17 08:41:17'),
-('969560528b80471dc10c92f1a1', '{\"currency\":\"USD\"}', '2025-01-17 08:57:45'),
-('974e9b7048ae3dda0a5edff350', '{\"currency\":\"USD\"}', '2025-01-17 10:00:13'),
-('97593931a3971637d3d0bce9e4', '{\"currency\":\"USD\"}', '2025-01-17 08:21:29'),
-('97a1db0192d79c1c7d377d6b97', '{\"currency\":\"USD\"}', '2025-01-17 09:53:14'),
-('987e9fb87a388cadf93db8fe4a', '{\"currency\":\"USD\"}', '2025-01-17 09:39:30'),
-('99230c29c96d2f10453d675ba1', '{\"currency\":\"USD\"}', '2025-01-17 09:43:00'),
-('99d0286d77d692be3ecd5b6331', '{\"currency\":\"USD\"}', '2025-01-17 09:48:17'),
-('9a09b1fd83eb7a141cc3088916', '{\"currency\":\"USD\"}', '2025-01-17 08:21:32'),
-('9b745320e2b52949edf0e61788', '{\"currency\":\"USD\"}', '2025-01-17 10:00:36'),
-('9cb18a49b64ecb786c70f703d2', '{\"currency\":\"USD\"}', '2025-01-17 09:59:42'),
-('9d53337f2cbbf1f6ca7b467cac', '{\"currency\":\"USD\"}', '2025-01-17 09:53:39'),
-('9d7d7dbaa637eda97cb3e0a71f', '{\"currency\":\"USD\"}', '2025-01-17 10:02:29'),
-('9f19816a7d2f14ed101fc064ca', '{\"currency\":\"USD\"}', '2025-01-17 09:25:43'),
-('9f2e6db975a4467aab3af1b498', '{\"currency\":\"USD\"}', '2025-01-17 09:17:10'),
-('9f5982565ea20d62436ebbf92e', '{\"currency\":\"USD\"}', '2025-01-17 08:26:00'),
-('9faab36e7f5d503d512c012970', '{\"currency\":\"USD\"}', '2025-01-17 09:59:54'),
-('a00b9143707dbcd7cb8032f033', '{\"currency\":\"USD\"}', '2025-01-17 09:25:30'),
-('a0bb285e2e525b7be9deb8cf38', '{\"currency\":\"USD\"}', '2025-01-17 09:47:59'),
-('a2b6f7a0c14d729193f812e42c', '{\"currency\":\"USD\"}', '2025-01-17 09:43:14'),
-('a2ca4b4058d21695428364739b', '{\"currency\":\"USD\"}', '2025-01-17 09:53:16'),
-('a37df0c36abc934ad34a48d711', '{\"currency\":\"USD\"}', '2025-01-17 09:16:57'),
-('a3cfd19faa9c7621dc6f855a51', '{\"currency\":\"USD\"}', '2025-01-17 09:25:06'),
-('a4d89ce8849ee3a02928816e7a', '{\"currency\":\"USD\"}', '2025-01-17 09:15:24'),
-('a55dd9e46eb7d6ea2d4a3ffd6e', '{\"currency\":\"USD\"}', '2025-01-17 09:17:10'),
-('a6120f76aa0f6a8c486e2e3e8a', '{\"currency\":\"USD\"}', '2025-01-17 09:43:01'),
-('a63824a47d54215a4d1659dbc0', '{\"currency\":\"USD\"}', '2025-01-17 08:58:03'),
-('a79b9765e23dea6ed66e80da3f', '{\"currency\":\"USD\"}', '2025-01-17 09:12:35'),
-('a79d368581ce98bfccead2354c', '{\"currency\":\"USD\"}', '2025-01-17 10:01:29'),
-('a8c701ab80eabcf31526ba45f2', '{\"currency\":\"USD\"}', '2025-01-17 10:01:18'),
-('a985ea9765b99e26049f188e16', '{\"currency\":\"USD\"}', '2025-01-17 09:53:37'),
-('aa6ac7620ebd5120fcd4495ef1', '{\"currency\":\"USD\"}', '2025-01-17 09:39:25'),
-('aa7d20a7b835035b5a493537de', '{\"currency\":\"USD\"}', '2025-01-17 10:01:23'),
-('aae95b34567c66e281990a9082', '{\"currency\":\"USD\"}', '2025-01-17 09:48:02'),
-('abeeb69fcb2a07c7b79a781d4d', '{\"currency\":\"USD\"}', '2025-01-17 09:59:49'),
-('acb9f451573ca23fc179abdbec', '{\"currency\":\"USD\"}', '2025-01-17 09:59:42'),
-('ae3991b2711c9c3dcf88889046', '{\"currency\":\"USD\"}', '2025-01-17 09:25:36'),
-('af69a04f7293fe4825dc2cccd1', '{\"currency\":\"USD\"}', '2025-01-17 09:15:26'),
-('afe9ee532115702d6573f09f1c', '{\"currency\":\"USD\"}', '2025-01-17 09:17:25'),
-('b031ef5ede8604b9f2f103fffb', '{\"currency\":\"USD\"}', '2025-01-17 09:42:46'),
-('b162c96f7894f3dcf56b2e1cf3', '{\"currency\":\"USD\"}', '2025-01-17 09:17:06'),
-('b20cd4dffa2fcc11e84b6a8783', '{\"currency\":\"USD\"}', '2025-01-17 09:25:35'),
-('b2679f9d886b4687eb9a30ea39', '{\"currency\":\"USD\"}', '2025-01-17 10:01:43'),
-('b2a294890f6048c8df06d734ae', '{\"currency\":\"USD\"}', '2025-01-17 09:47:59'),
-('b34b3a2b889347519cb2ee529e', '{\"currency\":\"USD\"}', '2025-01-17 08:21:33'),
-('b38729c09f660055664f7bc536', '{\"currency\":\"USD\"}', '2025-01-17 09:27:56'),
-('b47c780b9ce3da7fcfc11e097a', '{\"currency\":\"USD\"}', '2025-01-17 09:47:59'),
-('b5d8f2c788e32210343ab90100', '{\"currency\":\"USD\"}', '2025-01-17 08:20:51'),
-('b600035dc16662642743b75d18', '{\"currency\":\"USD\"}', '2025-01-17 08:57:45'),
-('b84535a90ac62416d0fc93e0b7', '{\"currency\":\"USD\"}', '2025-01-17 10:00:16'),
-('b9572ea6009b448de3b4879ba0', '{\"currency\":\"USD\"}', '2025-01-17 10:01:35'),
-('ba613badf3640e5ea077b32d5d', '{\"currency\":\"USD\"}', '2025-01-17 08:26:00'),
-('bb1f2a6e494f3bc80d4b52f726', '{\"currency\":\"USD\"}', '2025-01-17 09:44:44'),
-('bb58de734d4851c571e7f8f8d8', '{\"currency\":\"USD\"}', '2025-01-17 09:59:43'),
-('bc401f1e95de3b38a2c4840ecb', '{\"currency\":\"USD\"}', '2025-01-17 09:27:46'),
-('bcc82a1605c234e9d0c5d758e8', '{\"currency\":\"USD\"}', '2025-01-17 10:00:04'),
-('bce010120796ed5188f9588615', '{\"currency\":\"USD\"}', '2025-01-17 09:17:25'),
-('bd02941280216b471fd2246433', '{\"currency\":\"USD\"}', '2025-01-17 09:53:10'),
-('bd2fce0e70443d634b8bc9dc2e', '{\"currency\":\"USD\"}', '2025-01-17 10:01:59'),
-('bda69f5335f3710cc9c920bd6e', '{\"currency\":\"USD\"}', '2025-01-17 09:17:46'),
-('be91fc592d8a9c291369408c82', '{\"currency\":\"USD\"}', '2025-01-17 09:17:48'),
-('c00f1a071b1cbbd79cdae38ac8', '{\"currency\":\"USD\"}', '2025-01-17 08:58:02'),
-('c40c020fbf01b10da5c394468d', '{\"currency\":\"USD\"}', '2025-01-17 09:56:16'),
-('c4bf06c721f7eea194ac2f6b5b', '{\"currency\":\"USD\"}', '2025-01-17 09:17:11'),
-('c684d60c70772170df1281cfa4', '{\"currency\":\"USD\"}', '2025-01-17 09:44:50'),
-('c6fbea4429ccf8e7724c1dfc1d', '{\"currency\":\"USD\"}', '2025-01-17 10:00:01'),
-('c7424cbc0fd91acc7e00ee0be5', '{\"currency\":\"USD\"}', '2025-01-17 09:15:30'),
-('c783fc1c21d2a7cfd78fec531c', '{\"currency\":\"USD\"}', '2025-01-17 08:41:19'),
-('c844fa5e03664a68a6743e1701', '{\"currency\":\"USD\"}', '2025-01-17 09:27:59'),
-('c8ec2253ce8abcc9dead57b83d', '{\"currency\":\"USD\"}', '2025-01-17 08:21:31'),
-('c8f310c7f0c23db009fa7c9ea7', '{\"currency\":\"USD\"}', '2025-01-17 08:20:29'),
-('c9c4a17bf0615767780b73aa9c', '{\"currency\":\"USD\"}', '2025-01-17 10:02:07'),
-('ca33db04a91ddf4fc5f6b5dcf2', '{\"currency\":\"USD\"}', '2025-01-17 08:37:07'),
-('ca369bb57b26ca317af8b72971', '{\"currency\":\"USD\"}', '2025-01-17 09:25:39'),
-('cac6372e52f71139515dd54ffe', '{\"currency\":\"USD\"}', '2025-01-17 09:25:06'),
-('cb2b63e18babea956c1fe83028', '{\"currency\":\"USD\"}', '2025-01-17 10:01:40'),
-('cc9b487a853667c76fee182ee5', '{\"currency\":\"USD\"}', '2025-01-17 09:44:44'),
-('ce24cefa80f76e3772f3a4cb47', '{\"currency\":\"USD\"}', '2025-01-17 10:00:01'),
-('ce7e4cff62e5ae5010e692bce8', '{\"currency\":\"USD\"}', '2025-01-17 09:17:36'),
-('cf86c217b484dc510464000a40', '{\"currency\":\"USD\"}', '2025-01-17 09:53:28'),
-('cfc9e516d65b367000d56661b7', '{\"currency\":\"USD\"}', '2025-01-17 09:59:49'),
-('d09304a6a5c5ce8065f4aad525', '{\"currency\":\"USD\"}', '2025-01-17 08:20:30'),
-('d0e3a0291354373125ab20435a', '{\"currency\":\"USD\"}', '2025-01-17 08:59:48'),
-('d2b60e189c994a3f47d0237308', '{\"currency\":\"USD\"}', '2025-01-17 08:57:42'),
-('d467243158061bb983ea9222a5', '{\"currency\":\"USD\"}', '2025-01-17 08:41:17'),
-('d547b47b8bf9bc519c7c929475', '{\"currency\":\"USD\"}', '2025-01-17 09:59:45'),
-('d55023b5db0040c6e1d5968ea7', '{\"currency\":\"USD\"}', '2025-01-17 10:02:29'),
-('d70b4dfb6db11b475c4a91608e', '{\"currency\":\"USD\"}', '2025-01-17 10:00:09'),
-('d7304a12db394d5c05e35601b9', '{\"currency\":\"USD\"}', '2025-01-17 10:00:36'),
-('d7c890406fecd451aeae2b193b', '{\"currency\":\"USD\"}', '2025-01-17 08:57:43'),
-('d8916dbf935ea061a8e52ac629', '{\"currency\":\"USD\"}', '2025-01-17 09:43:01'),
-('da4b7efcb7b047ed3357a7c87a', '{\"currency\":\"USD\"}', '2025-01-17 09:25:16'),
-('daf5a69b416907189e44420fc6', '{\"currency\":\"USD\"}', '2025-01-17 09:25:35'),
-('db0261719bb3140e06699f74f8', '{\"currency\":\"USD\"}', '2025-01-17 09:15:38'),
-('db734976a0b77da2ef4677ca40', '{\"currency\":\"USD\"}', '2025-01-17 10:00:15'),
-('dc37ae9c074cf9899536ac9afe', '{\"currency\":\"USD\"}', '2025-01-17 09:48:13'),
-('dcde68f96db1f39eac94f06ef2', '{\"currency\":\"USD\"}', '2025-01-17 08:57:40'),
-('ddb257adf498b2f4561b1ee7ef', '{\"currency\":\"USD\"}', '2025-01-17 08:26:03'),
-('ddbbb3cff1a1aaa33c8fa7fdc1', '{\"currency\":\"USD\"}', '2025-01-17 10:00:34'),
-('ddebbb62faa9bce9425d428e68', '{\"currency\":\"USD\"}', '2025-01-17 08:27:36'),
-('dec97bf451bf43a553b3b08bed', '{\"currency\":\"USD\"}', '2025-01-17 08:21:26'),
-('df02b844f1fa318c0f8ba531ee', '{\"currency\":\"USD\"}', '2025-01-17 09:16:59'),
-('df1391b04fe091ba42f156f756', '{\"currency\":\"USD\"}', '2025-01-17 08:21:31'),
-('df7858415531d784ba28b5695e', '{\"currency\":\"USD\"}', '2025-01-17 09:17:48'),
-('df9ec94c40f86112d606b73f8c', '{\"currency\":\"USD\"}', '2025-01-17 09:44:24'),
-('dfa33d717d3b11ee03ddcb43b3', '{\"currency\":\"USD\"}', '2025-01-17 08:57:43'),
-('e06213b25645c53d5babf9a406', '{\"currency\":\"USD\"}', '2025-01-17 08:58:38'),
-('e0a0e7f25ffe62dcd47e1d9f2d', '{\"currency\":\"USD\"}', '2025-01-17 08:51:52'),
-('e0f280b93ad21d3f0893bdb13a', '{\"currency\":\"USD\"}', '2025-01-17 09:43:00'),
-('e2ac725eadf80b009c79e0d815', '{\"currency\":\"USD\"}', '2025-01-17 10:00:36'),
-('e36e21c0e71691412976d638db', '{\"currency\":\"USD\"}', '2025-01-17 08:24:35'),
-('e370b744d68c769813bdbfc5a0', '{\"currency\":\"USD\"}', '2025-01-17 09:28:00'),
-('e52169306adcde6e9fbc9fcbff', '{\"currency\":\"USD\"}', '2025-01-17 09:17:06'),
-('e60b2c5d666561f3c468259dcf', '{\"currency\":\"USD\"}', '2025-01-17 09:28:03'),
-('e62b4ef6deca7093aabef08d12', '{\"currency\":\"USD\"}', '2025-01-17 09:25:22'),
-('e66fedf71676a17c68324ae41f', '{\"currency\":\"USD\"}', '2025-01-17 09:17:46'),
-('e8ab9c106187f6177dfd80e673', '{\"currency\":\"USD\"}', '2025-01-17 09:28:04'),
-('ea8c43a419177d8b79ce1c03ec', '{\"currency\":\"USD\"}', '2025-01-17 09:15:30'),
-('eb4771eec15d9991b5a482d9e7', '{\"currency\":\"USD\"}', '2025-01-17 08:21:16'),
-('ebde0488c2cc53c225e1da9da9', '{\"currency\":\"USD\"}', '2025-01-17 09:27:31'),
-('ebe98dda82a5fb6a24d38921a4', '{\"currency\":\"USD\"}', '2025-01-17 08:58:02'),
-('ec59951a443e197639a0af97bb', '{\"currency\":\"USD\"}', '2025-01-17 09:25:06'),
-('edd7cac67a25d7f8154dabe5ef', '{\"currency\":\"USD\"}', '2025-01-17 11:11:56'),
-('ee5b0448642a56f6418b26680f', '{\"currency\":\"USD\"}', '2025-01-17 09:42:36'),
-('eeddd691975c59ddec0db00588', '{\"currency\":\"USD\"}', '2025-01-17 08:26:00'),
-('ef7e697e0024f3ba7e34222443', '{\"currency\":\"USD\"}', '2025-01-17 09:48:13'),
-('f02ce78f354c5ab9ceb1a0f227', '{\"currency\":\"USD\"}', '2025-01-17 08:41:19'),
-('f047785aa061fceb09f1435b94', '{\"currency\":\"USD\"}', '2025-01-17 08:21:09'),
-('f08bc7c88b290c9bdc38beec94', '{\"currency\":\"USD\"}', '2025-01-17 09:55:54'),
-('f22d61b604a06861f0cd88f6ca', '{\"currency\":\"USD\"}', '2025-01-17 10:03:17'),
-('f5cf0207093059bbfbc62a55b3', '{\"currency\":\"USD\"}', '2025-01-17 09:44:41'),
-('f6267b4c743e09431fdfad0b73', '{\"currency\":\"USD\"}', '2025-01-17 09:47:59'),
-('f6680ca27618edb9aafdc4317b', '{\"currency\":\"USD\"}', '2025-01-17 09:25:36'),
-('f918dd0a7237126a915a69feb8', '{\"currency\":\"USD\"}', '2025-01-17 09:44:44'),
-('f95ca3e95c16706598d54bd622', '{\"currency\":\"USD\"}', '2025-01-17 08:21:31'),
-('f95dc65d7e493a1bd2cc54da2a', '{\"currency\":\"USD\"}', '2025-01-17 10:00:15'),
-('fa56ffdeadda664f3b6cf3197c', '{\"currency\":\"USD\"}', '2025-01-17 09:17:42'),
-('fc745608186e414eb4484b9213', '{\"currency\":\"USD\"}', '2025-01-17 09:25:27'),
-('fdb5bd5ed962dd76be86ccf27c', '{\"currency\":\"USD\"}', '2025-01-17 09:15:24'),
-('feb16acb5535ac3bf227f19cc3', '{\"currency\":\"USD\"}', '2025-01-17 08:57:42'),
-('ff50a82ac967f621c53426b1ca', '{\"currency\":\"USD\"}', '2025-01-17 09:17:45'),
-('ffe57dc89556be3742a5770b9c', '{\"currency\":\"USD\"}', '2025-01-17 09:16:44');
+('00db744907da6c9de56d7f2a59', '{\"currency\":\"INR\"}', '2025-01-21 09:11:33'),
+('0126efd6635bc40b42a8f69cf7', '{\"currency\":\"INR\"}', '2025-01-21 12:57:44'),
+('02bf11ddae41186e4bc037d2f2', '{\"currency\":\"INR\"}', '2025-01-21 12:35:22'),
+('03362c60400f6b31443ea77845', '{\"currency\":\"INR\"}', '2025-01-21 09:53:15'),
+('0346790d7bac18bdf0eafcabf0', '{\"currency\":\"INR\"}', '2025-01-21 09:14:27'),
+('03471e7d43bfa9bea27b551075', '{\"currency\":\"INR\"}', '2025-01-21 09:53:14'),
+('0451ecb38e256cee7744c5db06', '{\"currency\":\"INR\"}', '2025-01-21 09:09:15'),
+('053546058458056a46d03d4338', '{\"currency\":\"INR\"}', '2025-01-21 09:08:04'),
+('06a78b221bf2521f181220f54a', '{\"currency\":\"INR\"}', '2025-01-21 12:47:07'),
+('07269c8de66a1c2007f3739b58', '{\"currency\":\"INR\"}', '2025-01-21 09:13:51'),
+('075104b286cf5d5d92efe01278', '{\"currency\":\"INR\"}', '2025-01-21 12:53:44'),
+('07a454d41db2e8c0c1b5dab193', '{\"currency\":\"INR\"}', '2025-01-21 09:17:11'),
+('08eeaabaa3591b6951851a1538', '{\"currency\":\"INR\"}', '2025-01-21 12:33:14'),
+('096d8cb3b08e70e194b7705208', '{\"currency\":\"INR\"}', '2025-01-21 09:15:50'),
+('09b66474c2d69e8446c77615aa', '{\"currency\":\"INR\"}', '2025-01-21 12:33:38'),
+('09b9fdf2bedbe306155d9d76de', '{\"currency\":\"INR\"}', '2025-01-21 12:47:36'),
+('0a1b0c2f3a981a41cd64160032', '{\"currency\":\"INR\"}', '2025-01-21 12:42:48'),
+('0a23fc2ab15b081edde40eff11', '{\"currency\":\"INR\"}', '2025-01-21 14:00:51'),
+('0ab4e431d1a15d9c47130ee0ed', '{\"currency\":\"INR\"}', '2025-01-21 14:00:52'),
+('0b603160b239d7cee0de74aba2', '{\"currency\":\"INR\"}', '2025-01-21 09:09:46'),
+('0d0b46458d8b1b93f16a977dd9', '{\"currency\":\"INR\"}', '2025-01-21 09:21:02'),
+('0d27908ffee958e983f8fe61c2', '{\"currency\":\"INR\"}', '2025-01-21 12:33:41'),
+('0e41121ba857895fd88b728598', '{\"currency\":\"INR\"}', '2025-01-21 09:12:50'),
+('0e4f67084a7706d0aa39968f88', '{\"currency\":\"INR\"}', '2025-01-21 09:10:16'),
+('0e62da116517e2b6e4204f9f29', '{\"currency\":\"INR\"}', '2025-01-21 09:15:25'),
+('0ec7af26ee0bd6a016eb54ae82', '{\"currency\":\"INR\"}', '2025-01-21 09:13:46'),
+('0ee93b27d566d7ec7d882b04e1', '{\"currency\":\"INR\"}', '2025-01-21 09:13:05'),
+('0fbfd551f8beb7bd82c0162222', '{\"currency\":\"INR\"}', '2025-01-21 09:15:40'),
+('100006290b44302ae0e9bc82e0', '{\"currency\":\"INR\"}', '2025-01-21 09:53:18'),
+('1011ba9be8dd4476ffb643fc2e', '{\"currency\":\"INR\"}', '2025-01-21 09:12:14'),
+('1024780a13c2f7a4fc7a9c4232', '{\"currency\":\"INR\"}', '2025-01-21 12:48:55'),
+('107d7db5efd8275d626a780079', '{\"currency\":\"INR\"}', '2025-01-21 14:00:51'),
+('11efc401d4e22d434f71bafa55', '{\"currency\":\"INR\"}', '2025-01-21 12:57:52'),
+('12631c6070a389c1b0a1d348c4', '{\"currency\":\"INR\"}', '2025-01-21 09:53:29'),
+('1263e8fab7210ba13972de8687', '{\"currency\":\"INR\"}', '2025-01-21 12:48:55'),
+('12eb52ba74e2ae783cb2f0540d', '{\"currency\":\"INR\"}', '2025-01-21 12:53:29'),
+('14192d1fbb5cdd661527e7512f', '{\"currency\":\"INR\"}', '2025-01-21 09:08:14'),
+('144cc33b75fe84d3fe50cd639d', '{\"currency\":\"INR\"}', '2025-01-21 09:53:33'),
+('14b905c2a538f33e5413e62169', '{\"currency\":\"INR\"}', '2025-01-21 09:07:59'),
+('14fea418efde67539d33b60b82', '{\"currency\":\"INR\"}', '2025-01-21 09:19:50'),
+('15981ebd5997de7587236fff7d', '{\"currency\":\"INR\"}', '2025-01-21 12:57:52'),
+('15e83603e1f0bb3bbe081d2ecd', '{\"currency\":\"INR\"}', '2025-01-21 12:48:58'),
+('16379836724bc5f491f3c0aafa', '{\"currency\":\"INR\"}', '2025-01-21 14:00:53'),
+('166a0e44f5c7bddcc0a8ee2b13', '{\"currency\":\"INR\"}', '2025-01-21 12:53:26'),
+('16f7cd3d36d2af5b56dd5c090e', '{\"currency\":\"INR\"}', '2025-01-21 09:53:33'),
+('1770866d92e798df3ca7bae6b6', '{\"currency\":\"INR\"}', '2025-01-21 09:28:39'),
+('178992fd0b7922bd3fed70f042', '{\"currency\":\"INR\"}', '2025-01-22 03:32:31'),
+('17ec922eba0bd824e74f6f71a3', '{\"currency\":\"INR\"}', '2025-01-21 12:53:52'),
+('1865c1b5280cb9f2c3e36259e5', '{\"currency\":\"INR\"}', '2025-01-21 09:16:26'),
+('1949be36acb636478c92fd70d6', '{\"currency\":\"INR\"}', '2025-01-21 09:12:04'),
+('1a331dc6436d5b75830d3e3a25', '{\"currency\":\"INR\"}', '2025-01-21 12:57:49'),
+('1ae8579c7b8e3d1073fc2a2b16', '{\"currency\":\"INR\"}', '2025-01-21 12:37:08'),
+('1b7b8bae75d01f3b755033c633', '{\"currency\":\"INR\"}', '2025-01-21 09:10:27'),
+('1bca912c0a3e9394d19854654e', '{\"currency\":\"INR\"}', '2025-01-21 09:53:18'),
+('1bd8410cda0593734a37494015', '', '2025-01-21 11:58:15'),
+('1c0b6938717a515e253c29ad8a', '{\"currency\":\"INR\"}', '2025-01-21 09:53:13'),
+('1c5ce59f13c03b0cd808567ae2', '{\"currency\":\"INR\"}', '2025-01-21 09:09:51'),
+('1c7a4aee78e3d609e11c806dbe', '{\"currency\":\"INR\"}', '2025-01-21 12:47:37'),
+('1c8e442d71ef8dd1f7454b68c0', '{\"currency\":\"INR\"}', '2025-01-21 14:00:52'),
+('1ce19dda62b479a65e6832926c', '{\"currency\":\"INR\"}', '2025-01-21 09:19:40'),
+('1efab46166cd1f0edb9b80e5b6', '{\"currency\":\"INR\"}', '2025-01-21 09:15:35'),
+('1ff5d1cf841cddffe03dc75a9f', '{\"currency\":\"INR\"}', '2025-01-21 12:53:46'),
+('2069f83caec719d2ed40e8f975', '{\"currency\":\"INR\"}', '2025-01-21 12:42:49'),
+('214e0af344a26d6ea3ea5fef20', '{\"currency\":\"INR\"}', '2025-01-21 09:08:34'),
+('21a7219e77ebb913e0a5b6c33f', '{\"currency\":\"INR\"}', '2025-01-21 09:30:08'),
+('21b0425ad7416ce210f040ed31', '{\"currency\":\"INR\"}', '2025-01-21 14:00:49'),
+('22431058627e05c773fca703d9', '{\"currency\":\"INR\"}', '2025-01-21 09:20:11'),
+('22f721652751c77d32917f958b', '{\"currency\":\"INR\"}', '2025-01-21 09:14:45'),
+('2350217586cf48fcdeb4a6bd59', '{\"currency\":\"INR\"}', '2025-01-21 12:48:55'),
+('23eb197498bc285e974dd6a22a', '{\"currency\":\"INR\"}', '2025-01-21 12:33:22'),
+('24128f726efeca1735dc352b75', '{\"currency\":\"INR\"}', '2025-01-21 09:11:18'),
+('242807a87cf5d1a443b3203c62', '{\"currency\":\"INR\"}', '2025-01-21 09:17:49'),
+('24719e1837fcbaba2a85735ff3', '{\"currency\":\"INR\"}', '2025-01-21 12:48:56'),
+('24a0e69ff92266d1373d5a8030', '{\"currency\":\"INR\"}', '2025-01-21 09:08:45'),
+('24c9e6aad7bb29ea0df154722a', '{\"currency\":\"INR\"}', '2025-01-21 12:47:41'),
+('24d047e340662596da364c2edd', '{\"currency\":\"INR\"}', '2025-01-21 09:16:34'),
+('257823c3a2149f8a0efc02902c', '{\"currency\":\"INR\"}', '2025-01-21 12:47:37'),
+('25c00d72c40c533ac322630212', '{\"currency\":\"INR\"}', '2025-01-21 12:57:51'),
+('26d547d7a1d503ae06dda2c5d6', '{\"currency\":\"INR\"}', '2025-01-21 09:13:31'),
+('27cac4df627b512b573e035bae', '{\"currency\":\"INR\"}', '2025-01-21 09:20:36'),
+('27e2d749ccde0bdeab822ca827', '{\"currency\":\"INR\"}', '2025-01-21 09:53:29'),
+('2804cf10955cbb3eb34926b2f6', '{\"currency\":\"INR\"}', '2025-01-21 14:29:51'),
+('2880bd62e520ae0b1de3b24ab6', '{\"currency\":\"INR\"}', '2025-01-21 09:09:00'),
+('2923bace2004e98eb7cf9bf277', '{\"currency\":\"INR\"}', '2025-01-21 12:33:18'),
+('29d858f9ac43fb473f47334882', '{\"currency\":\"INR\"}', '2025-01-21 09:53:11'),
+('2a168b7d98187dd4bc915ac289', '{\"currency\":\"INR\"}', '2025-01-21 12:42:45'),
+('2b01e01dc78f1fb1c3faa01ada', '{\"currency\":\"INR\"}', '2025-01-21 12:48:58'),
+('2b353a2cb37c23c2c73ded26ba', '{\"currency\":\"INR\"}', '2025-01-21 12:42:46'),
+('2bff9a9e4a9a4a9c230345ed2d', '{\"currency\":\"INR\"}', '2025-01-21 09:53:29'),
+('2c59caa3b7766ed7ccc7ad1951', '{\"currency\":\"INR\"}', '2025-01-21 14:00:52'),
+('2ca0c46ea6b7dc73367c3ba956', '{\"currency\":\"INR\"}', '2025-01-21 09:11:03'),
+('2cb5401c8b7819cae54ecd54b4', '{\"currency\":\"INR\"}', '2025-01-21 12:53:51'),
+('2cd80181a9ab280f909c1e49e1', '{\"currency\":\"INR\"}', '2025-01-21 09:12:45'),
+('2d1e2f8bb9ddef93446f26b762', '{\"currency\":\"INR\"}', '2025-01-21 12:33:39'),
+('2deb90d9aac78ad5df0ea46dec', '{\"currency\":\"INR\"}', '2025-01-21 12:48:58'),
+('2e32f63dee721eaebaf1c3258c', '{\"currency\":\"INR\"}', '2025-01-21 09:09:31'),
+('2e3b13fe1145d3d5133c4c4e34', '{\"currency\":\"INR\"}', '2025-01-21 09:17:54'),
+('2ff4b546c960d8ca33d38b14dc', '{\"currency\":\"INR\"}', '2025-01-21 12:47:38'),
+('316c4340044ed6608e5156fdf2', '{\"currency\":\"INR\"}', '2025-01-21 12:33:34'),
+('31e475232cb9e107f90acc991b', '{\"currency\":\"INR\"}', '2025-01-21 09:13:56'),
+('343b336eb857e3928c1648573b', '{\"currency\":\"INR\"}', '2025-01-21 12:58:40'),
+('34416ecefb546499dfc680d937', '{\"currency\":\"INR\"}', '2025-01-21 09:11:44'),
+('345ebc2c0abd1b6ca7b4f0104a', '{\"currency\":\"INR\"}', '2025-01-21 12:42:49'),
+('34c6c5e9e030d25c0000aa6d22', '{\"currency\":\"INR\"}', '2025-01-21 12:42:39'),
+('351ad2bb06050113ddb8e2c91d', '{\"currency\":\"INR\"}', '2025-01-21 14:00:47'),
+('36a2d790988e11dd31bff91d9b', '{\"currency\":\"INR\"}', '2025-01-21 12:47:36'),
+('37bb9e04e5108c568ab71ab034', '{\"currency\":\"INR\"}', '2025-01-21 12:48:32'),
+('3823af7ca3b8204b31a00ffff7', '{\"currency\":\"INR\"}', '2025-01-21 09:53:31'),
+('3893f87d0a3f752a632734754b', '{\"currency\":\"INR\"}', '2025-01-21 09:16:00'),
+('39e73c66a94fbebbc4286a06b3', '{\"currency\":\"INR\"}', '2025-01-21 12:53:30'),
+('3be6a58a2c4679d90703897d0e', '{\"currency\":\"INR\"}', '2025-01-21 14:00:52'),
+('3cd0a9db456db1c1299445885b', '{\"currency\":\"INR\"}', '2025-01-21 09:11:54'),
+('3d057c99623bee11518fc2ddc7', '{\"currency\":\"INR\"}', '2025-01-21 09:21:17'),
+('3dfaaf3771484afe874d480dd8', '{\"currency\":\"INR\"}', '2025-01-21 09:28:59'),
+('3e551e649fde666f168c9d3edf', '{\"currency\":\"INR\"}', '2025-01-21 12:48:18'),
+('3e8a86e99b335dc55c3bf3efed', '{\"currency\":\"INR\"}', '2025-01-21 12:42:48'),
+('3f38456170037170c75d377360', '{\"currency\":\"INR\"}', '2025-01-21 09:13:21'),
+('3f61937e74c5d24fa188a2423c', '{\"currency\":\"INR\"}', '2025-01-21 12:49:01'),
+('40258d1e6731162abcce5ac4ed', '{\"currency\":\"INR\"}', '2025-01-21 09:13:41'),
+('40be3911dde01fce9699483062', '{\"currency\":\"INR\"}', '2025-01-21 12:57:42'),
+('411dbb1b3bfa30ee6b89e6ed78', '{\"currency\":\"INR\"}', '2025-01-21 09:20:57'),
+('41813b5af6e898b5905b2fa892', '{\"currency\":\"INR\"}', '2025-01-21 09:53:25'),
+('419e27c334832b4826157d98ca', '{\"currency\":\"INR\"}', '2025-01-21 09:29:41'),
+('41cd636f265c6e4c0271df5d3d', '{\"currency\":\"INR\"}', '2025-01-21 14:00:50'),
+('41ddc6b7908808a6fe103ffe23', '{\"currency\":\"INR\"}', '2025-01-21 14:00:50'),
+('42913aef34e52d28875b13fc25', '{\"currency\":\"INR\"}', '2025-01-21 12:33:41'),
+('42f75ced83e18f21c05e6a1fe4', '{\"currency\":\"INR\"}', '2025-01-21 09:53:11'),
+('43f66329324e85a8f24309e146', '{\"currency\":\"INR\"}', '2025-01-21 09:53:09'),
+('440fc933f530249dc90029f9f0', '{\"currency\":\"INR\"}', '2025-01-21 12:53:49'),
+('4424045332d359a56aa62b69b7', '{\"currency\":\"INR\"}', '2025-01-21 12:42:46'),
+('446942ea6e446ef7fdacf820ea', '{\"currency\":\"INR\"}', '2025-01-21 12:53:46'),
+('45d848ed3b7b3b5d1bac9b8c8a', '{\"currency\":\"INR\"}', '2025-01-21 12:33:38'),
+('463b2c9746c38a1e9a79ff60f0', '{\"currency\":\"INR\"}', '2025-01-21 12:48:55'),
+('473013d011284e14c2088bd145', '{\"currency\":\"INR\"}', '2025-01-21 09:14:38'),
+('479b01d4323ce50708b370246b', '{\"currency\":\"INR\"}', '2025-01-21 09:10:11'),
+('47d19ae61f7b2c9b54d326f5b6', '{\"currency\":\"INR\"}', '2025-01-21 09:29:15'),
+('48328795426e696b7c3526e91e', '{\"currency\":\"INR\"}', '2025-01-21 12:58:14'),
+('4892b127bd289082d5857528dd', '{\"currency\":\"INR\"}', '2025-01-21 09:11:59'),
+('4899c693ccf6f2eea26f113aa0', '{\"currency\":\"INR\"}', '2025-01-21 09:09:26'),
+('49532b7624729301b4aadd2138', '{\"currency\":\"INR\"}', '2025-01-21 12:57:47'),
+('4a0d4954c02483015e2f084533', '{\"currency\":\"INR\"}', '2025-01-21 12:53:49'),
+('4ac40326bb4c69ebbac14e815c', '{\"currency\":\"INR\"}', '2025-01-21 09:16:11'),
+('4b0c5c22e3df5f2cfe2e11d1e3', '{\"currency\":\"INR\"}', '2025-01-21 12:33:34'),
+('4c51adaa9fe5c016c4219f7666', '{\"currency\":\"INR\"}', '2025-01-21 09:53:09'),
+('4c538b53feaeb225a1c770eac0', '{\"currency\":\"INR\"}', '2025-01-21 09:29:41'),
+('4c580e108f53ca4b78e3bdbd6a', '{\"currency\":\"INR\"}', '2025-01-21 09:53:05'),
+('4ce324651f47808bd6d673d99b', '{\"currency\":\"INR\"}', '2025-01-21 09:18:49'),
+('4e73c06f4c6ac33c16557e059d', '{\"currency\":\"INR\"}', '2025-01-21 09:12:40'),
+('4f1cf6254ad53a23987890c82f', '{\"currency\":\"INR\"}', '2025-01-21 09:10:42'),
+('4f7a28281997839002b5fa3f9e', '{\"currency\":\"INR\"}', '2025-01-21 09:53:16'),
+('500c9e69e00cab4dea1598b365', '{\"currency\":\"INR\"}', '2025-01-21 09:14:22'),
+('502020341d86bf857152a8f61e', '{\"currency\":\"INR\"}', '2025-01-21 09:14:55'),
+('50d426dcbe21a0f1e360adf389', '{\"currency\":\"INR\"}', '2025-01-21 09:11:49'),
+('50f643c79be0ab671c27a135b7', '{\"currency\":\"INR\"}', '2025-01-21 12:33:54'),
+('512ef8c9bf91c738a1853c4d8f', '{\"currency\":\"INR\"}', '2025-01-21 12:42:49'),
+('516b0ddabee399bf1f227560d1', '{\"currency\":\"INR\"}', '2025-01-21 12:33:40'),
+('51892417ed2d5b0f97aeceb297', '{\"currency\":\"INR\"}', '2025-01-21 09:53:49'),
+('52315344f5b4c65b050c161515', '{\"currency\":\"INR\"}', '2025-01-21 12:48:29'),
+('52c8314bdbc6c207ad193033e7', '{\"currency\":\"INR\"}', '2025-01-21 12:48:56'),
+('5359c4579e292958bcbe5cc9a1', '{\"currency\":\"INR\"}', '2025-01-21 09:53:17'),
+('5762a3c3d8e9da38171e85eabf', '{\"currency\":\"INR\"}', '2025-01-21 12:57:38'),
+('5845a4a9f4b1a153f8cf3e232c', '{\"currency\":\"INR\"}', '2025-01-21 12:42:46'),
+('584f3b8aea7abe75828fe5f9c4', '{\"currency\":\"INR\"}', '2025-01-21 09:53:35'),
+('5860d48d1bb14ed2aff8e9b832', '{\"currency\":\"INR\"}', '2025-01-21 09:21:42'),
+('591f6de85956acf28121f92f33', '{\"currency\":\"INR\"}', '2025-01-21 09:53:33'),
+('594e02124291f073c96f00d981', '{\"currency\":\"INR\"}', '2025-01-21 12:48:54'),
+('5986661cb6ec597411ae899613', '{\"currency\":\"INR\"}', '2025-01-21 12:53:52'),
+('59b19b0e9513cfeb799b9d5e36', '{\"currency\":\"INR\"}', '2025-01-21 12:33:12'),
+('5a34930a2f2fd502fc7eb9eeda', '{\"currency\":\"INR\"}', '2025-01-21 12:48:55'),
+('5bfd4abf7b2cc4584cec6376f8', '{\"currency\":\"INR\"}', '2025-01-21 10:01:42'),
+('5c235748ecbb68c97344575635', '{\"currency\":\"INR\"}', '2025-01-21 09:19:55'),
+('5d7015c93ae65dc04bf284c668', '{\"currency\":\"INR\"}', '2025-01-21 09:53:17'),
+('5e22cde26ccd493969a5d0c464', '{\"currency\":\"INR\"}', '2025-01-21 09:16:40'),
+('5e498f5bfe961063a094756365', '{\"currency\":\"INR\"}', '2025-01-21 12:48:22'),
+('5e670894d625f432ea78487f58', '{\"currency\":\"INR\"}', '2025-01-21 12:47:33'),
+('5ed102b088cb580016a63f90e9', '{\"currency\":\"INR\"}', '2025-01-21 12:57:30'),
+('5fc3156462c7341e6e1e887586', '{\"currency\":\"INR\"}', '2025-01-21 09:29:04'),
+('6008dda00a0ebec8b67f93519b', '{\"currency\":\"INR\"}', '2025-01-21 10:01:50'),
+('607670616652f871ada5979ad1', '{\"currency\":\"INR\"}', '2025-01-21 12:48:30'),
+('61a3224ec59aef75e1fb143f7e', '{\"currency\":\"INR\"}', '2025-01-21 12:48:50'),
+('62188a460d545cfd6a246b505f', '{\"currency\":\"INR\"}', '2025-01-21 09:17:16'),
+('626ade16b06d27f98de546807f', '{\"currency\":\"INR\"}', '2025-01-21 12:48:58'),
+('6276fefe43bddfa3f72708c465', '', '2025-01-21 12:54:12'),
+('62882b6c4bdd2226a63b13a5dd', '{\"currency\":\"INR\"}', '2025-01-21 12:42:41'),
+('62f3b8044d2064b21607d193c7', '{\"currency\":\"INR\"}', '2025-01-21 09:19:09'),
+('632c7549f25b231552d7bfebfc', '{\"currency\":\"INR\"}', '2025-01-21 09:09:05'),
+('6393a5e71f440c87e53a0de3b2', '{\"currency\":\"INR\"}', '2025-01-21 12:57:50'),
+('63cec75b5c1388e0a3dc5bb4d8', '{\"currency\":\"INR\"}', '2025-01-21 14:29:49'),
+('64e670cc127ea69b8bd600b80b', '{\"currency\":\"INR\"}', '2025-01-21 09:09:20'),
+('65073d91fe91db2389ab55a47b', '{\"currency\":\"INR\"}', '2025-01-21 12:33:36'),
+('653ed104e962feda0c526626a6', '{\"currency\":\"INR\"}', '2025-01-21 09:11:28'),
+('659cf1f78935dcf4e0df63d826', '{\"currency\":\"INR\"}', '2025-01-21 14:00:57'),
+('66270e3aabdf0c5f0f0298ecc5', '{\"currency\":\"INR\"}', '2025-01-21 09:49:08'),
+('6658fe4a54655eee20a1d15609', '{\"currency\":\"INR\"}', '2025-01-21 09:53:29'),
+('67600ab0fc6906db74df1284be', '{\"currency\":\"INR\"}', '2025-01-21 09:10:47'),
+('69cd72340f265f866a2c2e325b', '{\"currency\":\"INR\"}', '2025-01-21 09:13:36'),
+('6b2494658fb824fcfe5fefc8be', '{\"currency\":\"INR\"}', '2025-01-21 09:19:30'),
+('6b6312e9d8d72a9573e872d969', '{\"currency\":\"INR\"}', '2025-01-21 09:17:39'),
+('6b84006656ddb9d143e48e9965', '{\"currency\":\"INR\"}', '2025-01-21 12:47:35'),
+('6baeab8e50b3accefa2d242f0c', '{\"currency\":\"INR\"}', '2025-01-21 09:53:18'),
+('6bbddb61888b226c03baa1b2be', '{\"currency\":\"INR\"}', '2025-01-21 12:48:58'),
+('6c5b8f9af5f17c45766a690d8f', '{\"currency\":\"INR\"}', '2025-01-21 14:00:46'),
+('6c5e0b5c5c72d1ec0c56af64bc', '{\"currency\":\"INR\"}', '2025-01-21 09:20:06'),
+('6c71a5bdaf781460a98b38f4e3', '{\"currency\":\"INR\"}', '2025-01-21 12:57:49'),
+('6d53ea56f35696a18ac0310647', '{\"currency\":\"INR\"}', '2025-01-21 12:48:50'),
+('6e14ed677c783176bb09c7a7ad', '{\"currency\":\"INR\"}', '2025-01-21 09:20:21'),
+('6e2af28c58c8bc50c9ca630b85', '{\"currency\":\"INR\"}', '2025-01-21 09:20:16'),
+('6e5bcecdf80da4114496b83736', '{\"currency\":\"INR\"}', '2025-01-21 09:29:30'),
+('6e9f7bcc1305c7e1999c517894', '{\"currency\":\"INR\"}', '2025-01-21 09:30:08'),
+('6eb4f629939154fa43c8d738f3', '{\"currency\":\"INR\"}', '2025-01-21 12:53:23'),
+('709c2d9da026e2b0015d98589a', '{\"currency\":\"INR\"}', '2025-01-21 09:08:29'),
+('70b5e9375ef0b1617fe5ae775e', '{\"currency\":\"INR\"}', '2025-01-21 09:12:25'),
+('717061d92c95c6496ddb471bae', '{\"currency\":\"INR\"}', '2025-01-21 12:47:07'),
+('717ba94967dc7e842301cdfc9f', '{\"currency\":\"INR\"}', '2025-01-21 12:57:41'),
+('71c83b4357b44dc8397536383c', '{\"currency\":\"INR\"}', '2025-01-21 14:00:46'),
+('7232e96ca65feba8aa8b321b8c', '{\"currency\":\"INR\"}', '2025-01-21 12:58:36'),
+('734a1d1da4368cf590cbbc199e', '{\"currency\":\"INR\"}', '2025-01-21 09:30:09'),
+('7371cc01f2e904dd5372ddddd3', '{\"currency\":\"INR\"}', '2025-01-21 09:10:32'),
+('742cf36bf62113b66a0bc6d0ed', '{\"currency\":\"INR\"}', '2025-01-21 09:20:46'),
+('74b7744749f6070eb24ec2b5ad', '{\"currency\":\"INR\"}', '2025-01-21 09:08:55'),
+('75b03d33d363014a63f6f41b00', '{\"currency\":\"INR\"}', '2025-01-21 12:48:58'),
+('75bdd2725da4da1040d599de34', '{\"currency\":\"INR\"}', '2025-01-21 12:57:52'),
+('7676b0fe90280cba07ce3f2830', '{\"currency\":\"INR\"}', '2025-01-21 09:16:21'),
+('76d3ce6f6eb642b7fab3c57a1c', '{\"currency\":\"INR\"}', '2025-01-21 09:08:39'),
+('77c690ac9ab76c4e85fd0bcbb1', '{\"currency\":\"INR\"}', '2025-01-21 09:53:31'),
+('78d6d884a2646078d115808645', '{\"currency\":\"INR\"}', '2025-01-21 09:29:41'),
+('79debfe034901e94ac7ec925c2', '{\"currency\":\"INR\"}', '2025-01-21 09:49:08'),
+('7aab818e41a06bad39aac7bb12', '{\"currency\":\"INR\"}', '2025-01-21 09:53:31'),
+('7c0b9b00a3f3cb9973bde0f012', '{\"currency\":\"INR\"}', '2025-01-21 09:53:08'),
+('7c5de49eae075850d621b304be', '{\"currency\":\"INR\"}', '2025-01-21 09:21:37'),
+('7cc1243d15de0d103e29316c7a', '{\"currency\":\"INR\"}', '2025-01-21 09:29:20'),
+('7e428b08c4c4544d23f6bf8234', '{\"currency\":\"INR\"}', '2025-01-21 09:17:21'),
+('7e7c7307e81acdadb6a63b6ca2', '{\"currency\":\"INR\"}', '2025-01-21 09:21:27'),
+('7fbc6dd537440491d5f965392f', '{\"currency\":\"INR\"}', '2025-01-21 12:19:16'),
+('7ff4034715182a0801430af389', '{\"currency\":\"INR\"}', '2025-01-21 09:13:00'),
+('804a5a1780ad467eb1c13f6da7', '{\"currency\":\"INR\"}', '2025-01-21 09:29:41'),
+('818bc0aaef418638db6dd1ba52', '{\"currency\":\"INR\"}', '2025-01-21 09:21:22'),
+('818f66929672896316700fa796', '{\"currency\":\"INR\"}', '2025-01-21 09:53:35'),
+('81a848fba1842f4a37c3654005', '{\"currency\":\"INR\"}', '2025-01-21 09:18:39'),
+('8231db466d9f40e53f6a3fa7aa', '{\"currency\":\"INR\"}', '2025-01-21 12:42:41'),
+('826bc5769754510a5138889437', '{\"currency\":\"INR\"}', '2025-01-21 09:18:29'),
+('828274f1219e87726415654f9b', '{\"currency\":\"INR\"}', '2025-01-21 12:58:36'),
+('829cab72baa5fe4a0ce5e1010c', '{\"currency\":\"INR\"}', '2025-01-21 12:48:32'),
+('83157762ffee9a7b3caa980694', '{\"currency\":\"INR\"}', '2025-01-21 12:47:30'),
+('833be46632d459b378330d8467', '{\"currency\":\"INR\"}', '2025-01-21 09:12:19'),
+('845460c7048ac153e0c9decfd3', '{\"currency\":\"INR\"}', '2025-01-21 09:29:40'),
+('848f96992dba6e321af719bcb6', '{\"currency\":\"INR\"}', '2025-01-21 12:48:32'),
+('8533ad604cdfcef3d23cf6908f', '{\"currency\":\"INR\"}', '2025-01-21 09:18:13'),
+('85997f5571d617ddec8e57ce16', '{\"currency\":\"INR\"}', '2025-01-21 09:19:25'),
+('85ba53322d05a8e85d8d15676d', '{\"currency\":\"INR\"}', '2025-01-21 12:47:19'),
+('85d965a41c66ae42b0369c0b7c', '{\"currency\":\"INR\"}', '2025-01-21 09:13:10'),
+('8647be88fbab66a0247f4db88d', '{\"currency\":\"INR\"}', '2025-01-21 12:48:53'),
+('86ad80a0967c0a5ca15ff4012b', '{\"currency\":\"INR\"}', '2025-01-21 14:00:50'),
+('884f9ac8dc5492898b01a53728', '{\"currency\":\"INR\"}', '2025-01-21 12:53:19'),
+('88d08f8d371b4f6e1df07a8f47', '{\"currency\":\"INR\"}', '2025-01-21 09:19:15'),
+('88e9fd6e32631dc6fc437e9f34', '{\"currency\":\"INR\"}', '2025-01-21 12:48:24'),
+('897995d440e858956b444aebef', '{\"currency\":\"INR\"}', '2025-01-21 09:15:30'),
+('89bc64539e499bc0008e5c4855', '{\"currency\":\"INR\"}', '2025-01-21 12:42:39'),
+('8a39e79b6bf955fb51d3a7b665', '{\"currency\":\"INR\"}', '2025-01-21 09:53:22'),
+('8a53a6d238f77cf2868767ab44', '{\"currency\":\"INR\"}', '2025-01-21 09:10:22'),
+('8a7aa2f76c12bfb143f1c68bd9', '{\"currency\":\"USD\"}', '2025-01-21 09:15:19'),
+('8b29fd5d8e1a346cc403566661', '{\"currency\":\"INR\"}', '2025-01-21 09:15:10'),
+('8b7aecb26f187b78d10f14bb7e', '{\"currency\":\"INR\"}', '2025-01-21 12:48:32'),
+('8bc2737a95f4c3eecd3bdadb54', '{\"currency\":\"INR\"}', '2025-01-21 09:13:16'),
+('8c5dd78e0137d18ca884720e01', '{\"currency\":\"INR\"}', '2025-01-21 09:11:23'),
+('8c883ff41ea18605ebd2c84cf4', '{\"currency\":\"INR\"}', '2025-01-21 12:47:35'),
+('8d0de2c5ef025e8b651428e7b7', '{\"currency\":\"INR\"}', '2025-01-21 09:14:32'),
+('8d63639eff67dfc4bdb94f9185', '{\"currency\":\"INR\"}', '2025-01-21 09:08:24'),
+('8e4d4b248b9d74d633aa560089', '{\"currency\":\"INR\"}', '2025-01-21 12:48:56'),
+('8e96d780c9f18deb4758ce2a91', '{\"currency\":\"INR\"}', '2025-01-21 09:19:35'),
+('8f35fbc4afd7a909da3924b2d1', '{\"currency\":\"INR\"}', '2025-01-21 12:53:24'),
+('8ff1a6e42a6e9aef247b9c1349', '{\"currency\":\"INR\"}', '2025-01-21 12:42:50'),
+('9057a76d772bbede36be4575c5', '{\"currency\":\"INR\"}', '2025-01-21 14:00:50'),
+('908f3e68b3b82f02b98429cc20', '{\"currency\":\"INR\"}', '2025-01-21 12:37:56'),
+('90d805bb271fa493e654fa0ab6', '{\"currency\":\"INR\"}', '2025-01-21 09:08:09'),
+('91b8d50253c067555ea900fdb0', '{\"currency\":\"INR\"}', '2025-01-21 09:53:19'),
+('91b90f359ec3096a055d037b69', '{\"currency\":\"INR\"}', '2025-01-21 09:20:41'),
+('930ae2deaf2a6c75949ce3f6bc', '{\"currency\":\"INR\"}', '2025-01-21 12:48:58'),
+('93f5c802b400070e2451f75178', '{\"currency\":\"INR\"}', '2025-01-21 12:53:51'),
+('942d603efd15b556bbc92f7cbc', '{\"currency\":\"INR\"}', '2025-01-21 09:53:15'),
+('94714fbcf39618409a7f22d0bb', '{\"currency\":\"INR\"}', '2025-01-21 09:15:20'),
+('95b5d829c74b2364047e776e85', '{\"currency\":\"INR\"}', '2025-01-21 12:53:53'),
+('95f660586a8128a7369068ed81', '', '2025-01-21 12:47:50'),
+('9684af15865daa12b0e35772a8', '{\"currency\":\"INR\"}', '2025-01-21 12:57:49'),
+('96980d2850790861d15c06e884', '{\"currency\":\"INR\"}', '2025-01-21 09:28:44'),
+('96f70b0c4e8a30ce2b7bbb0fe5', '{\"currency\":\"INR\"}', '2025-01-21 09:21:32'),
+('9764d49b6e3b25476ba791b1c9', '{\"currency\":\"INR\"}', '2025-01-21 09:16:50'),
+('97e9ea3215e337ab301509e82c', '{\"currency\":\"INR\"}', '2025-01-21 09:53:10'),
+('98b3f6ef9b721b96eeda4aee40', '{\"currency\":\"INR\"}', '2025-01-21 10:30:52'),
+('98c3d93bf5e138db3fb37317bd', '{\"currency\":\"INR\"}', '2025-01-21 09:09:10'),
+('991688e544cc71b5600ed17b24', '{\"currency\":\"INR\"}', '2025-01-21 10:31:00'),
+('9995a99d17e552a06e52d11a52', '{\"currency\":\"INR\"}', '2025-01-21 12:47:37'),
+('99b2999d59589bfd4ce56b2c11', '{\"currency\":\"INR\"}', '2025-01-21 12:48:31'),
+('9acdf0843228bd9bdd651527a3', '{\"currency\":\"INR\"}', '2025-01-21 12:53:51'),
+('9b05800baad80e647613f0a373', '{\"currency\":\"INR\"}', '2025-01-21 09:49:08'),
+('9b1a47f0577c1b7a5d2b364171', '{\"currency\":\"INR\"}', '2025-01-21 09:16:45'),
+('9b9faea46d3ae477ed90414862', '{\"currency\":\"INR\"}', '2025-01-21 09:49:08'),
+('9ca45f92519635eb0d5a07f79b', '{\"currency\":\"INR\"}', '2025-01-21 12:57:50'),
+('9d46eb20bab4d0ae0c3a952f50', '{\"currency\":\"INR\"}', '2025-01-21 09:14:42'),
+('9dc9e821ebf74f2d7f41871029', '{\"currency\":\"INR\"}', '2025-01-21 09:30:46'),
+('9e0de0abdad10680ba01c48527', '{\"currency\":\"INR\"}', '2025-01-21 12:48:29'),
+('9fae1a0d2546ea23df016b009e', '{\"currency\":\"INR\"}', '2025-01-21 09:16:06'),
+('a0989d50f010fe1dce1d67687e', '{\"currency\":\"INR\"}', '2025-01-21 12:42:46'),
+('a1185786f2ed3dab5cd95edf65', '{\"currency\":\"INR\"}', '2025-01-21 12:35:15'),
+('a2c66caa897345d85cb02db975', '{\"currency\":\"INR\"}', '2025-01-21 09:17:06'),
+('a35b190a2a170293ad8eb345d3', '{\"currency\":\"INR\"}', '2025-01-21 09:53:19'),
+('a63848ffa911250de4635f9257', '{\"currency\":\"INR\"}', '2025-01-21 12:48:53'),
+('a8ebc701741992448afef6ebf6', '{\"currency\":\"INR\"}', '2025-01-21 12:33:40'),
+('a9cfd8b351446914f3030802b3', '{\"currency\":\"INR\"}', '2025-01-21 09:11:39'),
+('aaf6e6260f00c3cd059659537f', '{\"currency\":\"INR\"}', '2025-01-21 12:53:53'),
+('abf6496429c693694ffb12e94a', '{\"currency\":\"INR\"}', '2025-01-21 09:15:55'),
+('ac4a59d5f30a5633f707289241', '{\"currency\":\"INR\"}', '2025-01-21 14:00:53'),
+('ac88282e46040ca04f4ab29e9b', '{\"currency\":\"INR\"}', '2025-01-21 09:18:44'),
+('ad060a780a4d057dd08f01d25a', '{\"currency\":\"INR\"}', '2025-01-21 09:29:35'),
+('ae6cb2f0308fbfc9a32b17e400', '{\"currency\":\"INR\"}', '2025-01-21 12:47:35'),
+('ae729365e3ba4a656c249f0629', '{\"currency\":\"INR\"}', '2025-01-21 09:14:12'),
+('aea8aaf59f9198874da64a8cc9', '{\"currency\":\"INR\",\"api_session\":\"d9dbab4e3d6a2933b85a5a636f\",\"return_token\":\"752e854ebdd3d718821dea0ddd\",\"user_id\":\"1\",\"user_token\":\"5f6118627e40e6697e086819202926a1\",\"wishlist\":[41],\"review_token\":\"b4082aad13c1bb28a9649a25089f4878\",\"login_token\":\"034a9744cb8126d5c67f9aa15a\"}', '2025-01-22 04:31:28'),
+('aed50758ac4cfac97342814082', '{\"currency\":\"INR\"}', '2025-01-21 09:53:14'),
+('af3fb46c745954b7aeb3b64ac0', '{\"currency\":\"INR\"}', '2025-01-21 12:42:49'),
+('af842948e4bc118815d573badd', '{\"currency\":\"INR\"}', '2025-01-21 09:53:16'),
+('b003b790db33bd2c231744ce68', '{\"currency\":\"INR\"}', '2025-01-21 12:33:30'),
+('b0c7b79578238e657193e07b85', '{\"currency\":\"INR\"}', '2025-01-21 12:48:26'),
+('b0fde8a760e8a617616765e8f5', '{\"currency\":\"INR\"}', '2025-01-21 14:00:50'),
+('b17cafc96725aa1c2d359fe387', '{\"currency\":\"INR\"}', '2025-01-21 09:13:26'),
+('b2b946b1f9add3d918d0aff484', '{\"currency\":\"INR\"}', '2025-01-21 09:12:55'),
+('b2ca05d342c14bf9154aedfbe9', '{\"currency\":\"INR\"}', '2025-01-21 12:47:36'),
+('b35c3abe9b86ef0d88b693ccb6', '', '2025-01-21 12:38:13'),
+('b3d2f4f025eea30312ba67a502', '{\"currency\":\"INR\"}', '2025-01-21 12:53:52'),
+('b43f1ad4c7d2911c4fb382319b', '{\"currency\":\"INR\"}', '2025-01-21 09:18:24'),
+('b545878cff4637cbe3915402b5', '{\"currency\":\"INR\"}', '2025-01-21 09:53:35'),
+('b5894e1008c0599756c01cd317', '{\"currency\":\"INR\"}', '2025-01-21 09:18:09'),
+('b5ea76f26a8b61366820502a4d', '{\"currency\":\"INR\"}', '2025-01-21 12:33:39'),
+('b62b0adedf3633fd2db02d5b99', '{\"currency\":\"INR\"}', '2025-01-21 12:47:31'),
+('b62f6f9973f4035e05e65ff6ac', '', '2025-01-21 12:49:09'),
+('b645d56eff9fc7340d9fc902ef', '{\"currency\":\"INR\"}', '2025-01-21 09:17:23'),
+('b680691902b040070bcb6b3762', '{\"currency\":\"INR\"}', '2025-01-21 09:12:09'),
+('b70a95a559ab2356c4fd190486', '{\"currency\":\"INR\"}', '2025-01-21 09:17:59'),
+('b73498b14b1241d00e1ec725c9', '{\"currency\":\"INR\"}', '2025-01-21 09:49:08'),
+('b74e59dbce6011dc157c24e668', '{\"currency\":\"INR\"}', '2025-01-21 12:53:44'),
+('b7a0ccec2caccd98a1c4b400b6', '{\"currency\":\"INR\"}', '2025-01-21 09:20:00'),
+('b7ac47c2dbc4e111229e4d3df4', '{\"currency\":\"INR\"}', '2025-01-21 09:20:26'),
+('b8b336ac31d1b11b3ba99cf3a1', '{\"currency\":\"INR\"}', '2025-01-21 09:16:16'),
+('ba7aac344918b36c60cf41b05b', '{\"currency\":\"INR\"}', '2025-01-21 09:10:37'),
+('bcbaa06b1c392d9ce12a6df0bb', '{\"currency\":\"INR\"}', '2025-01-21 09:21:12'),
+('bd5dd8c6befeacfe2776d7691e', '{\"currency\":\"INR\"}', '2025-01-21 12:53:53'),
+('bdb2909062a5e89f355a6091d6', '{\"currency\":\"INR\"}', '2025-01-21 09:17:01'),
+('bdda5091db51940da98d7e5439', '{\"currency\":\"INR\"}', '2025-01-21 09:49:07'),
+('beb98124590ea31aea3524382a', '{\"currency\":\"INR\"}', '2025-01-21 09:53:09'),
+('bf195eeb08eed0e148c8c9ec74', '{\"currency\":\"INR\"}', '2025-01-21 09:07:54'),
+('bf7ed1a5eeaa9cb270e9cfbde6', '{\"currency\":\"INR\"}', '2025-01-21 14:00:53'),
+('c02bb6dbd602067f064daa8147', '{\"currency\":\"INR\"}', '2025-01-21 12:42:21'),
+('c0b06fc25edc6ad57d5893b23c', '{\"currency\":\"INR\"}', '2025-01-21 12:35:19'),
+('c10d40c8d8ca5577c4ea86ec7e', '{\"currency\":\"INR\"}', '2025-01-21 09:53:08'),
+('c1c92ccc2069b3a3a88a3a86d8', '{\"currency\":\"INR\"}', '2025-01-21 09:29:25'),
+('c3e90be3ca620890e71aa75807', '{\"currency\":\"INR\"}', '2025-01-21 12:53:49'),
+('c40823092ab9094036aa3c6f66', '{\"currency\":\"INR\"}', '2025-01-21 14:00:47'),
+('c4ad9cf85db3caec0cdd3a179e', '{\"currency\":\"INR\"}', '2025-01-21 12:47:38'),
+('c51ade2185a654f3a475eb4dcb', '{\"currency\":\"INR\"}', '2025-01-21 09:15:05'),
+('c51afc23981cdfa5e498c99de0', '{\"currency\":\"INR\"}', '2025-01-21 10:01:42'),
+('c55622262964eff3ad49936358', '{\"currency\":\"INR\"}', '2025-01-21 12:57:50'),
+('c609f381ea66f8ca7d6c91e186', '{\"currency\":\"INR\"}', '2025-01-21 09:14:17'),
+('c6ea78039d27e7200837f5ec4e', '{\"currency\":\"INR\"}', '2025-01-21 09:28:49'),
+('c6fc1b827c507e4959ebe5e074', '{\"currency\":\"INR\"}', '2025-01-21 09:53:18'),
+('c784133cdde7624206b4194867', '{\"currency\":\"INR\"}', '2025-01-21 09:17:28'),
+('c7a62c49893a3bac1e06a49713', '{\"currency\":\"INR\"}', '2025-01-21 09:29:41'),
+('c90e5892de65f9a6cb312b4862', '{\"currency\":\"INR\"}', '2025-01-21 12:42:50'),
+('c9d84d1addeff1c612ef71a954', '{\"currency\":\"INR\"}', '2025-01-21 09:30:45'),
+('cab9569669785903bfc6532679', '{\"currency\":\"INR\"}', '2025-01-21 09:28:06'),
+('cb37cd6f5f8274056d44fae6f1', '{\"currency\":\"INR\"}', '2025-01-21 12:48:32'),
+('cc492af82f53b3043333cab0d0', '{\"currency\":\"INR\"}', '2025-01-21 12:47:22'),
+('cd127d5534dbafabd60f6270aa', '{\"currency\":\"INR\"}', '2025-01-21 09:15:15'),
+('ce466296f4250e183458a5bc43', '{\"currency\":\"INR\"}', '2025-01-21 09:10:01'),
+('cebe004a4434d59ebc05d90b34', '{\"currency\":\"INR\"}', '2025-01-21 09:54:36'),
+('cf5cb9b5c797c68c39f46ab9a4', '{\"currency\":\"INR\"}', '2025-01-21 12:47:35'),
+('d0fa071f16e25a7061d6429b3e', '{\"currency\":\"INR\"}', '2025-01-21 09:30:08'),
+('d22f06803b20e30307b20c29a0', '{\"currency\":\"INR\"}', '2025-01-21 09:09:36'),
+('d23e1bfeb9cdc07921ac27852b', '{\"currency\":\"INR\"}', '2025-01-21 09:16:33'),
+('d5526c0d68a2e03acd10c6fbbd', '{\"currency\":\"INR\"}', '2025-01-21 12:58:36'),
+('d5b2666b4ad86c05c683b1b8e1', '{\"currency\":\"INR\"}', '2025-01-21 09:10:58'),
+('d61653c4b0dbeb8b2211abe3ad', '{\"currency\":\"INR\"}', '2025-01-21 09:11:08'),
+('d6aa481b248ae6e4d982b58bfb', '{\"currency\":\"INR\"}', '2025-01-21 09:08:19'),
+('d732af533fa7a74b581cfd84cb', '{\"currency\":\"INR\"}', '2025-01-21 12:33:38'),
+('d79f4cdf68298708c91f7b218b', '{\"currency\":\"INR\"}', '2025-01-21 12:42:53'),
+('d7f01d332d74d2f35d76395215', '{\"currency\":\"INR\"}', '2025-01-21 09:53:09'),
+('d93f46d0fa5637804d399eaaf6', '{\"currency\":\"INR\"}', '2025-01-21 12:47:06'),
+('d97e38425aaf425400def4a457', '{\"currency\":\"INR\"}', '2025-01-21 09:18:54'),
+('d98d419fe3ac3d876c748cff38', '{\"currency\":\"INR\"}', '2025-01-21 09:19:45'),
+('d9dbab4e3d6a2933b85a5a636f', '{\"currency\":\"INR\",\"api_id\":1,\"order_id\":78,\"customer\":{\"customer_id\":\"4\",\"customer_group_id\":\"1\",\"firstname\":\"Rahul\",\"lastname\":\"C S\",\"email\":\"rahul@gmail.com\",\"telephone\":\"0123456789\",\"custom_field\":[]},\"payment_method\":{\"name\":\"Cod\",\"code\":\"cod\",\"title\":\"Cod\",\"terms\":\"\"},\"shipping_address\":{\"address_id\":\"7\",\"firstname\":\"Name 1\",\"lastname\":\"Name 2\",\"company\":\"Company\",\"address_1\":\"test\",\"address_2\":\"test\",\"postcode\":\"123333\",\"city\":\"test123456\",\"zone_id\":\"185\",\"zone\":\"Lorri\",\"zone_code\":\"LOR\",\"country_id\":\"11\",\"country\":\"Armenia\",\"iso_code_2\":\"AM\",\"iso_code_3\":\"ARM\",\"address_format\":\"{firstname} {lastname}\\r\\n{company}\\r\\n{address_1}\\r\\n{address_2}\\r\\n{city}, {zone} {postcode}\\r\\n{country}\",\"custom_field\":[]},\"shipping_method\":{\"name\":\"Flat\",\"code\":\"flat\",\"title\":\"Flat\",\"cost\":0,\"tax_class_id\":0},\"vouchers\":[],\"tax\":\"-2.00\"}', '2025-01-22 01:55:57'),
+('d9ee1aed77c18bd6857d2b96fb', '', '2025-01-22 01:55:57'),
+('da3f2d5376649993435c25d33c', '{\"currency\":\"INR\"}', '2025-01-21 09:53:10'),
+('da8a7d48b3cdb53948caf44959', '{\"currency\":\"INR\"}', '2025-01-21 12:33:30'),
+('db3cbc329d5660e9ce05134aa2', '{\"currency\":\"INR\"}', '2025-01-21 12:57:51'),
+('dbd1cddc5c75a7c0ad5120b5bf', '{\"currency\":\"INR\"}', '2025-01-21 12:47:18'),
+('dbdf030a73dcb44b7495ac7ccf', '{\"currency\":\"INR\"}', '2025-01-21 09:20:31'),
+('dc4e7cc022a457c54f18550899', '{\"currency\":\"INR\"}', '2025-01-21 12:57:51'),
+('dc752635a3da80e83225e2d18b', '{\"currency\":\"INR\"}', '2025-01-21 09:16:55'),
+('dce6585423771eb2a8ad17616b', '{\"currency\":\"INR\"}', '2025-01-21 12:33:40'),
+('ddb8878dab2a88c605f4adb22d', '{\"currency\":\"INR\"}', '2025-01-21 12:48:16'),
+('de27752838426711fe6ffd28d0', '{\"currency\":\"INR\"}', '2025-01-21 12:48:53'),
+('de3c91bff7d5829b5c4c46ef8e', '{\"currency\":\"INR\"}', '2025-01-21 12:47:38'),
+('de5500bc77d664284b3a41f16f', '{\"currency\":\"INR\"}', '2025-01-21 09:19:20'),
+('df127d74e927bc7949a8981cc3', '{\"currency\":\"INR\"}', '2025-01-21 09:08:50'),
+('df425bc331dd79ce656d786606', '{\"currency\":\"INR\"}', '2025-01-21 09:16:35'),
+('e006444914010a37be09fa2e7e', '{\"currency\":\"INR\"}', '2025-01-21 09:18:04'),
+('e19589fc77ff0a504e9460b9c8', '{\"currency\":\"INR\"}', '2025-01-21 12:53:55'),
+('e30e69bb7432dd1dbe5c060a6e', '{\"currency\":\"INR\"}', '2025-01-21 12:33:50'),
+('e3436b212f9a4a27fc0486495b', '{\"currency\":\"INR\"}', '2025-01-21 09:30:46'),
+('e3bc223654d303ad537b764062', '{\"currency\":\"INR\"}', '2025-01-21 09:20:51'),
+('e534f9045b9124a4586181f202', '{\"currency\":\"INR\"}', '2025-01-21 12:53:49'),
+('e58376f2480273e83200eb405e', '{\"currency\":\"INR\"}', '2025-01-21 09:53:15'),
+('e61040e3a7f3548afa3b15e09e', '{\"currency\":\"INR\"}', '2025-01-21 09:18:34'),
+('e62dc03449cb1b2ef24f6b448e', '{\"currency\":\"INR\"}', '2025-01-21 09:17:33'),
+('e64b57fdc654fb9256b50c1aba', '', '2025-01-21 12:52:23'),
+('e67b302f733720169cf394f37f', '{\"currency\":\"INR\"}', '2025-01-21 12:33:07'),
+('e72556079788289e3c070f2eb5', '{\"currency\":\"INR\"}', '2025-01-21 09:15:45'),
+('e72879184ed4a911b7d4385f4e', '{\"currency\":\"INR\"}', '2025-01-21 09:29:10'),
+('e812188ae080a8c9adfb25035d', '{\"currency\":\"INR\"}', '2025-01-21 12:42:31'),
+('e8de4433bfa43a6501721275f4', '{\"currency\":\"INR\"}', '2025-01-21 12:53:48'),
+('e96df33f49adff82d9692d04df', '{\"currency\":\"INR\"}', '2025-01-21 09:21:07'),
+('ea227af6ba554d30260f8d051c', '{\"currency\":\"INR\"}', '2025-01-21 12:58:09'),
+('ea569cba2b8bc40d71196c2729', '{\"currency\":\"INR\"}', '2025-01-21 09:11:13'),
+('ea5990afe786a08e1aa543f263', '{\"currency\":\"INR\"}', '2025-01-21 09:12:30'),
+('eb6c0c9fb2d7c02e1c0551d31f', '{\"currency\":\"INR\"}', '2025-01-21 09:28:54'),
+('eb813cfca7560c38c7d36d3103', '{\"currency\":\"INR\"}', '2025-01-21 12:48:50'),
+('eb868bf4923e6ce3aa186c0d24', '{\"currency\":\"INR\"}', '2025-01-21 09:10:06'),
+('ec0b818bfbeaccc24d4eec0544', '{\"currency\":\"INR\"}', '2025-01-21 12:33:39'),
+('ec19f93cfe9bada08c9c3e5aac', '{\"currency\":\"INR\"}', '2025-01-21 12:53:58'),
+('ece12a33bfcabc73681ada7af3', '{\"currency\":\"INR\"}', '2025-01-21 09:09:56'),
+('ed388fd5e11c97255a6e467286', '{\"currency\":\"INR\"}', '2025-01-21 09:10:53'),
+('ee3e19249a97e3e624ff69915c', '{\"currency\":\"INR\"}', '2025-01-21 12:42:33'),
+('ee567a8e38023ab14b5a27ff4c', '{\"currency\":\"INR\"}', '2025-01-21 14:00:59'),
+('ee74446262e094af36f21f8958', '{\"currency\":\"INR\"}', '2025-01-21 14:00:53'),
+('f027388250c72a79f767746289', '{\"currency\":\"INR\"}', '2025-01-21 12:42:48'),
+('f03d492cda5a8bdcf89988371f', '{\"currency\":\"INR\"}', '2025-01-21 12:57:49'),
+('f0a9f20b56c442251378c6efa6', '{\"currency\":\"INR\"}', '2025-01-21 09:14:50'),
+('f166d6a3c2a60cdcb43551799b', '{\"currency\":\"INR\"}', '2025-01-21 09:14:02'),
+('f1734c1b607105bb1ac9f0cf0a', '{\"currency\":\"INR\"}', '2025-01-21 14:00:46'),
+('f215b289b236dbb200c076b9f3', '{\"currency\":\"INR\"}', '2025-01-21 09:53:13'),
+('f30628303543df677f42b6ac64', '{\"currency\":\"INR\"}', '2025-01-21 12:42:28'),
+('f3543dbfdf94cfbe914255094c', '{\"currency\":\"INR\"}', '2025-01-21 09:53:15'),
+('f35de88471c884b44955d9c2d6', '{\"currency\":\"INR\"}', '2025-01-21 12:33:41'),
+('f38357ba44335d13fa7bfe2b6d', '{\"currency\":\"INR\"}', '2025-01-21 12:48:30'),
+('f3e515b13b54d9bd3ad8526374', '{\"currency\":\"INR\"}', '2025-01-21 09:19:04'),
+('f4780efc9023dc522ed73fb7d0', '', '2025-01-21 12:43:13'),
+('f4ba89d6d6332e492f1e20ea13', '{\"currency\":\"INR\"}', '2025-01-21 09:17:44'),
+('f5467d797056e70744b5a72c3a', '{\"currency\":\"INR\"}', '2025-01-21 09:09:41'),
+('f5f5283770479db78b69bf4c95', '{\"currency\":\"INR\"}', '2025-01-21 14:00:59'),
+('f69725dd6b7e792f252ef2cca9', '{\"currency\":\"INR\"}', '2025-01-21 09:18:59'),
+('f73d2089a9cc00ea881b45922d', '{\"currency\":\"INR\"}', '2025-01-21 12:48:29'),
+('f7a4432a53ae044cb427540b07', '{\"currency\":\"INR\"}', '2025-01-21 14:00:51'),
+('f87983ac2adfc4e13c082af59f', '{\"currency\":\"INR\"}', '2025-01-21 12:33:07'),
+('f9a066985b57afc8740ad55c5f', '{\"currency\":\"INR\"}', '2025-01-21 12:42:26'),
+('fa9923c893e3364d295e48987b', '{\"currency\":\"INR\"}', '2025-01-21 12:48:58'),
+('faa05be15dfd36c8b53d049965', '{\"currency\":\"INR\"}', '2025-01-21 12:57:41'),
+('fb9f530ee86e88300369ce4891', '{\"currency\":\"INR\"}', '2025-01-21 12:37:04'),
+('fc1a6afce7ee3b46973788d5d9', '{\"currency\":\"INR\"}', '2025-01-21 14:00:47'),
+('fc224e149d731df1f61acb8002', '{\"currency\":\"INR\"}', '2025-01-21 12:48:29'),
+('fc5b9835588a53d7ce77443cc3', '{\"currency\":\"INR\"}', '2025-01-21 14:00:51'),
+('fc5bb24533238e51737b15296c', '{\"currency\":\"INR\"}', '2025-01-21 12:53:32'),
+('fca3ddfc575c0275469868c684', '{\"currency\":\"INR\"}', '2025-01-21 12:48:30'),
+('fca8494959da481a44ec110d8b', '{\"currency\":\"INR\"}', '2025-01-21 09:16:31'),
+('fd9c176918dc54b87095abb4fe', '{\"currency\":\"INR\"}', '2025-01-21 12:48:19'),
+('fe052d2cf66e5adde5b0f8d030', '{\"currency\":\"INR\"}', '2025-01-21 12:48:56'),
+('fe8cdcc6b70a3c224398fb1cd2', '{\"currency\":\"INR\"}', '2025-01-21 09:14:07'),
+('feb54c621f5661e563b75295b1', '{\"currency\":\"INR\"}', '2025-01-21 09:15:00'),
+('fee7d18f406714d8719853b8e9', '{\"currency\":\"INR\"}', '2025-01-21 09:12:35'),
+('ff2a8b44759bc1fe70e3a2270e', '{\"currency\":\"INR\"}', '2025-01-21 12:47:23'),
+('ff322dee45905c14032eaec805', '{\"currency\":\"INR\"}', '2025-01-21 09:18:19'),
+('ff3fb7e14a4090933710e06a18', '{\"currency\":\"INR\"}', '2025-01-21 09:30:45'),
+('ffbbaa07b7430cccc05e98a325', '{\"currency\":\"INR\"}', '2025-01-21 12:33:38');
 
 -- --------------------------------------------------------
 
@@ -4527,7 +3887,6 @@ CREATE TABLE `oc_setting` (
 --
 
 INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `serialized`) VALUES
-(126, 0, 'developer', 'developer_sass', '1', 0),
 (127, 0, 'currency_ecb', 'currency_ecb_status', '1', 0),
 (128, 0, 'payment_free_checkout', 'payment_free_checkout_status', '1', 0),
 (129, 0, 'payment_free_checkout', 'payment_free_checkout_order_status_id', '1', 0),
@@ -4609,146 +3968,146 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 (212, 0, 'report_marketing', 'report_marketing_sort_order', '15', 0),
 (213, 0, 'report_customer_subscription', 'report_customer_subscription_status', '1', 0),
 (214, 0, 'report_customer_subscription', 'report_customer_subscription_sort_order', '16', 0),
-(217, 0, 'config', 'config_meta_title', 'Your Store', 0),
-(218, 0, 'config', 'config_meta_description', 'My Store', 0),
-(219, 0, 'config', 'config_meta_keyword', '', 0),
-(220, 0, 'config', 'config_logo', 'catalog/opencart-logo.png', 0),
-(221, 0, 'config', 'config_theme', 'basic', 0),
-(222, 0, 'config', 'config_layout_id', '4', 0),
-(223, 0, 'config', 'config_name', 'Your Store', 0),
-(224, 0, 'config', 'config_owner', 'Your Name', 0),
-(225, 0, 'config', 'config_address', 'Address 1', 0),
-(226, 0, 'config', 'config_geocode', '', 0),
-(227, 0, 'config', 'config_email', 'rahulcs32@gmail.com', 0),
-(228, 0, 'config', 'config_telephone', '123456789', 0),
-(229, 0, 'config', 'config_image', '', 0),
-(230, 0, 'config', 'config_open', '10 am to 11 pm', 0),
-(231, 0, 'config', 'config_comment', '', 0),
-(232, 0, 'config', 'config_country_id', '222', 0),
-(233, 0, 'config', 'config_zone_id', '3563', 0),
-(234, 0, 'config', 'config_timezone', 'UTC', 0),
-(235, 0, 'config', 'config_language', 'en-gb', 0),
-(236, 0, 'config', 'config_language_admin', 'en-gb', 0),
-(237, 0, 'config', 'config_currency', 'USD', 0),
-(238, 0, 'config', 'config_currency_engine', 'ecb', 0),
-(239, 0, 'config', 'config_currency_auto', '1', 0),
-(240, 0, 'config', 'config_length_class_id', '1', 0),
-(241, 0, 'config', 'config_weight_class_id', '1', 0),
-(242, 0, 'config', 'config_product_description_length', '100', 0),
-(243, 0, 'config', 'config_pagination', '10', 0),
-(244, 0, 'config', 'config_product_count', '1', 0),
-(245, 0, 'config', 'config_pagination_admin', '10', 0),
-(246, 0, 'config', 'config_product_report_status', '0', 0),
-(247, 0, 'config', 'config_review_status', '1', 0),
-(248, 0, 'config', 'config_review_purchased', '0', 0),
-(249, 0, 'config', 'config_review_guest', '1', 0),
-(250, 0, 'config', 'config_article_description_length', '90', 0),
-(251, 0, 'config', 'config_comment_status', '0', 0),
-(252, 0, 'config', 'config_comment_guest', '0', 0),
-(253, 0, 'config', 'config_voucher_min', '1', 0),
-(254, 0, 'config', 'config_voucher_max', '1000', 0),
-(255, 0, 'config', 'config_cookie_id', '0', 0),
-(256, 0, 'config', 'config_gdpr_id', '0', 0),
-(257, 0, 'config', 'config_gdpr_limit', '180', 0),
-(258, 0, 'config', 'config_tax', '1', 0),
-(259, 0, 'config', 'config_tax_default', 'shipping', 0),
-(260, 0, 'config', 'config_tax_customer', 'shipping', 0),
-(261, 0, 'config', 'config_customer_online', '0', 0),
-(262, 0, 'config', 'config_customer_online_expire', '1', 0),
-(263, 0, 'config', 'config_customer_activity', '0', 0),
-(264, 0, 'config', 'config_customer_search', '0', 0),
-(265, 0, 'config', 'config_customer_group_id', '1', 0),
-(266, 0, 'config', 'config_customer_group_display', '[\"1\"]', 1),
-(267, 0, 'config', 'config_customer_price', '0', 0),
-(268, 0, 'config', 'config_telephone_display', '0', 0),
-(269, 0, 'config', 'config_telephone_required', '0', 0),
-(270, 0, 'config', 'config_login_attempts', '5', 0),
-(271, 0, 'config', 'config_account_id', '3', 0),
-(272, 0, 'config', 'config_invoice_prefix', 'INV-2024-00', 0),
-(273, 0, 'config', 'config_cart_weight', '1', 0),
-(274, 0, 'config', 'config_checkout_guest', '1', 0),
-(275, 0, 'config', 'config_checkout_payment_address', '0', 0),
-(276, 0, 'config', 'config_checkout_shipping_address', '0', 0),
-(277, 0, 'config', 'config_checkout_id', '0', 0),
-(278, 0, 'config', 'config_order_status_id', '1', 0),
-(279, 0, 'config', 'config_processing_status', '[\"5\",\"1\",\"2\",\"12\",\"3\"]', 1),
-(280, 0, 'config', 'config_complete_status', '[\"5\",\"3\"]', 1),
-(281, 0, 'config', 'config_fraud_status_id', '8', 0),
-(282, 0, 'config', 'config_api_id', '1', 0),
-(283, 0, 'config', 'config_subscription_status_id', '1', 0),
-(284, 0, 'config', 'config_subscription_active_status_id', '2', 0),
-(285, 0, 'config', 'config_subscription_expired_status_id', '3', 0),
-(286, 0, 'config', 'config_subscription_suspended_status_id', '4', 0),
-(287, 0, 'config', 'config_subscription_canceled_status_id', '5', 0),
-(288, 0, 'config', 'config_subscription_failed_status_id', '6', 0),
-(289, 0, 'config', 'config_subscription_denied_status_id', '7', 0),
-(290, 0, 'config', 'config_stock_display', '0', 0),
-(291, 0, 'config', 'config_stock_warning', '0', 0),
-(292, 0, 'config', 'config_stock_checkout', '0', 0),
-(293, 0, 'config', 'config_affiliate_status', '1', 0),
-(294, 0, 'config', 'config_affiliate_group_id', '1', 0),
-(295, 0, 'config', 'config_affiliate_approval', '0', 0),
-(296, 0, 'config', 'config_affiliate_auto', '0', 0),
-(297, 0, 'config', 'config_affiliate_commission', '5', 0),
-(298, 0, 'config', 'config_affiliate_expire', '0', 0),
-(299, 0, 'config', 'config_affiliate_id', '4', 0),
-(300, 0, 'config', 'config_return_status_id', '2', 0),
-(301, 0, 'config', 'config_return_id', '0', 0),
-(302, 0, 'config', 'config_captcha', '', 0),
-(303, 0, 'config', 'config_captcha_page', '[\"review\",\"contact\"]', 1),
-(304, 0, 'config', 'config_image_category_width', '80', 0),
-(305, 0, 'config', 'config_image_category_height', '80', 0),
-(306, 0, 'config', 'config_image_thumb_width', '500', 0),
-(307, 0, 'config', 'config_image_thumb_height', '500', 0),
-(308, 0, 'config', 'config_image_popup_width', '800', 0),
-(309, 0, 'config', 'config_image_popup_height', '800', 0),
-(310, 0, 'config', 'config_image_product_width', '250', 0),
-(311, 0, 'config', 'config_image_product_height', '250', 0),
-(312, 0, 'config', 'config_image_additional_width', '74', 0),
-(313, 0, 'config', 'config_image_additional_height', '74', 0),
-(314, 0, 'config', 'config_image_related_width', '250', 0),
-(315, 0, 'config', 'config_image_related_height', '250', 0),
-(316, 0, 'config', 'config_image_blog_width', '90', 0),
-(317, 0, 'config', 'config_image_blog_height', '90', 0),
-(318, 0, 'config', 'config_image_compare_width', '90', 0),
-(319, 0, 'config', 'config_image_compare_height', '90', 0),
-(320, 0, 'config', 'config_image_wishlist_width', '47', 0),
-(321, 0, 'config', 'config_image_wishlist_height', '47', 0),
-(322, 0, 'config', 'config_image_cart_width', '47', 0),
-(323, 0, 'config', 'config_image_cart_height', '47', 0),
-(324, 0, 'config', 'config_image_location_width', '268', 0),
-(325, 0, 'config', 'config_image_location_height', '50', 0),
-(326, 0, 'config', 'config_mail_engine', '', 0),
-(327, 0, 'config', 'config_mail_parameter', '', 0),
-(328, 0, 'config', 'config_mail_smtp_hostname', '', 0),
-(329, 0, 'config', 'config_mail_smtp_username', '', 0),
-(330, 0, 'config', 'config_mail_smtp_password', '', 0),
-(331, 0, 'config', 'config_mail_smtp_port', '25', 0),
-(332, 0, 'config', 'config_mail_smtp_timeout', '5', 0),
-(333, 0, 'config', 'config_mail_alert', '[\"order\"]', 1),
-(334, 0, 'config', 'config_mail_alert_email', '', 0),
-(335, 0, 'config', 'config_maintenance', '0', 0),
-(336, 0, 'config', 'config_session_expire', '86400', 0),
-(337, 0, 'config', 'config_session_samesite', 'Strict', 0),
-(338, 0, 'config', 'config_seo_url', '0', 0),
-(339, 0, 'config', 'config_robots', 'abot\r\ndbot\r\nebot\r\nhbot\r\nkbot\r\nlbot\r\nmbot\r\nnbot\r\nobot\r\npbot\r\nrbot\r\nsbot\r\ntbot\r\nvbot\r\nybot\r\nzbot\r\nbot.\r\nbot/\r\n_bot\r\n.bot\r\n/bot\r\n-bot\r\n:bot\r\n(bot\r\ncrawl\r\nslurp\r\nspider\r\nseek\r\naccoona\r\nacoon\r\nadressendeutschland\r\nah-ha.com\r\nahoy\r\naltavista\r\nananzi\r\nanthill\r\nappie\r\narachnophilia\r\narale\r\naraneo\r\naranha\r\narchitext\r\naretha\r\narks\r\nasterias\r\natlocal\r\natn\r\natomz\r\naugurfind\r\nbackrub\r\nbannana_bot\r\nbaypup\r\nbdfetch\r\nbig brother\r\nbiglotron\r\nbjaaland\r\nblackwidow\r\nblaiz\r\nblog\r\nblo.\r\nbloodhound\r\nboitho\r\nbooch\r\nbradley\r\nbutterfly\r\ncalif\r\ncassandra\r\nccubee\r\ncfetch\r\ncharlotte\r\nchurl\r\ncienciaficcion\r\ncmc\r\ncollective\r\ncomagent\r\ncombine\r\ncomputingsite\r\ncsci\r\ncurl\r\ncusco\r\ndaumoa\r\ndeepindex\r\ndelorie\r\ndepspid\r\ndeweb\r\ndie blinde kuh\r\ndigger\r\nditto\r\ndmoz\r\ndocomo\r\ndownload express\r\ndtaagent\r\ndwcp\r\nebiness\r\nebingbong\r\ne-collector\r\nejupiter\r\nemacs-w3 search engine\r\nesther\r\nevliya celebi\r\nezresult\r\nfalcon\r\nfelix ide\r\nferret\r\nfetchrover\r\nfido\r\nfindlinks\r\nfireball\r\nfish search\r\nfouineur\r\nfunnelweb\r\ngazz\r\ngcreep\r\ngenieknows\r\ngetterroboplus\r\ngeturl\r\nglx\r\ngoforit\r\ngolem\r\ngrabber\r\ngrapnel\r\ngralon\r\ngriffon\r\ngromit\r\ngrub\r\ngulliver\r\nhamahakki\r\nharvest\r\nhavindex\r\nhelix\r\nheritrix\r\nhku www octopus\r\nhomerweb\r\nhtdig\r\nhtml index\r\nhtml_analyzer\r\nhtmlgobble\r\nhubater\r\nhyper-decontextualizer\r\nia_archiver\r\nibm_planetwide\r\nichiro\r\niconsurf\r\niltrovatore\r\nimage.kapsi.net\r\nimagelock\r\nincywincy\r\nindexer\r\ninfobee\r\ninformant\r\ningrid\r\ninktomisearch.com\r\ninspector web\r\nintelliagent\r\ninternet shinchakubin\r\nip3000\r\niron33\r\nisraeli-search\r\nivia\r\njack\r\njakarta\r\njavabee\r\njetbot\r\njumpstation\r\nkatipo\r\nkdd-explorer\r\nkilroy\r\nknowledge\r\nkototoi\r\nkretrieve\r\nlabelgrabber\r\nlachesis\r\nlarbin\r\nlegs\r\nlibwww\r\nlinkalarm\r\nlink validator\r\nlinkscan\r\nlockon\r\nlwp\r\nlycos\r\nmagpie\r\nmantraagent\r\nmapoftheinternet\r\nmarvin/\r\nmattie\r\nmediafox\r\nmediapartners\r\nmercator\r\nmerzscope\r\nmicrosoft url control\r\nminirank\r\nmiva\r\nmj12\r\nmnogosearch\r\nmoget\r\nmonster\r\nmoose\r\nmotor\r\nmultitext\r\nmuncher\r\nmuscatferret\r\nmwd.search\r\nmyweb\r\nnajdi\r\nnameprotect\r\nnationaldirectory\r\nnazilla\r\nncsa beta\r\nnec-meshexplorer\r\nnederland.zoek\r\nnetcarta webmap engine\r\nnetmechanic\r\nnetresearchserver\r\nnetscoop\r\nnewscan-online\r\nnhse\r\nnokia6682/\r\nnomad\r\nnoyona\r\nnutch\r\nnzexplorer\r\nobjectssearch\r\noccam\r\nomni\r\nopen text\r\nopenfind\r\nopenintelligencedata\r\norb search\r\nosis-project\r\npack rat\r\npageboy\r\npagebull\r\npage_verifier\r\npanscient\r\nparasite\r\npartnersite\r\npatric\r\npear.\r\npegasus\r\nperegrinator\r\npgp key agent\r\nphantom\r\nphpdig\r\npicosearch\r\npiltdownman\r\npimptrain\r\npinpoint\r\npioneer\r\npiranha\r\nplumtreewebaccessor\r\npogodak\r\npoirot\r\npompos\r\npoppelsdorf\r\npoppi\r\npopular iconoclast\r\npsycheclone\r\npublisher\r\npython\r\nrambler\r\nraven search\r\nroach\r\nroad runner\r\nroadhouse\r\nrobbie\r\nrobofox\r\nrobozilla\r\nrules\r\nsalty\r\nsbider\r\nscooter\r\nscoutjet\r\nscrubby\r\nsearch.\r\nsearchprocess\r\nsemanticdiscovery\r\nsenrigan\r\nsg-scout\r\nshai\'hulud\r\nshark\r\nshopwiki\r\nsidewinder\r\nsift\r\nsilk\r\nsimmany\r\nsite searcher\r\nsite valet\r\nsitetech-rover\r\nskymob.com\r\nsleek\r\nsmartwit\r\nsna-\r\nsnappy\r\nsnooper\r\nsohu\r\nspeedfind\r\nsphere\r\nsphider\r\nspinner\r\nspyder\r\nsteeler/\r\nsuke\r\nsuntek\r\nsupersnooper\r\nsurfnomore\r\nsven\r\nsygol\r\nszukacz\r\ntach black widow\r\ntarantula\r\ntempleton\r\n/teoma\r\nt-h-u-n-d-e-r-s-t-o-n-e\r\ntheophrastus\r\ntitan\r\ntitin\r\ntkwww\r\ntoutatis\r\nt-rex\r\ntutorgig\r\ntwiceler\r\ntwisted\r\nucsd\r\nudmsearch\r\nurl check\r\nupdated\r\nvagabondo\r\nvalkyrie\r\nverticrawl\r\nvictoria\r\nvision-search\r\nvolcano\r\nvoyager/\r\nvoyager-hc\r\nw3c_validator\r\nw3m2\r\nw3mir\r\nwalker\r\nwallpaper\r\nwanderer\r\nwauuu\r\nwavefire\r\nweb core\r\nweb hopper\r\nweb wombat\r\nwebbandit\r\nwebcatcher\r\nwebcopy\r\nwebfoot\r\nweblayers\r\nweblinker\r\nweblog monitor\r\nwebmirror\r\nwebmonkey\r\nwebquest\r\nwebreaper\r\nwebsitepulse\r\nwebsnarf\r\nwebstolperer\r\nwebvac\r\nwebwalk\r\nwebwatch\r\nwebwombat\r\nwebzinger\r\nwhizbang\r\nwhowhere\r\nwild ferret\r\nworldlight\r\nwwwc\r\nwwwster\r\nxenu\r\nxget\r\nxift\r\nxirq\r\nyandex\r\nyanga\r\nyeti\r\nyodao\r\nzao\r\nzippp\r\nzyborg', 0),
-(340, 0, 'config', 'config_compression', '0', 0),
-(341, 0, 'config', 'config_security', '0', 0),
-(342, 0, 'config', 'config_shared', '0', 0),
-(343, 0, 'config', 'config_encryption', 'ed82504db10b8f880ca42274e9a446611954d08edef4f9baf8767dd3faa56ef155e2bf4da197a3098328c714e83a8c1c8f16245d0d4856915bbc4d70f4cd0b38c86761622fb2da22f1f6f7c5709288fb65eb91f4d5ca11d793d5ef427013167170e6e70f1e26140ac3eadafe2188e31f05fc1b3857f5f0af00b2b345c2c506819c0743852f31ffec2bde8716cc749bc577783b4b39845c96dc422d59c8f45dbeaa395699eda59718bf0dc0abef00fdcb00d462f48fbe71f34263b5382c479613822f9a7721edb98e920e8560bfccdbb68ee7150670339eef40609cb55e68af501dc9ea71f96fd231e7071774dac2c1b5d827cd0cb1352cc62f12293a858e6b15', 0),
-(344, 0, 'config', 'config_file_max_size', '20', 0),
-(345, 0, 'config', 'config_file_ext_allowed', 'zip\r\ntxt\r\npng\r\njpe\r\njpeg\r\nwebp\r\njpg\r\ngif\r\nbmp\r\nico\r\ntiff\r\ntif\r\nsvg\r\nsvgz\r\nzip\r\nrar\r\nmsi\r\ncab\r\nmp3\r\nmp4\r\nqt\r\nmov\r\npdf\r\npsd\r\nai\r\neps\r\nps\r\ndoc', 0),
-(346, 0, 'config', 'config_file_mime_allowed', 'text/plain\r\nimage/png\r\nimage/webp\r\nimage/jpeg\r\nimage/gif\r\nimage/bmp\r\nimage/tiff\r\nimage/svg+xml\r\napplication/zip\r\napplication/x-zip\r\napplication/x-zip-compressed\r\napplication/rar\r\napplication/x-rar\r\napplication/x-rar-compressed\r\napplication/octet-stream\r\naudio/mpeg\r\nvideo/mp4\r\nvideo/quicktime\r\napplication/pdf', 0),
-(347, 0, 'config', 'config_error_display', '1', 0),
-(348, 0, 'config', 'config_error_log', '1', 0),
-(349, 0, 'config', 'config_error_filename', 'error.log', 0),
 (350, 0, 'total_coupon', 'total_coupon_status', '1', 0),
 (351, 0, 'total_coupon', 'total_coupon_sort_order', '4', 0),
 (357, 0, 'shipping_flat', 'shipping_flat_cost', '5.00', 0),
 (358, 0, 'shipping_flat', 'shipping_flat_tax_class_id', '9', 0),
 (359, 0, 'shipping_flat', 'shipping_flat_geo_zone_id', '0', 0),
 (360, 0, 'shipping_flat', 'shipping_flat_status', '0', 0),
-(361, 0, 'shipping_flat', 'shipping_flat_sort_order', '1', 0);
+(361, 0, 'shipping_flat', 'shipping_flat_sort_order', '1', 0),
+(1291, 0, 'config', 'config_meta_title', 'Your Store', 0),
+(1292, 0, 'config', 'config_meta_description', 'My Store', 0),
+(1293, 0, 'config', 'config_meta_keyword', '', 0),
+(1294, 0, 'config', 'config_logo', 'catalog/logo/logo.png', 0),
+(1295, 0, 'config', 'config_theme', 'basic', 0),
+(1296, 0, 'config', 'config_layout_id', '4', 0),
+(1297, 0, 'config', 'config_name', 'Your Store', 0),
+(1298, 0, 'config', 'config_owner', 'Your Name', 0),
+(1299, 0, 'config', 'config_address', 'Address 1', 0),
+(1300, 0, 'config', 'config_geocode', '', 0),
+(1301, 0, 'config', 'config_email', 'rahulcs32@gmail.com', 0),
+(1302, 0, 'config', 'config_telephone', '123456789', 0),
+(1303, 0, 'config', 'config_image', '', 0),
+(1304, 0, 'config', 'config_open', '10 am to 11 pm', 0),
+(1305, 0, 'config', 'config_comment', '', 0),
+(1306, 0, 'config', 'config_country_id', '222', 0),
+(1307, 0, 'config', 'config_zone_id', '3563', 0),
+(1308, 0, 'config', 'config_timezone', 'Asia/Kolkata', 0),
+(1309, 0, 'config', 'config_language', 'en-gb', 0),
+(1310, 0, 'config', 'config_language_admin', 'en-gb', 0),
+(1311, 0, 'config', 'config_currency', 'INR', 0),
+(1312, 0, 'config', 'config_currency_engine', 'ecb', 0),
+(1313, 0, 'config', 'config_currency_auto', '1', 0),
+(1314, 0, 'config', 'config_length_class_id', '1', 0),
+(1315, 0, 'config', 'config_weight_class_id', '1', 0),
+(1316, 0, 'config', 'config_product_description_length', '100', 0),
+(1317, 0, 'config', 'config_pagination', '10', 0),
+(1318, 0, 'config', 'config_product_count', '1', 0),
+(1319, 0, 'config', 'config_pagination_admin', '10', 0),
+(1320, 0, 'config', 'config_product_report_status', '0', 0),
+(1321, 0, 'config', 'config_review_status', '1', 0),
+(1322, 0, 'config', 'config_review_purchased', '0', 0),
+(1323, 0, 'config', 'config_review_guest', '1', 0),
+(1324, 0, 'config', 'config_article_description_length', '90', 0),
+(1325, 0, 'config', 'config_comment_status', '0', 0),
+(1326, 0, 'config', 'config_comment_guest', '0', 0),
+(1327, 0, 'config', 'config_voucher_min', '1', 0),
+(1328, 0, 'config', 'config_voucher_max', '1000', 0),
+(1329, 0, 'config', 'config_cookie_id', '0', 0),
+(1330, 0, 'config', 'config_gdpr_id', '0', 0),
+(1331, 0, 'config', 'config_gdpr_limit', '180', 0),
+(1332, 0, 'config', 'config_tax', '1', 0),
+(1333, 0, 'config', 'config_tax_default', 'shipping', 0),
+(1334, 0, 'config', 'config_tax_customer', 'shipping', 0),
+(1335, 0, 'config', 'config_customer_online', '0', 0),
+(1336, 0, 'config', 'config_customer_online_expire', '1', 0),
+(1337, 0, 'config', 'config_customer_activity', '0', 0),
+(1338, 0, 'config', 'config_customer_search', '0', 0),
+(1339, 0, 'config', 'config_customer_group_id', '1', 0),
+(1340, 0, 'config', 'config_customer_group_display', '[\"1\"]', 1),
+(1341, 0, 'config', 'config_customer_price', '0', 0),
+(1342, 0, 'config', 'config_telephone_display', '0', 0),
+(1343, 0, 'config', 'config_telephone_required', '0', 0),
+(1344, 0, 'config', 'config_login_attempts', '5', 0),
+(1345, 0, 'config', 'config_account_id', '3', 0),
+(1346, 0, 'config', 'config_invoice_prefix', 'INV-2024-00', 0),
+(1347, 0, 'config', 'config_cart_weight', '1', 0),
+(1348, 0, 'config', 'config_checkout_guest', '1', 0),
+(1349, 0, 'config', 'config_checkout_payment_address', '0', 0),
+(1350, 0, 'config', 'config_checkout_shipping_address', '0', 0),
+(1351, 0, 'config', 'config_checkout_id', '0', 0),
+(1352, 0, 'config', 'config_order_status_id', '1', 0),
+(1353, 0, 'config', 'config_processing_status', '[\"5\",\"1\",\"2\",\"12\",\"3\"]', 1),
+(1354, 0, 'config', 'config_complete_status', '[\"5\",\"3\"]', 1),
+(1355, 0, 'config', 'config_fraud_status_id', '8', 0),
+(1356, 0, 'config', 'config_api_id', '1', 0),
+(1357, 0, 'config', 'config_subscription_status_id', '1', 0),
+(1358, 0, 'config', 'config_subscription_active_status_id', '2', 0),
+(1359, 0, 'config', 'config_subscription_expired_status_id', '3', 0),
+(1360, 0, 'config', 'config_subscription_suspended_status_id', '4', 0),
+(1361, 0, 'config', 'config_subscription_canceled_status_id', '5', 0),
+(1362, 0, 'config', 'config_subscription_failed_status_id', '6', 0),
+(1363, 0, 'config', 'config_subscription_denied_status_id', '7', 0),
+(1364, 0, 'config', 'config_stock_display', '0', 0),
+(1365, 0, 'config', 'config_stock_warning', '0', 0),
+(1366, 0, 'config', 'config_stock_checkout', '0', 0),
+(1367, 0, 'config', 'config_affiliate_status', '1', 0),
+(1368, 0, 'config', 'config_affiliate_group_id', '1', 0),
+(1369, 0, 'config', 'config_affiliate_approval', '0', 0),
+(1370, 0, 'config', 'config_affiliate_auto', '0', 0),
+(1371, 0, 'config', 'config_affiliate_commission', '5', 0),
+(1372, 0, 'config', 'config_affiliate_expire', '0', 0),
+(1373, 0, 'config', 'config_affiliate_id', '4', 0),
+(1374, 0, 'config', 'config_return_status_id', '2', 0),
+(1375, 0, 'config', 'config_return_id', '0', 0),
+(1376, 0, 'config', 'config_captcha', '', 0),
+(1377, 0, 'config', 'config_captcha_page', '[\"review\",\"contact\"]', 1),
+(1378, 0, 'config', 'config_image_category_width', '80', 0),
+(1379, 0, 'config', 'config_image_category_height', '80', 0),
+(1380, 0, 'config', 'config_image_thumb_width', '500', 0),
+(1381, 0, 'config', 'config_image_thumb_height', '500', 0),
+(1382, 0, 'config', 'config_image_popup_width', '800', 0),
+(1383, 0, 'config', 'config_image_popup_height', '800', 0),
+(1384, 0, 'config', 'config_image_product_width', '250', 0),
+(1385, 0, 'config', 'config_image_product_height', '250', 0),
+(1386, 0, 'config', 'config_image_additional_width', '500', 0),
+(1387, 0, 'config', 'config_image_additional_height', '500', 0),
+(1388, 0, 'config', 'config_image_related_width', '500', 0),
+(1389, 0, 'config', 'config_image_related_height', '500', 0),
+(1390, 0, 'config', 'config_image_blog_width', '90', 0),
+(1391, 0, 'config', 'config_image_blog_height', '90', 0),
+(1392, 0, 'config', 'config_image_compare_width', '90', 0),
+(1393, 0, 'config', 'config_image_compare_height', '90', 0),
+(1394, 0, 'config', 'config_image_wishlist_width', '47', 0),
+(1395, 0, 'config', 'config_image_wishlist_height', '47', 0),
+(1396, 0, 'config', 'config_image_cart_width', '47', 0),
+(1397, 0, 'config', 'config_image_cart_height', '47', 0),
+(1398, 0, 'config', 'config_image_location_width', '268', 0),
+(1399, 0, 'config', 'config_image_location_height', '50', 0),
+(1400, 0, 'config', 'config_mail_engine', '', 0),
+(1401, 0, 'config', 'config_mail_parameter', '', 0),
+(1402, 0, 'config', 'config_mail_smtp_hostname', '', 0),
+(1403, 0, 'config', 'config_mail_smtp_username', '', 0),
+(1404, 0, 'config', 'config_mail_smtp_password', '', 0),
+(1405, 0, 'config', 'config_mail_smtp_port', '25', 0),
+(1406, 0, 'config', 'config_mail_smtp_timeout', '5', 0),
+(1407, 0, 'config', 'config_mail_alert', '[\"order\"]', 1),
+(1408, 0, 'config', 'config_mail_alert_email', '', 0),
+(1409, 0, 'config', 'config_maintenance', '1', 0),
+(1410, 0, 'config', 'config_session_expire', '86400', 0),
+(1411, 0, 'config', 'config_session_samesite', 'Strict', 0),
+(1412, 0, 'config', 'config_seo_url', '0', 0),
+(1413, 0, 'config', 'config_robots', 'abot\r\ndbot\r\nebot\r\nhbot\r\nkbot\r\nlbot\r\nmbot\r\nnbot\r\nobot\r\npbot\r\nrbot\r\nsbot\r\ntbot\r\nvbot\r\nybot\r\nzbot\r\nbot.\r\nbot/\r\n_bot\r\n.bot\r\n/bot\r\n-bot\r\n:bot\r\n(bot\r\ncrawl\r\nslurp\r\nspider\r\nseek\r\naccoona\r\nacoon\r\nadressendeutschland\r\nah-ha.com\r\nahoy\r\naltavista\r\nananzi\r\nanthill\r\nappie\r\narachnophilia\r\narale\r\naraneo\r\naranha\r\narchitext\r\naretha\r\narks\r\nasterias\r\natlocal\r\natn\r\natomz\r\naugurfind\r\nbackrub\r\nbannana_bot\r\nbaypup\r\nbdfetch\r\nbig brother\r\nbiglotron\r\nbjaaland\r\nblackwidow\r\nblaiz\r\nblog\r\nblo.\r\nbloodhound\r\nboitho\r\nbooch\r\nbradley\r\nbutterfly\r\ncalif\r\ncassandra\r\nccubee\r\ncfetch\r\ncharlotte\r\nchurl\r\ncienciaficcion\r\ncmc\r\ncollective\r\ncomagent\r\ncombine\r\ncomputingsite\r\ncsci\r\ncurl\r\ncusco\r\ndaumoa\r\ndeepindex\r\ndelorie\r\ndepspid\r\ndeweb\r\ndie blinde kuh\r\ndigger\r\nditto\r\ndmoz\r\ndocomo\r\ndownload express\r\ndtaagent\r\ndwcp\r\nebiness\r\nebingbong\r\ne-collector\r\nejupiter\r\nemacs-w3 search engine\r\nesther\r\nevliya celebi\r\nezresult\r\nfalcon\r\nfelix ide\r\nferret\r\nfetchrover\r\nfido\r\nfindlinks\r\nfireball\r\nfish search\r\nfouineur\r\nfunnelweb\r\ngazz\r\ngcreep\r\ngenieknows\r\ngetterroboplus\r\ngeturl\r\nglx\r\ngoforit\r\ngolem\r\ngrabber\r\ngrapnel\r\ngralon\r\ngriffon\r\ngromit\r\ngrub\r\ngulliver\r\nhamahakki\r\nharvest\r\nhavindex\r\nhelix\r\nheritrix\r\nhku www octopus\r\nhomerweb\r\nhtdig\r\nhtml index\r\nhtml_analyzer\r\nhtmlgobble\r\nhubater\r\nhyper-decontextualizer\r\nia_archiver\r\nibm_planetwide\r\nichiro\r\niconsurf\r\niltrovatore\r\nimage.kapsi.net\r\nimagelock\r\nincywincy\r\nindexer\r\ninfobee\r\ninformant\r\ningrid\r\ninktomisearch.com\r\ninspector web\r\nintelliagent\r\ninternet shinchakubin\r\nip3000\r\niron33\r\nisraeli-search\r\nivia\r\njack\r\njakarta\r\njavabee\r\njetbot\r\njumpstation\r\nkatipo\r\nkdd-explorer\r\nkilroy\r\nknowledge\r\nkototoi\r\nkretrieve\r\nlabelgrabber\r\nlachesis\r\nlarbin\r\nlegs\r\nlibwww\r\nlinkalarm\r\nlink validator\r\nlinkscan\r\nlockon\r\nlwp\r\nlycos\r\nmagpie\r\nmantraagent\r\nmapoftheinternet\r\nmarvin/\r\nmattie\r\nmediafox\r\nmediapartners\r\nmercator\r\nmerzscope\r\nmicrosoft url control\r\nminirank\r\nmiva\r\nmj12\r\nmnogosearch\r\nmoget\r\nmonster\r\nmoose\r\nmotor\r\nmultitext\r\nmuncher\r\nmuscatferret\r\nmwd.search\r\nmyweb\r\nnajdi\r\nnameprotect\r\nnationaldirectory\r\nnazilla\r\nncsa beta\r\nnec-meshexplorer\r\nnederland.zoek\r\nnetcarta webmap engine\r\nnetmechanic\r\nnetresearchserver\r\nnetscoop\r\nnewscan-online\r\nnhse\r\nnokia6682/\r\nnomad\r\nnoyona\r\nnutch\r\nnzexplorer\r\nobjectssearch\r\noccam\r\nomni\r\nopen text\r\nopenfind\r\nopenintelligencedata\r\norb search\r\nosis-project\r\npack rat\r\npageboy\r\npagebull\r\npage_verifier\r\npanscient\r\nparasite\r\npartnersite\r\npatric\r\npear.\r\npegasus\r\nperegrinator\r\npgp key agent\r\nphantom\r\nphpdig\r\npicosearch\r\npiltdownman\r\npimptrain\r\npinpoint\r\npioneer\r\npiranha\r\nplumtreewebaccessor\r\npogodak\r\npoirot\r\npompos\r\npoppelsdorf\r\npoppi\r\npopular iconoclast\r\npsycheclone\r\npublisher\r\npython\r\nrambler\r\nraven search\r\nroach\r\nroad runner\r\nroadhouse\r\nrobbie\r\nrobofox\r\nrobozilla\r\nrules\r\nsalty\r\nsbider\r\nscooter\r\nscoutjet\r\nscrubby\r\nsearch.\r\nsearchprocess\r\nsemanticdiscovery\r\nsenrigan\r\nsg-scout\r\nshai\'hulud\r\nshark\r\nshopwiki\r\nsidewinder\r\nsift\r\nsilk\r\nsimmany\r\nsite searcher\r\nsite valet\r\nsitetech-rover\r\nskymob.com\r\nsleek\r\nsmartwit\r\nsna-\r\nsnappy\r\nsnooper\r\nsohu\r\nspeedfind\r\nsphere\r\nsphider\r\nspinner\r\nspyder\r\nsteeler/\r\nsuke\r\nsuntek\r\nsupersnooper\r\nsurfnomore\r\nsven\r\nsygol\r\nszukacz\r\ntach black widow\r\ntarantula\r\ntempleton\r\n/teoma\r\nt-h-u-n-d-e-r-s-t-o-n-e\r\ntheophrastus\r\ntitan\r\ntitin\r\ntkwww\r\ntoutatis\r\nt-rex\r\ntutorgig\r\ntwiceler\r\ntwisted\r\nucsd\r\nudmsearch\r\nurl check\r\nupdated\r\nvagabondo\r\nvalkyrie\r\nverticrawl\r\nvictoria\r\nvision-search\r\nvolcano\r\nvoyager/\r\nvoyager-hc\r\nw3c_validator\r\nw3m2\r\nw3mir\r\nwalker\r\nwallpaper\r\nwanderer\r\nwauuu\r\nwavefire\r\nweb core\r\nweb hopper\r\nweb wombat\r\nwebbandit\r\nwebcatcher\r\nwebcopy\r\nwebfoot\r\nweblayers\r\nweblinker\r\nweblog monitor\r\nwebmirror\r\nwebmonkey\r\nwebquest\r\nwebreaper\r\nwebsitepulse\r\nwebsnarf\r\nwebstolperer\r\nwebvac\r\nwebwalk\r\nwebwatch\r\nwebwombat\r\nwebzinger\r\nwhizbang\r\nwhowhere\r\nwild ferret\r\nworldlight\r\nwwwc\r\nwwwster\r\nxenu\r\nxget\r\nxift\r\nxirq\r\nyandex\r\nyanga\r\nyeti\r\nyodao\r\nzao\r\nzippp\r\nzyborg', 0),
+(1414, 0, 'config', 'config_compression', '0', 0),
+(1415, 0, 'config', 'config_security', '0', 0),
+(1416, 0, 'config', 'config_shared', '0', 0),
+(1417, 0, 'config', 'config_encryption', 'ed82504db10b8f880ca42274e9a446611954d08edef4f9baf8767dd3faa56ef155e2bf4da197a3098328c714e83a8c1c8f16245d0d4856915bbc4d70f4cd0b38c86761622fb2da22f1f6f7c5709288fb65eb91f4d5ca11d793d5ef427013167170e6e70f1e26140ac3eadafe2188e31f05fc1b3857f5f0af00b2b345c2c506819c0743852f31ffec2bde8716cc749bc577783b4b39845c96dc422d59c8f45dbeaa395699eda59718bf0dc0abef00fdcb00d462f48fbe71f34263b5382c479613822f9a7721edb98e920e8560bfccdbb68ee7150670339eef40609cb55e68af501dc9ea71f96fd231e7071774dac2c1b5d827cd0cb1352cc62f12293a858e6b15', 0),
+(1418, 0, 'config', 'config_file_max_size', '20', 0),
+(1419, 0, 'config', 'config_file_ext_allowed', 'zip\r\ntxt\r\npng\r\njpe\r\njpeg\r\nwebp\r\njpg\r\ngif\r\nbmp\r\nico\r\ntiff\r\ntif\r\nsvg\r\nsvgz\r\nzip\r\nrar\r\nmsi\r\ncab\r\nmp3\r\nmp4\r\nqt\r\nmov\r\npdf\r\npsd\r\nai\r\neps\r\nps\r\ndoc', 0),
+(1420, 0, 'config', 'config_file_mime_allowed', 'text/plain\r\nimage/png\r\nimage/webp\r\nimage/jpeg\r\nimage/gif\r\nimage/bmp\r\nimage/tiff\r\nimage/svg+xml\r\napplication/zip\r\napplication/x-zip\r\napplication/x-zip-compressed\r\napplication/rar\r\napplication/x-rar\r\napplication/x-rar-compressed\r\napplication/octet-stream\r\naudio/mpeg\r\nvideo/mp4\r\nvideo/quicktime\r\napplication/pdf', 0),
+(1421, 0, 'config', 'config_error_display', '0', 0),
+(1422, 0, 'config', 'config_error_log', '1', 0),
+(1423, 0, 'config', 'config_error_filename', 'error.log', 0);
 
 -- --------------------------------------------------------
 
@@ -4781,8 +4140,8 @@ CREATE TABLE `oc_statistics` (
 --
 
 INSERT INTO `oc_statistics` (`statistics_id`, `code`, `value`) VALUES
-(1, 'order_sale', 9068.7880),
-(2, 'order_processing', 29.0000),
+(1, 'order_sale', 17650.7880),
+(2, 'order_processing', 45.0000),
 (3, 'order_complete', 0.0000),
 (4, 'order_other', 0.0000),
 (5, 'returns', 0.0000),
@@ -5164,7 +4523,8 @@ CREATE TABLE `oc_user` (
 --
 
 INSERT INTO `oc_user` (`user_id`, `user_group_id`, `username`, `password`, `firstname`, `lastname`, `email`, `image`, `code`, `ip`, `status`, `date_added`) VALUES
-(1, 1, 'admin', '$2y$10$CI1BulO9pvSGZYk5dYS22utGk1lOx65H0V0HdgE51EiPKxWjbX9pG', 'John', 'Doe', 'rahulcs32@gmail.com', '', '', '::1', 1, '2024-12-19 09:56:39');
+(1, 1, 'sys_admin', '$2y$10$CI1BulO9pvSGZYk5dYS22utGk1lOx65H0V0HdgE51EiPKxWjbX9pG', 'System', 'Admin', 'sysadmin@demo.com', 'catalog/profile-pic.png', '', '::1', 1, '2024-12-19 09:56:39'),
+(2, 3, 'store_admin', '$2y$10$WNTkYTx34usuA8epk5tFRuM3J1Qi/H1Z7W/qevCvdziKWqvPe63Iu', 'Store', 'Admin', 'admin@store.com', 'catalog/profile-pic.png', '', '::1', 1, '2025-01-21 07:43:38');
 
 -- --------------------------------------------------------
 
@@ -5200,8 +4560,9 @@ CREATE TABLE `oc_user_group` (
 --
 
 INSERT INTO `oc_user_group` (`user_group_id`, `name`, `permission`) VALUES
-(1, 'Administrator', '{\"access\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/review\",\"catalog\\/subscription_plan\",\"common\\/column_left\",\"common\\/developer\",\"common\\/filemanager\",\"common\\/pagination\",\"common\\/security\",\"cron\\/cron\",\"cron\\/currency\",\"cron\\/gdpr\",\"cron\\/subscription\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_approval\",\"customer\\/customer_group\",\"customer\\/gdpr\",\"design\\/banner\",\"design\\/layout\",\"design\\/seo_url\",\"design\\/theme\",\"design\\/translation\",\"error\\/exception\",\"extension\\/analytics\",\"extension\\/captcha\",\"extension\\/currency\",\"extension\\/dashboard\",\"extension\\/feed\",\"extension\\/fraud\",\"extension\\/language\",\"extension\\/marketplace\",\"extension\\/module\",\"extension\\/other\",\"extension\\/payment\",\"extension\\/report\",\"extension\\/shipping\",\"extension\\/theme\",\"extension\\/total\",\"localisation\\/address_format\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/subscription_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"mail\\/affiliate\",\"mail\\/authorize\",\"mail\\/customer\",\"mail\\/forgotten\",\"mail\\/gdpr\",\"mail\\/returns\",\"mail\\/reward\",\"mail\\/subscription\",\"mail\\/transaction\",\"mail\\/voucher\",\"marketing\\/affiliate\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"marketplace\\/api\",\"marketplace\\/cron\",\"marketplace\\/event\",\"marketplace\\/extension\",\"marketplace\\/installer\",\"marketplace\\/marketplace\",\"marketplace\\/promotion\",\"marketplace\\/startup\",\"report\\/online\",\"report\\/report\",\"report\\/statistics\",\"sale\\/order\",\"sale\\/returns\",\"sale\\/subscription\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/authorize\",\"tool\\/backup\",\"tool\\/log\",\"tool\\/notification\",\"tool\\/upgrade\",\"tool\\/upload\",\"user\\/api\",\"user\\/profile\",\"user\\/user\",\"user\\/user_permission\",\"extension\\/opencart\\/captcha\\/basic\",\"extension\\/opencart\\/currency\\/ecb\",\"extension\\/opencart\\/currency\\/fixer\",\"extension\\/opencart\\/dashboard\\/activity\",\"extension\\/opencart\\/dashboard\\/chart\",\"extension\\/opencart\\/dashboard\\/customer\",\"extension\\/opencart\\/dashboard\\/map\",\"extension\\/opencart\\/dashboard\\/online\",\"extension\\/opencart\\/dashboard\\/order\",\"extension\\/opencart\\/dashboard\\/recent\",\"extension\\/opencart\\/dashboard\\/sale\",\"extension\\/opencart\\/fraud\\/ip\",\"extension\\/opencart\\/module\\/account\",\"extension\\/opencart\\/module\\/banner\",\"extension\\/opencart\\/module\\/bestseller\",\"extension\\/opencart\\/module\\/category\",\"extension\\/opencart\\/module\\/featured\",\"extension\\/opencart\\/module\\/filter\",\"extension\\/opencart\\/module\\/html\",\"extension\\/opencart\\/module\\/information\",\"extension\\/opencart\\/module\\/latest\",\"extension\\/opencart\\/module\\/special\",\"extension\\/opencart\\/module\\/store\",\"extension\\/opencart\\/payment\\/bank_transfer\",\"extension\\/opencart\\/payment\\/cheque\",\"extension\\/opencart\\/payment\\/cod\",\"extension\\/opencart\\/payment\\/free_checkout\",\"extension\\/opencart\\/report\\/customer\",\"extension\\/opencart\\/report\\/customer_activity\",\"extension\\/opencart\\/report\\/customer_order\",\"extension\\/opencart\\/report\\/customer_reward\",\"extension\\/opencart\\/report\\/customer_search\",\"extension\\/opencart\\/report\\/customer_transaction\",\"extension\\/opencart\\/report\\/customer_subscription\",\"extension\\/opencart\\/report\\/marketing\",\"extension\\/opencart\\/report\\/product_purchased\",\"extension\\/opencart\\/report\\/product_viewed\",\"extension\\/opencart\\/report\\/sale_coupon\",\"extension\\/opencart\\/report\\/sale_order\",\"extension\\/opencart\\/report\\/sale_return\",\"extension\\/opencart\\/report\\/sale_shipping\",\"extension\\/opencart\\/report\\/sale_tax\",\"extension\\/opencart\\/shipping\\/flat\",\"extension\\/opencart\\/shipping\\/free\",\"extension\\/opencart\\/shipping\\/item\",\"extension\\/opencart\\/shipping\\/pickup\",\"extension\\/opencart\\/shipping\\/weight\",\"extension\\/opencart\\/theme\\/basic\",\"extension\\/opencart\\/total\\/coupon\",\"extension\\/opencart\\/total\\/credit\",\"extension\\/opencart\\/total\\/handling\",\"extension\\/opencart\\/total\\/low_order_fee\",\"extension\\/opencart\\/total\\/reward\",\"extension\\/opencart\\/total\\/shipping\",\"extension\\/opencart\\/total\\/sub_total\",\"extension\\/opencart\\/total\\/tax\",\"extension\\/opencart\\/total\\/total\",\"extension\\/opencart\\/total\\/voucher\",\"extension\\/opencart\\/shipping\\/free\"],\"modify\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/review\",\"catalog\\/subscription_plan\",\"common\\/column_left\",\"common\\/developer\",\"common\\/filemanager\",\"common\\/pagination\",\"common\\/security\",\"cron\\/cron\",\"cron\\/currency\",\"cron\\/gdpr\",\"cron\\/subscription\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_approval\",\"customer\\/customer_group\",\"customer\\/gdpr\",\"design\\/banner\",\"design\\/layout\",\"design\\/seo_url\",\"design\\/theme\",\"design\\/translation\",\"error\\/exception\",\"extension\\/analytics\",\"extension\\/captcha\",\"extension\\/currency\",\"extension\\/dashboard\",\"extension\\/feed\",\"extension\\/fraud\",\"extension\\/language\",\"extension\\/marketplace\",\"extension\\/module\",\"extension\\/other\",\"extension\\/payment\",\"extension\\/report\",\"extension\\/shipping\",\"extension\\/theme\",\"extension\\/total\",\"localisation\\/address_format\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/subscription_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"mail\\/affiliate\",\"mail\\/authorize\",\"mail\\/customer\",\"mail\\/forgotten\",\"mail\\/gdpr\",\"mail\\/returns\",\"mail\\/reward\",\"mail\\/subscription\",\"mail\\/transaction\",\"mail\\/voucher\",\"marketing\\/affiliate\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"marketplace\\/api\",\"marketplace\\/cron\",\"marketplace\\/event\",\"marketplace\\/extension\",\"marketplace\\/installer\",\"marketplace\\/marketplace\",\"marketplace\\/promotion\",\"marketplace\\/startup\",\"report\\/online\",\"report\\/report\",\"report\\/statistics\",\"sale\\/order\",\"sale\\/returns\",\"sale\\/subscription\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/authorize\",\"tool\\/backup\",\"tool\\/log\",\"tool\\/notification\",\"tool\\/upgrade\",\"tool\\/upload\",\"user\\/api\",\"user\\/profile\",\"user\\/user\",\"user\\/user_permission\",\"extension\\/opencart\\/captcha\\/basic\",\"extension\\/opencart\\/currency\\/ecb\",\"extension\\/opencart\\/currency\\/fixer\",\"extension\\/opencart\\/dashboard\\/activity\",\"extension\\/opencart\\/dashboard\\/chart\",\"extension\\/opencart\\/dashboard\\/customer\",\"extension\\/opencart\\/dashboard\\/map\",\"extension\\/opencart\\/dashboard\\/online\",\"extension\\/opencart\\/dashboard\\/order\",\"extension\\/opencart\\/dashboard\\/recent\",\"extension\\/opencart\\/dashboard\\/sale\",\"extension\\/opencart\\/fraud\\/ip\",\"extension\\/opencart\\/module\\/account\",\"extension\\/opencart\\/module\\/banner\",\"extension\\/opencart\\/module\\/bestseller\",\"extension\\/opencart\\/module\\/category\",\"extension\\/opencart\\/module\\/featured\",\"extension\\/opencart\\/module\\/filter\",\"extension\\/opencart\\/module\\/html\",\"extension\\/opencart\\/module\\/information\",\"extension\\/opencart\\/module\\/latest\",\"extension\\/opencart\\/module\\/special\",\"extension\\/opencart\\/module\\/store\",\"extension\\/opencart\\/payment\\/bank_transfer\",\"extension\\/opencart\\/payment\\/cheque\",\"extension\\/opencart\\/payment\\/cod\",\"extension\\/opencart\\/payment\\/free_checkout\",\"extension\\/opencart\\/report\\/customer\",\"extension\\/opencart\\/report\\/customer_activity\",\"extension\\/opencart\\/report\\/customer_order\",\"extension\\/opencart\\/report\\/customer_reward\",\"extension\\/opencart\\/report\\/customer_search\",\"extension\\/opencart\\/report\\/customer_transaction\",\"extension\\/opencart\\/report\\/customer_subscription\",\"extension\\/opencart\\/report\\/marketing\",\"extension\\/opencart\\/report\\/product_purchased\",\"extension\\/opencart\\/report\\/product_viewed\",\"extension\\/opencart\\/report\\/sale_coupon\",\"extension\\/opencart\\/report\\/sale_order\",\"extension\\/opencart\\/report\\/sale_return\",\"extension\\/opencart\\/report\\/sale_shipping\",\"extension\\/opencart\\/report\\/sale_tax\",\"extension\\/opencart\\/shipping\\/flat\",\"extension\\/opencart\\/shipping\\/free\",\"extension\\/opencart\\/shipping\\/item\",\"extension\\/opencart\\/shipping\\/pickup\",\"extension\\/opencart\\/shipping\\/weight\",\"extension\\/opencart\\/theme\\/basic\",\"extension\\/opencart\\/total\\/coupon\",\"extension\\/opencart\\/total\\/credit\",\"extension\\/opencart\\/total\\/handling\",\"extension\\/opencart\\/total\\/low_order_fee\",\"extension\\/opencart\\/total\\/reward\",\"extension\\/opencart\\/total\\/shipping\",\"extension\\/opencart\\/total\\/sub_total\",\"extension\\/opencart\\/total\\/tax\",\"extension\\/opencart\\/total\\/total\",\"extension\\/opencart\\/total\\/voucher\",\"extension\\/opencart\\/shipping\\/free\"]}'),
-(2, 'Demonstration', '');
+(1, 'Administrator', '{\"access\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/review\",\"catalog\\/subscription_plan\",\"cms\\/antispam\",\"cms\\/article\",\"cms\\/comment\",\"cms\\/topic\",\"common\\/developer\",\"common\\/filemanager\",\"common\\/security\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_approval\",\"customer\\/customer_group\",\"customer\\/gdpr\",\"design\\/banner\",\"design\\/layout\",\"design\\/seo_url\",\"design\\/theme\",\"design\\/translation\",\"error\\/exception\",\"extension\\/analytics\",\"extension\\/captcha\",\"extension\\/currency\",\"extension\\/dashboard\",\"extension\\/feed\",\"extension\\/fraud\",\"extension\\/language\",\"extension\\/marketplace\",\"extension\\/module\",\"extension\\/other\",\"extension\\/payment\",\"extension\\/report\",\"extension\\/shipping\",\"extension\\/theme\",\"extension\\/total\",\"localisation\\/address_format\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/subscription_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"mail\\/affiliate\",\"mail\\/authorize\",\"mail\\/customer\",\"mail\\/forgotten\",\"mail\\/gdpr\",\"mail\\/returns\",\"mail\\/reward\",\"mail\\/subscription\",\"mail\\/transaction\",\"mail\\/voucher\",\"marketing\\/affiliate\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"marketplace\\/api\",\"marketplace\\/cron\",\"marketplace\\/event\",\"marketplace\\/extension\",\"marketplace\\/installer\",\"marketplace\\/marketplace\",\"marketplace\\/promotion\",\"marketplace\\/startup\",\"report\\/online\",\"report\\/report\",\"report\\/statistics\",\"sale\\/order\",\"sale\\/returns\",\"sale\\/subscription\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"setting\\/setting\",\"setting\\/store\",\"tool\\/backup\",\"tool\\/log\",\"tool\\/notification\",\"tool\\/upgrade\",\"tool\\/upload\",\"user\\/api\",\"user\\/profile\",\"user\\/user\",\"user\\/user_permission\",\"extension\\/opencart\\/captcha\\/basic\",\"extension\\/opencart\\/currency\\/ecb\",\"extension\\/opencart\\/currency\\/fixer\",\"extension\\/opencart\\/dashboard\\/activity\",\"extension\\/opencart\\/dashboard\\/chart\",\"extension\\/opencart\\/dashboard\\/customer\",\"extension\\/opencart\\/dashboard\\/map\",\"extension\\/opencart\\/dashboard\\/online\",\"extension\\/opencart\\/dashboard\\/order\",\"extension\\/opencart\\/dashboard\\/recent\",\"extension\\/opencart\\/dashboard\\/sale\",\"extension\\/opencart\\/fraud\\/ip\",\"extension\\/opencart\\/module\\/account\",\"extension\\/opencart\\/module\\/banner\",\"extension\\/opencart\\/module\\/bestseller\",\"extension\\/opencart\\/module\\/category\",\"extension\\/opencart\\/module\\/featured\",\"extension\\/opencart\\/module\\/filter\",\"extension\\/opencart\\/module\\/html\",\"extension\\/opencart\\/module\\/information\",\"extension\\/opencart\\/module\\/latest\",\"extension\\/opencart\\/module\\/special\",\"extension\\/opencart\\/module\\/store\",\"extension\\/opencart\\/payment\\/bank_transfer\",\"extension\\/opencart\\/payment\\/cheque\",\"extension\\/opencart\\/payment\\/cod\",\"extension\\/opencart\\/payment\\/free_checkout\",\"extension\\/opencart\\/report\\/customer\",\"extension\\/opencart\\/report\\/customer_activity\",\"extension\\/opencart\\/report\\/customer_order\",\"extension\\/opencart\\/report\\/customer_reward\",\"extension\\/opencart\\/report\\/customer_search\",\"extension\\/opencart\\/report\\/customer_subscription\",\"extension\\/opencart\\/report\\/customer_transaction\",\"extension\\/opencart\\/report\\/marketing\",\"extension\\/opencart\\/report\\/product_purchased\",\"extension\\/opencart\\/report\\/product_viewed\",\"extension\\/opencart\\/report\\/sale_coupon\",\"extension\\/opencart\\/report\\/sale_order\",\"extension\\/opencart\\/report\\/sale_return\",\"extension\\/opencart\\/report\\/sale_shipping\",\"extension\\/opencart\\/report\\/sale_tax\",\"extension\\/opencart\\/shipping\\/flat\",\"extension\\/opencart\\/shipping\\/free\",\"extension\\/opencart\\/shipping\\/item\",\"extension\\/opencart\\/shipping\\/pickup\",\"extension\\/opencart\\/shipping\\/weight\",\"extension\\/opencart\\/theme\\/basic\",\"extension\\/opencart\\/total\\/coupon\",\"extension\\/opencart\\/total\\/credit\",\"extension\\/opencart\\/total\\/handling\",\"extension\\/opencart\\/total\\/low_order_fee\",\"extension\\/opencart\\/total\\/reward\",\"extension\\/opencart\\/total\\/shipping\",\"extension\\/opencart\\/total\\/sub_total\",\"extension\\/opencart\\/total\\/tax\",\"extension\\/opencart\\/total\\/total\",\"extension\\/opencart\\/total\\/voucher\"],\"modify\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/review\",\"catalog\\/subscription_plan\",\"cms\\/antispam\",\"cms\\/article\",\"cms\\/comment\",\"cms\\/topic\",\"common\\/developer\",\"common\\/filemanager\",\"common\\/security\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_approval\",\"customer\\/customer_group\",\"customer\\/gdpr\",\"design\\/banner\",\"design\\/layout\",\"design\\/seo_url\",\"design\\/theme\",\"design\\/translation\",\"error\\/exception\",\"extension\\/analytics\",\"extension\\/captcha\",\"extension\\/currency\",\"extension\\/dashboard\",\"extension\\/feed\",\"extension\\/fraud\",\"extension\\/language\",\"extension\\/marketplace\",\"extension\\/module\",\"extension\\/other\",\"extension\\/payment\",\"extension\\/report\",\"extension\\/shipping\",\"extension\\/theme\",\"extension\\/total\",\"localisation\\/address_format\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/subscription_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"mail\\/affiliate\",\"mail\\/authorize\",\"mail\\/customer\",\"mail\\/forgotten\",\"mail\\/gdpr\",\"mail\\/returns\",\"mail\\/reward\",\"mail\\/subscription\",\"mail\\/transaction\",\"mail\\/voucher\",\"marketing\\/affiliate\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"marketplace\\/api\",\"marketplace\\/cron\",\"marketplace\\/event\",\"marketplace\\/extension\",\"marketplace\\/installer\",\"marketplace\\/marketplace\",\"marketplace\\/promotion\",\"marketplace\\/startup\",\"report\\/online\",\"report\\/report\",\"report\\/statistics\",\"sale\\/order\",\"sale\\/returns\",\"sale\\/subscription\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"setting\\/setting\",\"setting\\/store\",\"tool\\/backup\",\"tool\\/log\",\"tool\\/notification\",\"tool\\/upgrade\",\"tool\\/upload\",\"user\\/api\",\"user\\/profile\",\"user\\/user\",\"user\\/user_permission\",\"extension\\/opencart\\/captcha\\/basic\",\"extension\\/opencart\\/currency\\/ecb\",\"extension\\/opencart\\/currency\\/fixer\",\"extension\\/opencart\\/dashboard\\/activity\",\"extension\\/opencart\\/dashboard\\/chart\",\"extension\\/opencart\\/dashboard\\/customer\",\"extension\\/opencart\\/dashboard\\/map\",\"extension\\/opencart\\/dashboard\\/online\",\"extension\\/opencart\\/dashboard\\/order\",\"extension\\/opencart\\/dashboard\\/recent\",\"extension\\/opencart\\/dashboard\\/sale\",\"extension\\/opencart\\/fraud\\/ip\",\"extension\\/opencart\\/module\\/account\",\"extension\\/opencart\\/module\\/banner\",\"extension\\/opencart\\/module\\/bestseller\",\"extension\\/opencart\\/module\\/category\",\"extension\\/opencart\\/module\\/featured\",\"extension\\/opencart\\/module\\/filter\",\"extension\\/opencart\\/module\\/html\",\"extension\\/opencart\\/module\\/information\",\"extension\\/opencart\\/module\\/latest\",\"extension\\/opencart\\/module\\/special\",\"extension\\/opencart\\/module\\/store\",\"extension\\/opencart\\/payment\\/bank_transfer\",\"extension\\/opencart\\/payment\\/cheque\",\"extension\\/opencart\\/payment\\/cod\",\"extension\\/opencart\\/payment\\/free_checkout\",\"extension\\/opencart\\/report\\/customer\",\"extension\\/opencart\\/report\\/customer_activity\",\"extension\\/opencart\\/report\\/customer_order\",\"extension\\/opencart\\/report\\/customer_reward\",\"extension\\/opencart\\/report\\/customer_search\",\"extension\\/opencart\\/report\\/customer_subscription\",\"extension\\/opencart\\/report\\/customer_transaction\",\"extension\\/opencart\\/report\\/marketing\",\"extension\\/opencart\\/report\\/product_purchased\",\"extension\\/opencart\\/report\\/product_viewed\",\"extension\\/opencart\\/report\\/sale_coupon\",\"extension\\/opencart\\/report\\/sale_order\",\"extension\\/opencart\\/report\\/sale_return\",\"extension\\/opencart\\/report\\/sale_shipping\",\"extension\\/opencart\\/report\\/sale_tax\",\"extension\\/opencart\\/shipping\\/flat\",\"extension\\/opencart\\/shipping\\/free\",\"extension\\/opencart\\/shipping\\/item\",\"extension\\/opencart\\/shipping\\/pickup\",\"extension\\/opencart\\/shipping\\/weight\",\"extension\\/opencart\\/theme\\/basic\",\"extension\\/opencart\\/total\\/coupon\",\"extension\\/opencart\\/total\\/credit\",\"extension\\/opencart\\/total\\/handling\",\"extension\\/opencart\\/total\\/low_order_fee\",\"extension\\/opencart\\/total\\/reward\",\"extension\\/opencart\\/total\\/shipping\",\"extension\\/opencart\\/total\\/sub_total\",\"extension\\/opencart\\/total\\/tax\",\"extension\\/opencart\\/total\\/total\",\"extension\\/opencart\\/total\\/voucher\"]}'),
+(2, 'Demonstration', ''),
+(3, 'Store Admin', '{\"access\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/filter\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/review\",\"common\\/filemanager\",\"common\\/security\",\"customer\\/customer\",\"customer\\/customer_approval\",\"customer\\/customer_group\",\"customer\\/gdpr\",\"extension\\/dashboard\",\"report\\/online\",\"report\\/report\",\"report\\/statistics\",\"sale\\/order\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"extension\\/opencart\\/dashboard\\/chart\",\"extension\\/opencart\\/dashboard\\/customer\",\"extension\\/opencart\\/dashboard\\/map\",\"extension\\/opencart\\/dashboard\\/online\",\"extension\\/opencart\\/dashboard\\/order\",\"extension\\/opencart\\/dashboard\\/recent\",\"extension\\/opencart\\/dashboard\\/sale\",\"extension\\/opencart\\/report\\/customer\",\"extension\\/opencart\\/report\\/customer_activity\",\"extension\\/opencart\\/report\\/customer_order\",\"extension\\/opencart\\/report\\/customer_search\",\"extension\\/opencart\\/report\\/customer_transaction\",\"extension\\/opencart\\/report\\/marketing\",\"extension\\/opencart\\/report\\/product_purchased\",\"extension\\/opencart\\/report\\/product_viewed\",\"extension\\/opencart\\/report\\/sale_coupon\",\"extension\\/opencart\\/report\\/sale_order\",\"extension\\/opencart\\/report\\/sale_shipping\",\"extension\\/opencart\\/report\\/sale_tax\",\"extension\\/opencart\\/shipping\\/flat\",\"extension\\/opencart\\/shipping\\/free\",\"extension\\/opencart\\/shipping\\/item\",\"extension\\/opencart\\/shipping\\/pickup\",\"extension\\/opencart\\/shipping\\/weight\",\"extension\\/opencart\\/theme\\/basic\",\"extension\\/opencart\\/total\\/coupon\",\"extension\\/opencart\\/total\\/low_order_fee\",\"extension\\/opencart\\/total\\/voucher\"],\"modify\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/filter\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/review\",\"common\\/filemanager\",\"common\\/security\",\"customer\\/customer\",\"customer\\/customer_approval\",\"customer\\/customer_group\",\"customer\\/gdpr\",\"extension\\/dashboard\",\"report\\/online\",\"report\\/report\",\"report\\/statistics\",\"sale\\/order\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"extension\\/opencart\\/dashboard\\/chart\",\"extension\\/opencart\\/dashboard\\/customer\",\"extension\\/opencart\\/dashboard\\/map\",\"extension\\/opencart\\/dashboard\\/online\",\"extension\\/opencart\\/dashboard\\/order\",\"extension\\/opencart\\/dashboard\\/recent\",\"extension\\/opencart\\/dashboard\\/sale\",\"extension\\/opencart\\/report\\/customer\",\"extension\\/opencart\\/report\\/customer_activity\",\"extension\\/opencart\\/report\\/customer_order\",\"extension\\/opencart\\/report\\/customer_search\",\"extension\\/opencart\\/report\\/customer_transaction\",\"extension\\/opencart\\/report\\/marketing\",\"extension\\/opencart\\/report\\/product_purchased\",\"extension\\/opencart\\/report\\/product_viewed\",\"extension\\/opencart\\/report\\/sale_coupon\",\"extension\\/opencart\\/report\\/sale_order\",\"extension\\/opencart\\/report\\/sale_shipping\",\"extension\\/opencart\\/report\\/sale_tax\",\"extension\\/opencart\\/shipping\\/flat\",\"extension\\/opencart\\/shipping\\/free\",\"extension\\/opencart\\/shipping\\/item\",\"extension\\/opencart\\/shipping\\/pickup\",\"extension\\/opencart\\/shipping\\/weight\",\"extension\\/opencart\\/theme\\/basic\",\"extension\\/opencart\\/total\\/coupon\",\"extension\\/opencart\\/total\\/low_order_fee\",\"extension\\/opencart\\/total\\/voucher\"]}');
 
 -- --------------------------------------------------------
 
@@ -5236,7 +4597,15 @@ INSERT INTO `oc_user_login` (`user_login_id`, `user_id`, `ip`, `user_agent`, `da
 (12, 1, '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', '2025-01-13 14:24:32'),
 (13, 1, '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', '2025-01-14 03:16:19'),
 (14, 1, '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', '2025-01-15 08:32:12'),
-(15, 1, '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36', '2025-01-16 08:22:01');
+(15, 1, '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36', '2025-01-16 08:22:01'),
+(16, 1, '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36', '2025-01-19 03:27:48'),
+(17, 1, '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36', '2025-01-20 15:24:09'),
+(18, 1, '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36', '2025-01-21 07:18:42'),
+(19, 2, '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36', '2025-01-21 07:43:59'),
+(20, 1, '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36', '2025-01-21 07:44:50'),
+(21, 2, '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36', '2025-01-21 07:50:18'),
+(22, 1, '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36', '2025-01-21 07:54:56'),
+(23, 1, '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36', '2025-01-21 08:34:22');
 
 -- --------------------------------------------------------
 
@@ -5258,6 +4627,13 @@ CREATE TABLE `oc_voucher` (
   `status` tinyint(1) NOT NULL,
   `date_added` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+
+--
+-- Dumping data for table `oc_voucher`
+--
+
+INSERT INTO `oc_voucher` (`voucher_id`, `order_id`, `code`, `from_name`, `from_email`, `to_name`, `to_email`, `voucher_theme_id`, `message`, `amount`, `status`, `date_added`) VALUES
+(1, 0, '1111', 'Test Voucher', 'rahul@test.com', 'Rahul', 'rahul@gmail.com', 8, 'Happy...', 20.0000, 1, '2025-01-19 04:10:30');
 
 -- --------------------------------------------------------
 
@@ -10615,13 +9991,13 @@ ALTER TABLE `oc_zone_to_geo_zone`
 -- AUTO_INCREMENT for table `oc_address`
 --
 ALTER TABLE `oc_address`
-  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `oc_address_format`
 --
 ALTER TABLE `oc_address_format`
-  MODIFY `address_format_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `address_format_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `oc_antispam`
@@ -10687,13 +10063,13 @@ ALTER TABLE `oc_banner_image`
 -- AUTO_INCREMENT for table `oc_cart`
 --
 ALTER TABLE `oc_cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
 
 --
 -- AUTO_INCREMENT for table `oc_category`
 --
 ALTER TABLE `oc_category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `oc_country`
@@ -10735,7 +10111,7 @@ ALTER TABLE `oc_currency`
 -- AUTO_INCREMENT for table `oc_customer`
 --
 ALTER TABLE `oc_customer`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `oc_customer_activity`
@@ -10771,7 +10147,7 @@ ALTER TABLE `oc_customer_history`
 -- AUTO_INCREMENT for table `oc_customer_ip`
 --
 ALTER TABLE `oc_customer_ip`
-  MODIFY `customer_ip_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `customer_ip_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `oc_customer_login`
@@ -10795,7 +10171,7 @@ ALTER TABLE `oc_customer_search`
 -- AUTO_INCREMENT for table `oc_customer_token`
 --
 ALTER TABLE `oc_customer_token`
-  MODIFY `customer_token_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `customer_token_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `oc_customer_transaction`
@@ -10945,7 +10321,7 @@ ALTER TABLE `oc_mobile_cart`
 -- AUTO_INCREMENT for table `oc_mobile_checkout`
 --
 ALTER TABLE `oc_mobile_checkout`
-  MODIFY `checkout_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=273;
+  MODIFY `checkout_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=359;
 
 --
 -- AUTO_INCREMENT for table `oc_module`
@@ -10963,37 +10339,37 @@ ALTER TABLE `oc_notification`
 -- AUTO_INCREMENT for table `oc_option`
 --
 ALTER TABLE `oc_option`
-  MODIFY `option_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `option_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `oc_option_value`
 --
 ALTER TABLE `oc_option_value`
-  MODIFY `option_value_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `option_value_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `oc_order`
 --
 ALTER TABLE `oc_order`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `oc_order_history`
 --
 ALTER TABLE `oc_order_history`
-  MODIFY `order_history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `order_history_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `oc_order_option`
 --
 ALTER TABLE `oc_order_option`
-  MODIFY `order_option_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `order_option_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `oc_order_product`
 --
 ALTER TABLE `oc_order_product`
-  MODIFY `order_product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
+  MODIFY `order_product_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `oc_order_status`
@@ -11011,7 +10387,7 @@ ALTER TABLE `oc_order_subscription`
 -- AUTO_INCREMENT for table `oc_order_total`
 --
 ALTER TABLE `oc_order_total`
-  MODIFY `order_total_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
+  MODIFY `order_total_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=236;
 
 --
 -- AUTO_INCREMENT for table `oc_order_voucher`
@@ -11029,25 +10405,25 @@ ALTER TABLE `oc_product`
 -- AUTO_INCREMENT for table `oc_product_discount`
 --
 ALTER TABLE `oc_product_discount`
-  MODIFY `product_discount_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=444;
+  MODIFY `product_discount_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `oc_product_image`
 --
 ALTER TABLE `oc_product_image`
-  MODIFY `product_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2357;
+  MODIFY `product_image_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `oc_product_option`
 --
 ALTER TABLE `oc_product_option`
-  MODIFY `product_option_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=227;
+  MODIFY `product_option_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `oc_product_option_value`
 --
 ALTER TABLE `oc_product_option_value`
-  MODIFY `product_option_value_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `product_option_value_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `oc_product_report`
@@ -11059,13 +10435,13 @@ ALTER TABLE `oc_product_report`
 -- AUTO_INCREMENT for table `oc_product_reward`
 --
 ALTER TABLE `oc_product_reward`
-  MODIFY `product_reward_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=547;
+  MODIFY `product_reward_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `oc_product_special`
 --
 ALTER TABLE `oc_product_special`
-  MODIFY `product_special_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=441;
+  MODIFY `product_special_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `oc_return`
@@ -11113,7 +10489,7 @@ ALTER TABLE `oc_seo_url`
 -- AUTO_INCREMENT for table `oc_setting`
 --
 ALTER TABLE `oc_setting`
-  MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=362;
+  MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1424;
 
 --
 -- AUTO_INCREMENT for table `oc_startup`
@@ -11209,7 +10585,7 @@ ALTER TABLE `oc_upload`
 -- AUTO_INCREMENT for table `oc_user`
 --
 ALTER TABLE `oc_user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `oc_user_authorize`
@@ -11221,19 +10597,19 @@ ALTER TABLE `oc_user_authorize`
 -- AUTO_INCREMENT for table `oc_user_group`
 --
 ALTER TABLE `oc_user_group`
-  MODIFY `user_group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `oc_user_login`
 --
 ALTER TABLE `oc_user_login`
-  MODIFY `user_login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `user_login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `oc_voucher`
 --
 ALTER TABLE `oc_voucher`
-  MODIFY `voucher_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `voucher_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `oc_voucher_history`
