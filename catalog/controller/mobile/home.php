@@ -105,7 +105,7 @@ class Home extends ApiController
             $json['message'] = 'Slideshow data retrieved successfully';
         } catch (\Exception $e) {
             $json['success'] = false;
-            $json['error'] = $e->getMessage();
+            $json['error']['warning'] = $e->getMessage();
             $this->log->write('Slideshow API Error: ' . $e->getMessage());
         }
 
@@ -137,7 +137,7 @@ class Home extends ApiController
             $json['message'] = 'Store information retrieved successfully';
         } catch (\Exception $e) {
             $json['success'] = false;
-            $json['error'] = $e->getMessage();
+            $json['error']['warning'] = $e->getMessage();
             $this->log->write('Store Info API Error: ' . $e->getMessage());
         }
 
